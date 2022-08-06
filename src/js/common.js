@@ -19,5 +19,5 @@ window.addEventListener("DOMContentLoaded", () => {
  */
 // 特定の位置に達したらヘッダーに影を追加
 window.addEventListener('DOMContentLoaded', () => {
-  new HandleScroll('.splide', '.js-header');
+  new addHeaderShadow('.splide', '.js-header');
 });

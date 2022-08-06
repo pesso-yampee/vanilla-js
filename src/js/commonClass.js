@@ -42,7 +42,7 @@ class ClickHamburgerMenu {
 }
 
 // 特定の位置に達したらヘッダーに影を追加する処理
-class HandleScroll {
+class addHeaderShadow {
   constructor(targetClass, headerClass) {
     this.target = document.querySelector(targetClass);
     this.header = document.querySelector(headerClass);
