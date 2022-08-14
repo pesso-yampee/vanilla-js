@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>vanilla-js</title>
-  <link rel="stylesheet" href="/assets/css/app.css">
   <link rel="stylesheet" href="/assets/css/splide-core.min.css">
+  <link rel="stylesheet" href="/assets/css/app.css">
 </head>
 
 <body>
@@ -15,33 +15,18 @@
     <header class="header js-header">
       <div class="main_width">
         <div class="header_inner">
-          <h1 class="header_title">Vanilla Js</h1>
+          <h1 class="header_title">Js Tips</h1>
 
           <nav class="header_nav">
             <ul class="header_list">
               <li class="header_item">
                 <a href="#" class="header_item_link">
-                  <span class="header_item_text">ABOUT</span>
+                  <span class="header_item_text">Splide</span>
                 </a>
               </li>
               <li class="header_item">
                 <a href="#" class="header_item_link">
-                  <span class="header_item_text">COMPANY</span>
-                </a>
-              </li>
-              <li class="header_item">
-                <a href="#" class="header_item_link">
-                  <span class="header_item_text">WORK</span>
-                </a>
-              </li>
-              <li class="header_item">
-                <a href="#" class="header_item_link">
-                  <span class="header_item_text">STAFF</span>
-                </a>
-              </li>
-              <li class="header_item">
-                <a href="#" class="header_item_link">
-                  <span class="header_item_text">CONTACT</span>
+                  <span class="header_item_text">Vanilla</span>
                 </a>
               </li>
             </ul>
@@ -91,26 +76,53 @@
                 </div><!-- /.splide_inner -->
               </div><!-- /.splide_wrapper -->
             </section>
-            <section class="section vanillaJsSlide" aria-labelby="carousel-heading">
-              <h2 class="section_heading">vanillaJsSlide</h2>
-              <div class="kv vanillaJsSlide_kv">
-                <div class="kv_list">
-                  <div class="kv_item">
-                    <div class="kv_image"></div>
-                  </div>
-                  <div class="kv_item">
-                    <div class="kv_image"></div>
-                  </div>
-                  <div class="kv_item">
-                    <div class="kv_image"></div>
-                  </div>
-                  <div class="kv_item">
-                    <div class="kv_image"></div>
-                  </div>
-                  <div class="kv_item">
-                    <div class="kv_image"></div>
-                  </div>
-                </div><!-- /.kv_list -->
+            <section class="section vanillaSlide" aria-labelby="carousel-heading">
+              <h2 class="section_heading">vanillaSlide</h2>
+              <div class="kv vanillaSlide">
+                <div class="kv_inner vanillaSlide_inner">
+                  <ul class="kv_list vanillaSlide_list">
+                    <li class="kv_item vanillaSlide_item js-slideItem is-show" data-order="1">
+                      <div class="kv_image"></div>
+                    </li>
+                    <li class="kv_item vanillaSlide_item js-slideItem" data-order="2">
+                      <div class="kv_image"></div>
+                    </li>
+                    <li class="kv_item vanillaSlide_item js-slideItem" data-order="3">
+                      <div class="kv_image"></div>
+                    </li>
+                    <li class="kv_item vanillaSlide_item js-slideItem" data-order="4">
+                      <div class="kv_image"></div>
+                    </li>
+                    <li class="kv_item vanillaSlide_item js-slideItem" data-order="5">
+                      <div class="kv_image"></div>
+                    </li>
+                  </ul>
+                  <div class="vanillaSlide_navigation">
+                    <div class="vanillaSlide_navigation_inner">
+                      <ul class="vanillaSlide_navigation_list">
+                        <li class="vanillaSlide_navigation_item js-slideNav is-active" data-order="1">
+                          <button class="vanillaSlide_navigation_dot"></button>
+                        </li>
+                        <li class="vanillaSlide_navigation_item js-slideNav" data-order="2">
+                          <button class="vanillaSlide_navigation_dot"></button>
+                        </li>
+                        <li class="vanillaSlide_navigation_item js-slideNav" data-order="3">
+                          <button class="vanillaSlide_navigation_dot"></button>
+                        </li>
+                        <li class="vanillaSlide_navigation_item js-slideNav" data-order="4">
+                          <button class="vanillaSlide_navigation_dot"></button>
+                        </li>
+                        <li class="vanillaSlide_navigation_item js-slideNav" data-order="5">
+                          <button class="vanillaSlide_navigation_dot"></button>
+                        </li>
+                      </ul>
+                    </div><!-- /.vanillaSlide_navigation_inner -->
+                  </div><!-- /.vanillaSlide_navigation -->
+                </div><!-- /.vanillaSlide_inner -->
+                <div class="vanillaSlide_arrows">
+                  <button class="vanillaSlide_arrow is-hidden" data-arrow="prev" ></button>
+                  <button class="vanillaSlide_arrow" data-arrow="next"></button>
+                </div>
               </div><!-- /.kv -->
             </section>
           </div><!-- /.main_contents -->
@@ -124,35 +136,22 @@
     <ul class="modal_list" role="document">
       <li class="modal_item">
         <a href="#" class="modal_item_link">
-          <span class="modal_item_text">ABOUT</span>
+          <span class="modal_item_text">Splide</span>
         </a>
       </li>
       <li class="modal_item">
         <a href="#" class="modal_item_link">
-          <span class="modal_item_text">COMPANY</span>
-        </a>
-      </li>
-      <li class="modal_item">
-        <a href="#" class="modal_item_link">
-          <span class="modal_item_text">WORK</span>
-        </a>
-      </li>
-      <li class="modal_item">
-        <a href="#" class="modal_item_link">
-          <span class="modal_item_text">STAFF</span>
-        </a>
-      </li>
-      <li class="modal_item">
-        <a href="#" class="modal_item_link">
-          <span class="modal_item_text">CONTACT</span>
+          <span class="modal_item_text">Vanilla</span>
         </a>
       </li>
     </ul>
   </div>
   <script src="/src/js/splide.min.js"></script>
+  <script src="/src/js/splide.js"></script>
   <script src="/src/js/common.js"></script>
   <script src="/src/js/commonClass.js"></script>
-  <script src="/src/js/splide.js"></script>
+  <script src="/src/js/vanillaSlide.js"></script>
+  <script src="/src/js/vanillaSlideClass.js"></script>
 </body>
 
 </html>

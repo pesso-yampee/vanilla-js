@@ -1,0 +1,7 @@
+@use "mq" as *;
+
+html {
+  @include media767 {
+    font-size: calc(100vw / 320);
+  }
+}

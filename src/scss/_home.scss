@@ -7,7 +7,7 @@
   section
 ----------------------------------- */
 .section {
-  & + .section {
+  &+.section {
     margin-top: 32px;
   }
 }
@@ -16,6 +16,7 @@
   position: relative;
   padding-bottom: 8px;
   font-size: 36px;
+
   &::after {
     position: absolute;
     display: block;
@@ -26,6 +27,11 @@
     background-color: $colorPureBlack;
     content: '';
   }
+
+  @include media767 {
+    padding-bottom: 4rem;
+    font-size: 24rem;
+  }
 }
 
 /** -----------------------------------
@@ -34,6 +40,7 @@
 .kv_item {
   overflow: hidden;
   aspect-ratio: 5/3;
+
   @for $i from 1 through 5 {
     &:nth-child(#{$i}) {
       .kv_image {
@@ -53,22 +60,36 @@
 ----------------------------------- */
 .splide_wrapper {
   margin-top: 24px;
+  background-color: $colorPureBlack;
+
+  @include media767 {
+    margin-top: 10rem;
+  }
 }
 
 .splide_inner {
   padding: 40px;
-  background-color: $colorPureBlack;
+
+  @include media767 {
+    padding: 16rem;
+  }
 }
 
 .splide__arrows {
   position: absolute;
   z-index: 2;
-  top: 50%;
+  top: calc(50% - 24px);
   left: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: calc(100% - 40px);
+  width: 100%;
+  padding: 0 16px;
+
+  @include media767 {
+    top: calc(50% - 16rem);
+    padding: 0 1rem;
+  }
 }
 
 .splide__arrow {
@@ -80,27 +101,239 @@
   height: 48px;
   border-radius: 50%;
   background-color: rgba($color: $colorLightGreen, $alpha: .6);
+  cursor: pointer;
+
+  @include media767 {
+    width: 32rem;
+    height: 32rem;
+  }
+
   &::after {
     position: absolute;
     display: block;
     width: 16px;
     height: 16px;
-    border-top: 3px;
-    border-right: 3px;
     border-top: 3px solid $colorWhite;
     border-right: 3px solid $colorWhite;
     content: '';
+
+    @include media767 {
+      width: 8rem;
+      height: 8rem;
+      border-top: 2rem solid $colorWhite;
+      border-right: 2rem solid $colorWhite;
+    }
   }
+
   &:nth-of-type(1) {
     &::after {
-      margin-left: 8px;
+      left: 19px;
       transform: rotate(-135deg);
+
+      @include media767 {
+        left: 13rem;
+      }
     }
   }
+
   &:nth-of-type(2) {
     &::after {
-      margin-right: 8px;
+      right: 19px;
       transform: rotate(45deg);
+
+      @include media767 {
+        right: 13rem;
+      }
     }
+  }
+}
+
+.splide__pagination {
+  margin: 8px -4px 0;
+}
+
+.splide__pagination li {
+  padding: 0 4px;
+}
+
+.splide__pagination__page {
+  width: 12px;
+  height: 12px;
+  background-color: $colorWhite;
+  border-radius: 50%;
+
+  &.is-active {
+    background-color: $colorGreen;
+  }
+}
+
+/** -----------------------------------
+  vanillaSlide
+----------------------------------- */
+.vanillaSlide {
+  position: relative;
+}
+
+.vanillaSlide_inner {
+  padding: 40px;
+  background-color: $colorBlack;
+
+  @include media767 {
+    padding: 16rem;
+  }
+}
+
+.vanillaSlide_list {
+  position: relative;
+  height: 100%;
+}
+
+.vanillaSlide_item {
+  position: absolute;
+  z-index: 0;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  transition: opacity .5s;
+
+  &.is-show {
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+  }
+}
+
+.vanillaSlide_arrows {
+  overflow: hidden;
+  position: absolute;
+  z-index: 2;
+  top: calc(50% - 8px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  @include media767 {
+    top: calc(50% - 16rem);
+  }
+}
+
+.vanillaSlide_arrow {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  background-color: $colorWhite;
+  border-radius: 50%;
+  cursor: pointer;
+
+  @include media767 {
+    width: 32rem;
+    height: 32rem;
+  }
+
+  &::after {
+    position: absolute;
+    display: block;
+    top: calc(50% - 4px);
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid $colorBlack;
+    border-right: 2px solid $colorBlack;
+    content: '';
+
+    @include media767 {
+      top: calc(50% - 2rem);
+      width: 4rem;
+      height: 4rem;
+      border-top: 1rem solid $colorBlack;
+      border-right: 1rem solid $colorBlack;
+    }
+  }
+
+  &[data-arrow="prev"] {
+    left: -20px;
+
+    @include media767 {
+      left: -15rem;
+    }
+
+    &::after {
+      left: 26px;
+      transform: rotate(-135deg);
+
+      @include media767 {
+        left: 18rem;
+      }
+    }
+  }
+
+  &[data-arrow="next"] {
+    right: -20px;
+
+    @include media767 {
+      right: -15rem;
+    }
+
+    &::after {
+      right: 26px;
+      transform: rotate(45deg);
+
+      @include media767 {
+        right: 18rem;
+      }
+    }
+  }
+
+  &.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+// navigation
+.vanillaSlide_navigation {
+  margin-top: 16px;
+
+  @include media767 {
+    margin-top: 4rem;
+  }
+}
+
+.vanillaSlide_navigation_list {
+  display: flex;
+  justify-content: center;
+  margin: 0 -6px;
+
+  @include media767 {
+    margin: 0 -2rem;
+  }
+}
+
+.vanillaSlide_navigation_item {
+  display: inline-block;
+  padding: 0 6px;
+
+  @include media767 {
+    padding: 0 2rem;
+  }
+
+  &.is-active {
+    .vanillaSlide_navigation_dot {
+      background-color: $colorTeal;
+    }
+  }
+}
+
+.vanillaSlide_navigation_dot {
+  width: 10px;
+  height: 10px;
+  background-color: $colorWhite;
+  border-radius: 50%;
+  cursor: pointer;
+
+  @include media767 {
+    width: 4rem;
+    height: 4rem;
   }
 }

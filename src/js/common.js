@@ -14,10 +14,10 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 /**
- * 第一引数: 監視対象
+ * 第一引数: 
  * 第二引数: ヘッダー要素
  */
 // 特定の位置に達したらヘッダーに影を追加
 window.addEventListener('DOMContentLoaded', () => {
-  new addHeaderShadow('.splide', '.js-header');
+  new AddHeaderShadow('.splide', '.js-header');
 });
