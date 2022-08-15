@@ -18,6 +18,6 @@ window.addEventListener("DOMContentLoaded", () => {
  * 第二引数: ヘッダー要素
  */
 // 特定の位置に達したらヘッダーに影を追加
-window.addEventListener('DOMContentLoaded', () => {
-  new AddHeaderShadow('.splide', '.js-header');
-});
+// window.addEventListener('DOMContentLoaded', () => {
+//   new AddHeaderShadow('.splide', '.js-header');
+// });

@@ -115,28 +115,30 @@ class NavigationSlider extends NonNavigationSlider {
     } else {
       $targetSlideItem.classList.add("is-show");
     }
-    
+  }
+
+  _nonInfiniteNavigation() {
+    // 最初のナビゲーションをクリックされた場合、prevボタンを非表示にする。
+    // 最後のナビゲーションをクリックされた場合、nextボタンを非表示にする。
+    // 最初と最後以外のn個目のナビゲーションをクリックされた場合、prev, nextボタンを表示する。
     if (this.clickedNavBtnOrder === '1') {
-      // 最初のナビゲーションをクリックされた場合、prevボタンを非表示にする。
       this.$prevBtn.classList.add('is-hidden');
     } else if (this.clickedNavBtnOrder === '5') {
-      // 最後のナビゲーションをクリックされた場合、nextボタンを非表示にする。
       this.$nextBtn.classList.add('is-hidden');
     } else {
-      // 最初と最後以外のn個目のナビゲーションをクリックされた場合、prev, nextボタンを表示する。
       this.$prevBtn.classList.remove('is-hidden');
       this.$nextBtn.classList.remove('is-hidden');
     }
     
+    // prevボタンが非表示で5番目のナビゲーション要素がクリックされた場合、prevボタンを表示にする。
+    // nextボタンが非表示で1番目のナビゲーション要素がクリックされた場合、prevボタンを表示にする。
     if (this.clickedNavBtnOrder === '5' && this.$prevBtn.classList.contains('is-hidden')) {
-      // prevボタンが非表示で5番目のナビゲーション要素がクリックされた場合、prevボタンを表示にする。
       this.$prevBtn.classList.remove('is-hidden');
     } else if (this.clickedNavBtnOrder === '1' && this.$nextBtn.classList.contains('is-hidden')) {
-      // nextボタンが非表示で1番目のナビゲーション要素がクリックされた場合、prevボタンを表示にする。
       this.$nextBtn.classList.remove('is-hidden');
-    } 
+    }
   }
-
+  
   _infiniteNavigation() {
     // 最初のナビゲーション要素がアクティブな状態でprevボタンが押された場合、最後のナビゲーション要素をアクティブな状態にする。
     // 最後のナビゲーション要素がアクティブな状態でnextボタンが押された場合、最初のナビゲーション要素をアクティブな状態にする。
@@ -144,15 +146,11 @@ class NavigationSlider extends NonNavigationSlider {
       this.nav[4].classList.add('is-active');
     } else if (this.dataArrow === "next" && this.$currentSlideItem === this.slideItems[4]) {
       this.nav[0].classList.add('is-active');
-    } else if (this.dataArrow === "prev") {
-      this.$prevNavBtn.classList.add('is-active');
-    } else if (this.dataArrow === "next") {
-      this.$nextNavBtn.classList.add('is-active');
     } else {
-      this.$clickedNavBtn.classList.add('is-active');
+      this._addActiveClassNavigation();
     }
   }
-
+  
   handleSlide() {
     super.handleSlide();
   }
