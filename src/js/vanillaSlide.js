@@ -1,7 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
   const arrows = document.querySelectorAll('[data-arrow]');
-  const $prev = document.querySelector('[data-arrow="prev"]');
-  const $next = document.querySelector('[data-arrow="next"]');
   const slideItems = document.querySelectorAll('.js-slideItem');
   const slideNav = document.querySelectorAll('.js-slideNav');
 
@@ -20,8 +18,8 @@ window.addEventListener('DOMContentLoaded', () => {
       const event = e;
       const slider = new NavigationSlider(slideItems, arrows, event, slideNav);
       
-      slider.handleNavigation();
       slider.handleSlide();
+      slider.handleNavigation();
     });
   });
 });

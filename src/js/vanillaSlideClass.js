@@ -8,10 +8,9 @@ class NonNavigationSlider {
     this.$nextBtn = this.arrows[1];
     this.$currentTarget = this.event.currentTarget;
     this.dataArrow = this.event.currentTarget.dataset.arrow;
-    this.filterArray = [...this.slideItems].filter(element => {
+    this.$currentSlideItem = [...this.slideItems].filter(element => {
       return element.classList.contains('is-show');
-    });
-    this.$currentSlideItem = this.filterArray[0];
+    })[0];
     this.$prevSlideItem = this.$currentSlideItem.previousElementSibling;
     this.$nextSlideItem = this.$currentSlideItem.nextElementSibling;
   }
@@ -46,10 +45,23 @@ class NonNavigationSlider {
     }
   }
 
+  _infiniteSlideItem() {
+    // 最初の要素が表示されてる状態でprevボタンが押された場合、最初の要素を非表示にし、最後のスライド要素を表示する。
+    // 最後の要素が表示されてる状態でnextボタンが押された場合、最後の要素を非表示にし、最初のスライド要素を表示する。
+    if (this.dataArrow === "prev" && this.$currentSlideItem === this.slideItems[0]) {
+      this.slideItems[4].classList.add('is-show');
+    } else if (this.dataArrow === "next" && this.$currentSlideItem === this.slideItems[4]) {
+      this.slideItems[0].classList.add('is-show');
+    } else if (this.dataArrow === "prev") {
+      this.$prevSlideItem.classList.add('is-show');
+    } else if (this.dataArrow === "next") {
+      this.$nextSlideItem.classList.add('is-show');
+    }
+  }
+
   handleSlide() {
     this._removeActiveClass();
-    this._addActiveClass();
-    this._toggleDispayArrow();
+    this._infiniteSlideItem();
   }
 }
 
@@ -70,7 +82,7 @@ class NavigationSlider extends NonNavigationSlider {
   }
 
   // ナビゲーション要素からアクティブな状態を外す処理
-  _removeActiveClass() {
+  _removeActiveClassNavigation() {
     // クリックしたナビゲーション要素が既にアクティブ状態の場合、外す処理が実行されないようにする。
     if (this.$clickedNavBtn.classList.contains('is-active')) {
       return false;
@@ -81,7 +93,7 @@ class NavigationSlider extends NonNavigationSlider {
   }
   
   // ナビゲーション要素をアクティブな状態にする処理
-  _addActiveClass() {
+  _addActiveClassNavigation() {
     if (this.dataArrow === "prev") {
       this.$prevNavBtn.classList.add('is-active');
     } else if (this.dataArrow === "next") {
@@ -125,13 +137,29 @@ class NavigationSlider extends NonNavigationSlider {
     } 
   }
 
+  _infiniteNavigation() {
+    // 最初のナビゲーション要素がアクティブな状態でprevボタンが押された場合、最後のナビゲーション要素をアクティブな状態にする。
+    // 最後のナビゲーション要素がアクティブな状態でnextボタンが押された場合、最初のナビゲーション要素をアクティブな状態にする。
+    if (this.dataArrow === "prev" && this.$currentSlideItem === this.slideItems[0]) {
+      this.nav[4].classList.add('is-active');
+    } else if (this.dataArrow === "next" && this.$currentSlideItem === this.slideItems[4]) {
+      this.nav[0].classList.add('is-active');
+    } else if (this.dataArrow === "prev") {
+      this.$prevNavBtn.classList.add('is-active');
+    } else if (this.dataArrow === "next") {
+      this.$nextNavBtn.classList.add('is-active');
+    } else {
+      this.$clickedNavBtn.classList.add('is-active');
+    }
+  }
+
   handleSlide() {
     super.handleSlide();
   }
   
   handleNavigation() {
-    this._removeActiveClass();
-    this._addActiveClass();
+    this._removeActiveClassNavigation();
+    this._infiniteNavigation();
     this._linkNavigation();
   }
 }
