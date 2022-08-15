@@ -228,8 +228,8 @@
   cursor: pointer;
 
   @include media767 {
-    width: 32rem;
-    height: 32rem;
+    width: 28rem;
+    height: 28rem;
   }
 
   &::after {
@@ -296,7 +296,7 @@
   margin-top: 16px;
 
   @include media767 {
-    margin-top: 4rem;
+    margin-top: 8rem;
   }
 }
 
@@ -333,7 +333,7 @@
   cursor: pointer;
 
   @include media767 {
-    width: 4rem;
-    height: 4rem;
+    width: 8rem;
+    height: 8rem;
   }
 }

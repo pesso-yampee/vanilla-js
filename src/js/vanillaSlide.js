@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', () => {
   arrows.forEach((arrow) => {
     arrow.addEventListener('click', (e) => {
       const event = e;
-      const slider = new NavigationSlider(slideItems, $prev, $next, event, slideNav);
+      const slider = new NavigationSlider(slideItems, arrows, event, slideNav);
       
       slider.handleSlide();
       slider.handleNavigation();
@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', () => {
   slideNav.forEach((navItem) => {
     navItem.addEventListener('click', (e) => {
       const event = e;
-      const slider = new NavigationSlider(slideItems, $prev, $next, event, slideNav);
+      const slider = new NavigationSlider(slideItems, arrows, event, slideNav);
       
       slider.handleNavigation();
       slider.handleSlide();

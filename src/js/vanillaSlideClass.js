@@ -1,10 +1,11 @@
 // vanillaJsのスライドショー（ナビゲーション無）
 class NonNavigationSlider {
-  constructor(slideItems, $prev, $next, event) {
+  constructor(slideItems, arrows, event) {
     this.slideItems = slideItems;
     this.event = event;
-    this.$prevBtn = $prev;
-    this.$nextBtn = $next;
+    this.arrows = arrows;
+    this.$prevBtn = this.arrows[0];
+    this.$nextBtn = this.arrows[1];
     this.$currentTarget = this.event.currentTarget;
     this.dataArrow = this.event.currentTarget.dataset.arrow;
     this.filterArray = [...this.slideItems].filter(element => {
@@ -15,13 +16,13 @@ class NonNavigationSlider {
     this.$nextSlideItem = this.$currentSlideItem.nextElementSibling;
   }
   
-  _removeCurrentClass() {
+  _removeActiveClass() {
     if (this.dataArrow) {
       this.$currentSlideItem.classList.remove('is-show');
     }
   }
   
-  _addCurrentClass() {
+  _addActiveClass() {
     if (this.dataArrow === "prev") {
       this.$prevSlideItem.classList.add('is-show');
     } else if (this.dataArrow === "next") {
@@ -46,54 +47,55 @@ class NonNavigationSlider {
   }
 
   handleSlide() {
-    this._removeCurrentClass();
-    this._addCurrentClass();
+    this._removeActiveClass();
+    this._addActiveClass();
     this._toggleDispayArrow();
   }
 }
 
 // vanillaJsのスライドショー（ナビゲーション有）
 class NavigationSlider extends NonNavigationSlider {
-  constructor(slideItems, $prev, $next, event, nav) {
-    super(slideItems, $prev, $next, event);
+  constructor(slideItems, arrows, event, nav) {
+    super(slideItems, arrows, event);
     this.nav = nav;
-    this.$clickedNavTarget = this.event.currentTarget;
-    this.dataOrder = this.$clickedNavTarget.dataset.order;
+    this.$clickedNavBtn = this.event.currentTarget;
+    this.clickedNavBtnOrder = this.$clickedNavBtn.dataset.order;
     this.currentSlideItemOrder = this.$currentSlideItem.getAttribute('data-order');
-    this.$currentNav = [...this.nav].filter(navItem => {
+    this.$currentNavBtn = [...this.nav].filter(navItem => {
       const navItemOrder = navItem.getAttribute('data-order');
       return navItemOrder === this.currentSlideItemOrder;
     })[0];
-    this.$prevNav = this.$currentNav.previousElementSibling;
-    this.$nextNav = this.$currentNav.nextElementSibling;
+    this.$prevNavBtn = this.$currentNavBtn.previousElementSibling;
+    this.$nextNavBtn = this.$currentNavBtn.nextElementSibling;
   }
 
-  // ナビゲーション要素からcurrent用の背景色を外す処理
-  _removeCurrentClassNav() {
-    // 既にn個目のナビゲーションに背景色が付与されていた場合、外す処理が実行されないようにする。
-    if (this.$clickedNavTarget.classList.contains('is-active')) {
+  // ナビゲーション要素からアクティブな状態を外す処理
+  _removeActiveClass() {
+    // クリックしたナビゲーション要素が既にアクティブ状態の場合、外す処理が実行されないようにする。
+    if (this.$clickedNavBtn.classList.contains('is-active')) {
       return false;
     } else {
       this.$currentSlideItem.classList.remove('is-show');
-      this.$currentNav.classList.remove('is-active');
+      this.$currentNavBtn.classList.remove('is-active');
     }
   }
   
-  // ナビゲーション要素にcurrent用の背景色を付与する処理
-  _addCurrentClassNav() {
+  // ナビゲーション要素をアクティブな状態にする処理
+  _addActiveClass() {
     if (this.dataArrow === "prev") {
-      this.$prevNav.classList.add('is-active');
+      this.$prevNavBtn.classList.add('is-active');
     } else if (this.dataArrow === "next") {
-      this.$nextNav.classList.add('is-active');
+      this.$nextNavBtn.classList.add('is-active');
     } else {
-      this.$clickedNavTarget.classList.add('is-active');
+      this.$clickedNavBtn.classList.add('is-active');
     }
   }
 
+  // スライド要素とナビゲーション要素を同期する処理
   _linkNavigation() {
-    // n個目のナビゲーションをクリックされた場合、n個目のスライド要素を表示する。
+    // n個目のナビゲーション要素をクリックされた場合、n個目のスライド要素を表示する。
     const $targetSlideItem = [...this.slideItems].filter(slideItem => {
-      return slideItem.getAttribute('data-order') === this.dataOrder;
+      return slideItem.getAttribute('data-order') === this.clickedNavBtnOrder;
     })[0];
 
     if(this.dataArrow) {
@@ -102,10 +104,10 @@ class NavigationSlider extends NonNavigationSlider {
       $targetSlideItem.classList.add("is-show");
     }
     
-    if (this.dataOrder === '1') {
+    if (this.clickedNavBtnOrder === '1') {
       // 最初のナビゲーションをクリックされた場合、prevボタンを非表示にする。
       this.$prevBtn.classList.add('is-hidden');
-    } else if (this.dataOrder === '5') {
+    } else if (this.clickedNavBtnOrder === '5') {
       // 最後のナビゲーションをクリックされた場合、nextボタンを非表示にする。
       this.$nextBtn.classList.add('is-hidden');
     } else {
@@ -114,11 +116,11 @@ class NavigationSlider extends NonNavigationSlider {
       this.$nextBtn.classList.remove('is-hidden');
     }
     
-    if (this.dataOrder === '5' && this.$prevBtn.classList.contains('is-hidden')) {
-      // prevボタンが非表示で5番目のナビゲーションがクリックされた場合、prevボタンを表示にする。
+    if (this.clickedNavBtnOrder === '5' && this.$prevBtn.classList.contains('is-hidden')) {
+      // prevボタンが非表示で5番目のナビゲーション要素がクリックされた場合、prevボタンを表示にする。
       this.$prevBtn.classList.remove('is-hidden');
-    } else if (this.dataOrder === '1' && this.$nextBtn.classList.contains('is-hidden')) {
-      // nextボタンが非表示で1番目のナビゲーションがクリックされた場合、prevボタンを表示にする。
+    } else if (this.clickedNavBtnOrder === '1' && this.$nextBtn.classList.contains('is-hidden')) {
+      // nextボタンが非表示で1番目のナビゲーション要素がクリックされた場合、prevボタンを表示にする。
       this.$nextBtn.classList.remove('is-hidden');
     } 
   }
@@ -128,8 +130,8 @@ class NavigationSlider extends NonNavigationSlider {
   }
   
   handleNavigation() {
-    this._removeCurrentClassNav();
-    this._addCurrentClassNav();
+    this._removeActiveClass();
+    this._addActiveClass();
     this._linkNavigation();
   }
 }
