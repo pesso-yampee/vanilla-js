@@ -20,7 +20,7 @@
           <nav class="header_nav">
             <ul class="header_list">
               <li class="header_item">
-                <a href="/src/splide.html" class="header_item_link">
+                <a href="#" class="header_item_link">
                   <span class="header_item_text">Splide</span>
                 </a>
               </li>
@@ -46,6 +46,35 @@
       <div class="main_width">
         <div class="main_inner">
           <div class="main_contents">
+            <section class="section splide" aria-labelledby="carousel-heading">
+              <div class="splide_wrapper" style="position: relative;">
+                <div class="splide_inner">
+                  <div class="splide__arrows">
+                    <button class="splide__arrow splide__arrow--prev"></button>
+                    <button class="splide__arrow splide__arrow--next"></button>
+                  </div>
+                  <div class="kv splide__track">
+                    <ul class="kv_list splide__list">
+                      <li class="kv_item splide__slide">
+                        <div class="kv_image"></div>
+                      </li>
+                      <li class="kv_item splide__slide">
+                        <div class="kv_image"></div>
+                      </li>
+                      <li class="kv_item splide__slide">
+                        <div class="kv_image"></div>
+                      </li>
+                      <li class="kv_item splide__slide">
+                        <div class="kv_image"></div>
+                      </li>
+                      <li class="kv_item splide__slide">
+                        <div class="kv_image"></div>
+                      </li>
+                    </ul><!-- /.kv_list -->
+                  </div><!-- /.kv -->
+                </div><!-- /.splide_inner -->
+              </div><!-- /.splide_wrapper -->
+            </section>
           </div><!-- /.main_contents -->
           <aside class="aside"></aside>
         </div><!-- /.main_inner -->
@@ -56,12 +85,12 @@
   <div class="modal js-modal" role="dialog" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true" aria-modal="true">
     <ul class="modal_list" role="document">
       <li class="modal_item">
-        <a href="#" class="modal_item_link">
+        <a href="/src/splide.html" class="modal_item_link">
           <span class="modal_item_text">Splide</span>
         </a>
       </li>
       <li class="modal_item">
-        <a href="#" class="modal_item_link">
+        <a href="/src/vanilla.html" class="modal_item_link">
           <span class="modal_item_text">Vanilla</span>
         </a>
       </li>
@@ -71,8 +100,16 @@
   <script src="/src/js/splide.js"></script>
   <script src="/src/js/common.js"></script>
   <script src="/src/js/commonClass.js"></script>
-  <script src="/src/js/vanillaSlide.js"></script>
-  <script src="/src/js/vanillaSlideClass.js"></script>
+  <script>
+    /**
+     * 第一引数: 
+     * 第二引数: ヘッダー要素
+     */
+    // 特定の位置に達したらヘッダーに影を追加
+    window.addEventListener('DOMContentLoaded', () => {
+      new AddHeaderShadow('.splide', '.js-header');
+    });
+  </script>
 </body>
 
 </html>

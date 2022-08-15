@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vanilla-js</title>
+  <link rel="stylesheet" href="/assets/css/app.css">
+</head>
+
+<body>
+  <div class="wrapper js-wrapper">
+    <header class="header js-header">
+      <div class="main_width">
+        <div class="header_inner">
+          <h1 class="header_title">Js Tips</h1>
+
+          <nav class="header_nav">
+            <ul class="header_list">
+              <li class="header_item">
+                <a href="/src/splide.html" class="header_item_link">
+                  <span class="header_item_text">Splide</span>
+                </a>
+              </li>
+              <li class="header_item">
+                <a href="/src/vanilla.html" class="header_item_link">
+                  <span class="header_item_text">Vanilla</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="hamburger">
+            <button class="hamburger_button js-hamburger">
+              <span class="hamburger_button_line"></span>
+              <span class="hamburger_button_line"></span>
+              <span class="hamburger_button_line"></span>
+            </button>
+          </div>
+        </div><!-- /.header_inner -->
+      </div><!-- /.main_width -->
+    </header>
+    <main class="main js-main">
+      <div class="main_width">
+        <div class="main_inner">
+          <div class="main_contents">
+            <section class="section vanillaSlide" aria-labelby="carousel-heading">
+              <div class="kv vanillaSlide">
+                <div class="kv_inner vanillaSlide_inner">
+                  <ul class="kv_list vanillaSlide_list">
+                    <li class="kv_item vanillaSlide_item js-slideItem is-show" data-order="1">
+                      <div class="kv_image"></div>
+                    </li>
+                    <li class="kv_item vanillaSlide_item js-slideItem" data-order="2">
+                      <div class="kv_image"></div>
+                    </li>
+                    <li class="kv_item vanillaSlide_item js-slideItem" data-order="3">
+                      <div class="kv_image"></div>
+                    </li>
+                    <li class="kv_item vanillaSlide_item js-slideItem" data-order="4">
+                      <div class="kv_image"></div>
+                    </li>
+                    <li class="kv_item vanillaSlide_item js-slideItem" data-order="5">
+                      <div class="kv_image"></div>
+                    </li>
+                  </ul>
+                  <div class="vanillaSlide_navigation">
+                    <div class="vanillaSlide_navigation_inner">
+                      <ul class="vanillaSlide_navigation_list">
+                        <li class="vanillaSlide_navigation_item js-slideNav is-active" data-order="1">
+                          <button class="vanillaSlide_navigation_dot"></button>
+                        </li>
+                        <li class="vanillaSlide_navigation_item js-slideNav" data-order="2">
+                          <button class="vanillaSlide_navigation_dot"></button>
+                        </li>
+                        <li class="vanillaSlide_navigation_item js-slideNav" data-order="3">
+                          <button class="vanillaSlide_navigation_dot"></button>
+                        </li>
+                        <li class="vanillaSlide_navigation_item js-slideNav" data-order="4">
+                          <button class="vanillaSlide_navigation_dot"></button>
+                        </li>
+                        <li class="vanillaSlide_navigation_item js-slideNav" data-order="5">
+                          <button class="vanillaSlide_navigation_dot"></button>
+                        </li>
+                      </ul>
+                    </div><!-- /.vanillaSlide_navigation_inner -->
+                  </div><!-- /.vanillaSlide_navigation -->
+                </div><!-- /.vanillaSlide_inner -->
+                <div class="vanillaSlide_arrows">
+                  <button class="vanillaSlide_arrow" data-arrow="prev" ></button>
+                  <button class="vanillaSlide_arrow" data-arrow="next"></button>
+                </div>
+              </div><!-- /.kv -->
+            </section>
+          </div><!-- /.main_contents -->
+          <aside class="aside"></aside>
+        </div><!-- /.main_inner -->
+      </div><!-- /.main_width -->
+    </main>
+  </div><!-- /.wrapper -->
+
+  <div class="modal js-modal" role="dialog" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true" aria-modal="true">
+    <ul class="modal_list" role="document">
+      <li class="modal_item">
+        <a href="#" class="modal_item_link">
+          <span class="modal_item_text">Splide</span>
+        </a>
+      </li>
+      <li class="modal_item">
+        <a href="#" class="modal_item_link">
+          <span class="modal_item_text">Vanilla</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <script src="/src/js/common.js"></script>
+  <script src="/src/js/commonClass.js"></script>
+  <script src="/src/js/vanillaSlide.js"></script>
+  <script src="/src/js/vanillaSlideClass.js"></script>
+  <script>
+    /**
+     * 第一引数: 
+     * 第二引数: ヘッダー要素
+     */
+    // 特定の位置に達したらヘッダーに影を追加
+    window.addEventListener('DOMContentLoaded', () => {
+      new AddHeaderShadow('.vanillaSlide', '.js-header');
+    });
+  </script>
+</body>
+
+</html>
