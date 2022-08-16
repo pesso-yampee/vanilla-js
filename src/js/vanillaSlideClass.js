@@ -153,11 +153,50 @@ class NavigationSlider extends NonNavigationSlider {
   
   handleSlide() {
     super.handleSlide();
-  }
-  
-  handleNavigation() {
     this._removeActiveClassNavigation();
     this._infiniteNavigation();
     this._linkNavigation();
+  }
+}
+
+// 自動スライドショーを実行する処理
+class AutoplaySlider {
+  constructor(slideItems, nav) {
+    this.slideItems = slideItems;
+    this.nav = nav;
+    this.delay = 1000;
+    this.interval = 3000;
+    
+    setTimeout(() => {
+      setInterval(this._toggleActiveClassAuto.bind(this), this.interval);
+    }, this.delay);
+  }
+
+  // ナビゲーション要素とスライド要素からアクティブな状態を付けたり外したりする処理
+  _toggleActiveClassAuto() {
+    // setIntervalメソッドの中で特定の関数を実行する前に、毎回、現在アクティブな状態になっているスライド要素とナビゲーション要素を見つけないといけない。
+    const $currentSlideItem = [...this.slideItems].filter(slideItem => {
+      return slideItem.classList.contains('is-show');
+    })[0];
+    const $firstSlideItem = this.slideItems[0];
+    const $currentNavBtn = [...this.nav].filter(navigation => {
+      return navigation.classList.contains('is-active');
+    })[0];
+    const $firstNavBtn = this.nav[0];
+    const $nextSlideItem = $currentSlideItem.nextElementSibling;
+    const $nextNavBtn = $currentNavBtn.nextElementSibling;
+    const currentSlideItemOrder = $currentSlideItem.getAttribute('data-order');
+
+    $currentSlideItem.classList.toggle('is-show');
+    $currentNavBtn.classList.toggle('is-active');
+    
+    // 一番最後のスライド要素に達したら一番最初のスライド要素に戻る
+    if (currentSlideItemOrder === '5') {
+      $firstSlideItem.classList.toggle('is-show');
+      $firstNavBtn.classList.toggle('is-active');
+    } else {
+      $nextSlideItem.classList.toggle('is-show');
+      $nextNavBtn.classList.toggle('is-active');
+    }
   }
 }
