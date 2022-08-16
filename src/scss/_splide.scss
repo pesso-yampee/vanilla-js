@@ -1,0 +1,117 @@
+@charset "UTF-8";
+@use "reset" as *;
+@use "variable" as *;
+@use "mq" as *;
+@use "common" as *;
+
+/** -----------------------------------
+  splide
+----------------------------------- */
+.splide_wrapper {
+  margin-top: 24px;
+  background-color: $colorPureBlack;
+
+  @include media767 {
+    margin-top: 10rem;
+  }
+}
+
+.splide_inner {
+  padding: 40px;
+
+  @include media767 {
+    padding: 16rem;
+  }
+}
+
+.splide__arrows {
+  position: absolute;
+  z-index: 2;
+  top: calc(50% - 24px);
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 16px;
+
+  @include media767 {
+    top: calc(50% - 16rem);
+    padding: 0 1rem;
+  }
+}
+
+.splide__arrow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: rgba($color: $colorLightGreen, $alpha: .6);
+  cursor: pointer;
+
+  @include media767 {
+    width: 32rem;
+    height: 32rem;
+  }
+
+  &::after {
+    position: absolute;
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-top: 3px solid $colorWhite;
+    border-right: 3px solid $colorWhite;
+    content: '';
+
+    @include media767 {
+      width: 8rem;
+      height: 8rem;
+      border-top: 2rem solid $colorWhite;
+      border-right: 2rem solid $colorWhite;
+    }
+  }
+
+  &:nth-of-type(1) {
+    &::after {
+      left: 19px;
+      transform: rotate(-135deg);
+
+      @include media767 {
+        left: 13rem;
+      }
+    }
+  }
+
+  &:nth-of-type(2) {
+    &::after {
+      right: 19px;
+      transform: rotate(45deg);
+
+      @include media767 {
+        right: 13rem;
+      }
+    }
+  }
+}
+
+.splide__pagination {
+  margin: 8px -4px 0;
+}
+
+.splide__pagination li {
+  padding: 0 4px;
+}
+
+.splide__pagination__page {
+  width: 12px;
+  height: 12px;
+  background-color: $colorWhite;
+  border-radius: 50%;
+
+  &.is-active {
+    background-color: $colorGreen;
+  }
+}
