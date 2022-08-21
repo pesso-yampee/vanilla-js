@@ -1,9 +1,14 @@
 @charset "UTF-8";
-@use "base" as *;
-@use "reset" as *;
-@use "variable" as *;
-@use "mq" as *;
-@use "keyframe" as *;
+@use "setting" as *;
+
+/** -----------------------------------
+  base
+----------------------------------- */
+html {
+  @include media767 {
+    font-size: calc(100vw / 320);
+  }
+}
 
 /** -----------------------------------
   header
@@ -19,10 +24,6 @@
 
   &.is-active {
     box-shadow: 0 4px 4px rgba($colorBlack, .2);
-  }
-
-  @include media767 {
-    display: none;
   }
 }
 
@@ -263,14 +264,6 @@
 .kv_item {
   overflow: hidden;
   aspect-ratio: 5/3;
-
-  @for $i from 1 through 5 {
-    &:nth-child(#{$i}) {
-      .kv_image {
-        background: url(/assets/media/images/kv0#{$i}.jpg) no-repeat center center/cover;
-      }
-    }
-  }
 }
 
 .kv_image {
