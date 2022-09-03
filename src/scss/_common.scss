@@ -15,6 +15,7 @@ html {
 ----------------------------------- */
 .header {
   position: fixed;
+
   z-index: 3;
   top: 0;
   left: 0;
@@ -32,10 +33,16 @@ html {
   justify-content: space-between;
   align-items: center;
   padding: 24px 0;
+  @include media767 {
+    padding: 10rem 0;
+  }
 }
 
 .header_title {
   font-size: 36px;
+  @include media767 {
+    font-size: 20rem;
+  }
 }
 
 .header_nav {
@@ -107,14 +114,6 @@ html {
   }
 }
 
-.main_inner {
-  display: flex;
-  justify-content: space-between;
-  @include media1279 {
-    flex-direction: column;
-  }
-}
-
 .main_contents {
   flex: 1;
   max-width: 850px;
@@ -176,10 +175,6 @@ html {
       &:nth-of-type(3) {
         transform: rotate(-45deg) translateY(-2px);
       }
-
-      &:not(:nth-of-type(2)) {
-        background-color: $colorWhite;
-      }
     }
   }
 }
@@ -196,21 +191,23 @@ html {
   modal
 ----------------------------------- */
 .modal {
-  position: fixed;
-  z-index: 3;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: $colorBlack;
-  animation: modalShow .5s;
-
-  &.is-show {
-    opacity: 1;
-    display: flex;
+  @include media767 {
+    position: fixed;
+    z-index: 3;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    top: 10rem;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 10rem);
+    background-color: $colorBlack;
+    animation: modalShow .5s;
+  
+    &.is-show {
+      opacity: 1;
+      display: flex;
+    }
   }
 }
 
@@ -231,9 +228,7 @@ html {
   section
 ----------------------------------- */
 .section {
-  &+.section {
-    margin-top: 32px;
-  }
+  padding: 32px 0;
 }
 
 .section_heading {
@@ -289,5 +284,13 @@ body {
 .wrapper {
   @include media767 {
     position: relative;
+  }
+}
+
+.global_container {
+  display: flex;
+  justify-content: space-between;
+  @include media1279 {
+    flex-direction: column;
   }
 }

@@ -3,7 +3,7 @@
 @use "common" as *;
 
 /** -----------------------------------
-  vanillaSlide
+  スライドショー
 ----------------------------------- */
 .vanillaSlide {
   position: relative;
@@ -30,7 +30,7 @@
   top: 0;
   left: 0;
   min-width: 100%;
-  transition: opacity .5s;
+  transition: opacity 0.5s;
 
   &.is-show {
     position: relative;
@@ -75,7 +75,7 @@
     height: 8px;
     border-top: 2px solid $colorBlack;
     border-right: 2px solid $colorBlack;
-    content: '';
+    content: "";
 
     @include media767 {
       top: calc(50% - 2rem);
@@ -171,4 +171,87 @@
     width: 8rem;
     height: 8rem;
   }
+}
+
+/** -----------------------------------
+  ニュースUIコンポーネント
+----------------------------------- */
+.newsUI_tab {
+}
+
+.newsUI_tab_list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.newsUI_tab_item {
+  background-color: #efefef;
+  &.is-active {
+    background-color: $colorBlack;
+    .newsUI_tab_item_button {
+      color: $colorWhite;
+    }
+  }
+}
+
+.newsUI_tab_item_button {
+  appearance: none;
+  display: block;
+  padding: 14px 20px;
+  line-height: 1;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.newsUI_description {
+}
+
+.newsUI_description_inner {
+}
+
+.newsUI_description_list {
+}
+
+.newsUI_description_item {
+}
+
+.newsUI_description_item_body {
+}
+
+.newsUI_description_item_text {
+}
+
+.newsUI_description_item_labelWrap {
+  display: flex;
+  align-items: center;
+}
+
+.newsUI_description_item_label {
+  display: inline-block;
+  padding: 8px;
+  border: 1px solid rgba($colorLightGray, .4);
+  border-radius: 20px;
+  & + .newsUI_description_item_comment {
+    margin-left: 10px;
+  }
+}
+
+.newsUI_description_item_label_text {
+}
+
+.newsUI_description_item_comment {
+  display: flex;
+  align-items: center;
+}
+
+.newsUI_description_item_comment_icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  @include icon-bubble($colorBlack);
+}
+
+.newsUI_description_item_comment_num {
+  margin-left: 6px;
 }
