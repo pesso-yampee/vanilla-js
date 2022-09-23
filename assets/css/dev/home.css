@@ -96,6 +96,9 @@ select {
 /** -----------------------------------
   base
 ----------------------------------- */
+html {
+  font-size: 0.0625vw;
+}
 @media screen and (max-width: 767px) {
   html {
     font-size: 0.3125vw;
@@ -229,18 +232,6 @@ select {
   }
 }
 
-.section_inner {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 24px;
-}
-@media screen and (max-width: 767px) {
-  .section_inner {
-    padding: 0 10rem;
-  }
-}
-
 /** -----------------------------------
   footer
 ----------------------------------- */
@@ -367,19 +358,30 @@ select {
   section
 ----------------------------------- */
 .section {
-  padding: 32px 0;
+  padding: 32rem 0;
+}
+
+.section_inner {
+  max-width: 940rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media screen and (max-width: 767px) {
+  .section_inner {
+    padding: 0 10rem;
+  }
 }
 
 .section_heading {
   position: relative;
-  padding-bottom: 8px;
-  font-size: 36px;
+  padding-bottom: 8rem;
+  font-size: 36rem;
 }
 .section_heading::after {
   position: absolute;
   display: block;
   width: 100%;
-  height: 3px;
+  height: 3rem;
   bottom: 0;
   left: 0;
   background-color: #000;
@@ -397,12 +399,11 @@ select {
 ----------------------------------- */
 .kv_item {
   overflow: hidden;
-  aspect-ratio: 5/3;
 }
 
 .kv_image {
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 
 /** -----------------------------------
