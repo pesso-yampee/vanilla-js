@@ -3,10 +3,9 @@ window.addEventListener("DOMContentLoaded", () => {
   const arrows = document.querySelectorAll("[data-arrow]");
   const slideItems = document.querySelectorAll(".js-slideItem");
   const slideNav = document.querySelectorAll(".js-slideNav");
-  const kvImages = document.querySelectorAll(".kv_image");
   const url = "https://myjson.dit.upm.es/api/bins/j0qc";
 
-  new OutputImage(kvImages, url);
+  new OutputImage(slideItems, url);
   new AutoplaySlider(slideItems, slideNav);
 
   arrows.forEach((arrow) => {

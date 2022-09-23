@@ -1,7 +1,7 @@
 // 画像情報を非同期で取得し、出力する処理
 class OutputImage {
-  constructor(images, url) {
-    this.images = images;
+  constructor(slideElements, url) {
+    this.slideElements = slideElements;
     this.url = url;
     this.requestServer = new Promise((resolve) => {
       this.data = fetch(this.url).then(res => {
@@ -23,9 +23,11 @@ class OutputImage {
   
     this.registImageData = (data) => {
       data.forEach((item, i) => {
-        const image = this.images[i];
-        image.src = `/assets/media/images/${item.image}`;
-        image.alt = item.alt;
+        this.img = document.createElement('img');
+        this.img.className = "kv_image";
+        this.img.src = `/assets/media/images/${item.image}`;
+        this.img.alt = item.alt;
+        this.slideElements[i].appendChild(this.img);
       });
     };
   }
