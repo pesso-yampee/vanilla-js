@@ -32,9 +32,9 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 0;
+  padding: 24px;
   @include media767 {
-    padding: 10rem 0;
+    padding: 10rem;
   }
 }
 
@@ -100,33 +100,18 @@ html {
 
   @include media767 {
     padding-top: 0;
+    margin-top: 30rem;
   }
 }
 
-.main_width {
-  max-width: 1280px;
+.section_inner {
+  max-width: 940px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 24px;
 
   @include media767 {
     padding: 0 10rem;
-  }
-}
-
-.main_contents {
-  flex: 1;
-  max-width: 850px;
-}
-
-/** -----------------------------------
-  aside
------------------------------------ */
-.aside {
-  height: 100vh;
-
-  @include media767 {
-    display: none;
   }
 }
 

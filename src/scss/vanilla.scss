@@ -176,82 +176,119 @@
 /** -----------------------------------
   ニュースUIコンポーネント
 ----------------------------------- */
-.newsUI_tab {
-}
+.newsUI_tab {}
 
 .newsUI_tab_list {
   display: flex;
   align-items: center;
-  justify-content: center;
+  width: 100%;
 }
 
 .newsUI_tab_item {
-  background-color: #efefef;
-  &.is-active {
-    background-color: $colorBlack;
-    .newsUI_tab_item_button {
-      color: $colorWhite;
-    }
-  }
+  width: inherit;
 }
 
-.newsUI_tab_item_button {
+.newsUI_tab_input {
+  display: none;
+}
+
+
+.newsUI_tab_input:checked+.newsUI_tab_label {
+  background-color: $colorBlack;
+  color: $colorWhite;
+}
+
+.newsUI_tab_label {
   appearance: none;
   display: block;
   padding: 14px 20px;
+  background-color: #efefef;
+  text-align: center;
   line-height: 1;
-  background-color: transparent;
   cursor: pointer;
 }
 
 .newsUI_description {
+  border-bottom: 2px solid #efefef;
+  border-right: 2px solid #efefef;
+  border-left: 2px solid #efefef;
 }
 
 .newsUI_description_inner {
+  padding: 30px;
+}
+
+.newsUI_description_contents {
+  display: none;
+  &.is-active {
+    display: flex;
+  }
 }
 
 .newsUI_description_list {
+  align-self: flex-start;
+  flex: auto;
 }
 
-.newsUI_description_item {
-}
+.newsUI_description_item {}
 
-.newsUI_description_item_body {
-}
-
-.newsUI_description_item_text {
-}
-
-.newsUI_description_item_labelWrap {
+.newsUI_description_body {
   display: flex;
   align-items: center;
 }
 
-.newsUI_description_item_label {
+.newsUI_description_text {}
+
+.newsUI_description_decorations {
+  display: flex;
+  align-items: center;
+}
+
+.newsUI_description_labelWrap {
+  display: flex;
+  align-items: center;
+}
+
+.newsUI_description_label {
   display: inline-block;
   padding: 8px;
   border: 1px solid rgba($colorLightGray, .4);
   border-radius: 20px;
-  & + .newsUI_description_item_comment {
+
+  &+.newsUI_description_comment {
     margin-left: 10px;
   }
 }
 
-.newsUI_description_item_label_text {
-}
+.newsUI_description_label_text {}
 
-.newsUI_description_item_comment {
+.newsUI_description_comment {
   display: flex;
   align-items: center;
 }
 
-.newsUI_description_item_comment_icon {
+.newsUI_description_comment_icon {
   display: inline-block;
   width: 30px;
   height: 30px;
   @include icon-bubble($colorBlack);
 }
 
-.newsUI_description_item_comment_num {
+.newsUI_description_comment_num {
   margin-left: 6px;
+}
+
+.newsUI_description_imageWrap {
+  align-self: flex-start;
+  overflow: hidden;
+  aspect-ratio: 3/2;
+  width: 300px;
+  margin-left: 16px;
+  @include media767 {
+    display: none;
+  }
+}
+.newsUI_description_image {
+  width: 100%;
+  height: auto;
 }

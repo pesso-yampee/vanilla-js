@@ -12,137 +12,126 @@
 <body>
   <div class="wrapper js-wrapper">
     <header class="header js-header">
-      <div class="main_width">
-        <div class="header_inner">
-          <h1 class="header_title">Js Tips</h1>
+      <div class="header_inner">
+        <h1 class="header_title">Js Tips</h1>
 
-          <nav class="header_nav">
-            <ul class="header_list">
-              <li class="header_item">
-                <a href="/src/splide.html" class="header_item_link">
-                  <span class="header_item_text">Splide</span>
-                </a>
-              </li>
-              <li class="header_item">
-                <a href="/src/vanilla.html" class="header_item_link">
-                  <span class="header_item_text">Vanilla</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+        <nav class="header_nav">
+          <ul class="header_list">
+            <li class="header_item">
+              <a href="/src/splide.html" class="header_item_link">
+                <span class="header_item_text">Splide</span>
+              </a>
+            </li>
+            <li class="header_item">
+              <a href="/src/vanilla.html" class="header_item_link">
+                <span class="header_item_text">Vanilla</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
 
-          <div class="hamburger">
-            <button class="hamburger_button js-hamburger">
-              <span class="hamburger_button_line"></span>
-              <span class="hamburger_button_line"></span>
-              <span class="hamburger_button_line"></span>
-            </button>
-          </div>
-        </div><!-- /.header_inner -->
-      </div><!-- /.main_width -->
+        <div class="hamburger">
+          <button class="hamburger_button js-hamburger">
+            <span class="hamburger_button_line"></span>
+            <span class="hamburger_button_line"></span>
+            <span class="hamburger_button_line"></span>
+          </button>
+        </div>
+      </div><!-- /.header_inner -->
     </header>
 
-    <div class="global_container">
-      <main class="main js-main">
-        <div class="main_width">
-          <div class="main_contents">
-            <section class="section newsUI">
-              <div class="newsUI_tab">
-                <ul class="newsUI_tab_list">
-                  <li class="newsUI_tab_item is-active">
-                    <button class="newsUI_tab_item_button">ニュース</button>
-                  </li>
-                  <li class="newsUI_tab_item">
-                    <button class="newsUI_tab_item_button">ニュース</button>
-                  </li>
+    <main class="main js-main">
+      <section class="section newsUI">
+        <div class="section_inner">
+          <div class="newsUI_tab">
+            <ul class="newsUI_tab_list">
+              <li class="newsUI_tab_item is-active">
+                <input class="newsUI_tab_input" name="newsCategory" type="radio" id="news" checked>
+                <label class="newsUI_tab_label" for="news">ニュース</label>
+              </li>
+              <li class="newsUI_tab_item">
+                <input class="newsUI_tab_input" name="newsCategory" type="radio" id="economy">
+                <label class="newsUI_tab_label" for="economy">経済</label>
+              </li>
+              <li class="newsUI_tab_item">
+                <input class="newsUI_tab_input" name="newsCategory" type="radio" id="entertainment">
+                <label class="newsUI_tab_label" for="entertainment">エンタメ</label>
+              </li>
+              <li class="newsUI_tab_item">
+                <input class="newsUI_tab_input" name="newsCategory" type="radio" id="sports">
+                <label class="newsUI_tab_label" for="sports">スポーツ</label>
+              </li>
+              <li class="newsUI_tab_item">
+                <input class="newsUI_tab_input" name="newsCategory" type="radio" id="domestic">
+                <label class="newsUI_tab_label" for="domestic">国内</label>
+              </li>
+            </ul>
+          </div><!-- /.newsUI_tab -->
+          <div class="newsUI_description">
+            <div class="newsUI_description_inner">
+              <div class="newsUI_description_contents js-newUIContents">
+                <ul class="newsUI_description_list">
                 </ul>
-              </div><!-- /.newsUI_tab -->
-              <div class="newsUI_description">
-                <div class="newsUI_description_inner">
-                  <ul class="newsUI_description_list">
-                    <li class="newsUI_description_item">
-                      <div class="newsUI_description_item_body">
-                        <p class="newsUI_description_item_text">テキストです。テキストです。テキストです。テキストです。</p>
-                        <div class="newsUI_description_item_label">
-                          <span class="newsUI_description_item_label_text">new</span>
-                        </div>
-                        <!-- <div class="newsUI_description_item_comment">
-                          <span class="newsUI_description_item_comment_icon"></span>
-                          <span class="newsUI_description_item_comment_num">32</span>
-                        </div> -->
-                        <!-- <div class="newsUI_description_item_labelWrap">
-                          <div class="newsUI_description_item_label">
-                            <span class="newsUI_description_item_label_text">new</span>
-                          </div>
-                          <div class="newsUI_description_item_comment">
-                            <span class="newsUI_description_item_comment_icon"></span>
-                            <span class="newsUI_description_item_comment_num">32</span>
-                          </div>
-                        </div> -->
-                      </div><!-- /.newsUI_description_item_body -->
+              </div>
+            </div><!-- /.newsUI_description_inner -->
+          </div><!-- /.newsUI_description -->
+        </div><!-- /.section_inner -->
+      </section>
+      <section class="section vanillaSlide" aria-labelby="carousel-heading">
+        <div class="section_inner">
+          <div class="kv vanillaSlide">
+            <div class="kv_inner vanillaSlide_inner">
+              <ul class="kv_list vanillaSlide_list">
+                <li class="kv_item vanillaSlide_item js-slideItem is-show" data-order="1">
+                  <img class="kv_image" src="" width="1920" height="1281">
+                </li>
+                <li class="kv_item vanillaSlide_item js-slideItem" data-order="2">
+                  <img class="kv_image" src="" width="1920" height="1273">
+                </li>
+                <li class="kv_item vanillaSlide_item js-slideItem" data-order="3">
+                  <img class="kv_image" src="" width="1920" height="1185">
+                </li>
+                <li class="kv_item vanillaSlide_item js-slideItem" data-order="4">
+                  <img class="kv_image" src="" width="1920" height="1280">
+                </li>
+                <li class="kv_item vanillaSlide_item js-slideItem" data-order="5">
+                  <img class="kv_image" src="" width="1920" height="1280">
+                </li>
+              </ul>
+              <div class="vanillaSlide_navigation">
+                <div class="vanillaSlide_navigation_inner">
+                  <ul class="vanillaSlide_navigation_list">
+                    <li class="vanillaSlide_navigation_item js-slideNav is-active" data-order="1">
+                      <button class="vanillaSlide_navigation_dot"></button>
+                    </li>
+                    <li class="vanillaSlide_navigation_item js-slideNav" data-order="2">
+                      <button class="vanillaSlide_navigation_dot"></button>
+                    </li>
+                    <li class="vanillaSlide_navigation_item js-slideNav" data-order="3">
+                      <button class="vanillaSlide_navigation_dot"></button>
+                    </li>
+                    <li class="vanillaSlide_navigation_item js-slideNav" data-order="4">
+                      <button class="vanillaSlide_navigation_dot"></button>
+                    </li>
+                    <li class="vanillaSlide_navigation_item js-slideNav" data-order="5">
+                      <button class="vanillaSlide_navigation_dot"></button>
                     </li>
                   </ul>
-                </div><!-- /.newsUI_description_inner -->
-              </div><!-- /.newsUI_description -->
-              <div class=""><img src="" alt=""></div>
-
-            </section>
-            <section class="section vanillaSlide" aria-labelby="carousel-heading">
-              <div class="kv vanillaSlide">
-                <div class="kv_inner vanillaSlide_inner">
-                  <ul class="kv_list vanillaSlide_list">
-                    <li class="kv_item vanillaSlide_item js-slideItem is-show" data-order="1">
-                      <img class="kv_image" src="" width="1920" height="1281">
-                    </li>
-                    <li class="kv_item vanillaSlide_item js-slideItem" data-order="2">
-                      <img class="kv_image" src="" width="1920" height="1273">
-                    </li>
-                    <li class="kv_item vanillaSlide_item js-slideItem" data-order="3">
-                      <img class="kv_image" src="" width="1920" height="1185">
-                    </li>
-                    <li class="kv_item vanillaSlide_item js-slideItem" data-order="4">
-                      <img class="kv_image" src="" width="1920" height="1280">
-                    </li>
-                    <li class="kv_item vanillaSlide_item js-slideItem" data-order="5">
-                      <img class="kv_image" src="" width="1920" height="1280">
-                    </li>
-                  </ul>
-                  <div class="vanillaSlide_navigation">
-                    <div class="vanillaSlide_navigation_inner">
-                      <ul class="vanillaSlide_navigation_list">
-                        <li class="vanillaSlide_navigation_item js-slideNav is-active" data-order="1">
-                          <button class="vanillaSlide_navigation_dot"></button>
-                        </li>
-                        <li class="vanillaSlide_navigation_item js-slideNav" data-order="2">
-                          <button class="vanillaSlide_navigation_dot"></button>
-                        </li>
-                        <li class="vanillaSlide_navigation_item js-slideNav" data-order="3">
-                          <button class="vanillaSlide_navigation_dot"></button>
-                        </li>
-                        <li class="vanillaSlide_navigation_item js-slideNav" data-order="4">
-                          <button class="vanillaSlide_navigation_dot"></button>
-                        </li>
-                        <li class="vanillaSlide_navigation_item js-slideNav" data-order="5">
-                          <button class="vanillaSlide_navigation_dot"></button>
-                        </li>
-                      </ul>
-                    </div><!-- /.vanillaSlide_navigation_inner -->
-                  </div><!-- /.vanillaSlide_navigation -->
-                </div><!-- /.vanillaSlide_inner -->
-                <div class="vanillaSlide_arrows">
-                  <button class="vanillaSlide_arrow" data-arrow="prev" ></button>
-                  <button class="vanillaSlide_arrow" data-arrow="next"></button>
-                </div>
-              </div><!-- /.kv -->
-            </section>
-          </div><!-- /.main_contents -->
-        </div><!-- /.main_width -->
-      </main>
-      <aside class="aside"></aside>
-    </div><!-- /.global_container -->
+                </div><!-- /.vanillaSlide_navigation_inner -->
+              </div><!-- /.vanillaSlide_navigation -->
+            </div><!-- /.vanillaSlide_inner -->
+            <div class="vanillaSlide_arrows">
+              <button class="vanillaSlide_arrow" data-arrow="prev"></button>
+              <button class="vanillaSlide_arrow" data-arrow="next"></button>
+            </div>
+          </div><!-- /.kv -->
+        </div><!-- /.section_inner -->
+      </section>
+    </main>
   </div><!-- /.wrapper -->
 
-  <div class="modal js-modal" role="dialog" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true" aria-modal="true">
+  <div class="modal js-modal" role="dialog" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true"
+    aria-modal="true">
     <ul class="modal_list" role="document">
       <li class="modal_item">
         <a href="#" class="modal_item_link">
@@ -156,13 +145,15 @@
       </li>
     </ul>
   </div>
-  <script src="/src/js/common.js"></script>
   <script src="/src/js/commonClass.js"></script>
-  <script src="/src/js/vanillaSlide.js"></script>
+  <script src="/src/js/common.js"></script>
   <script src="/src/js/vanillaSlideClass.js"></script>
+  <script src="/src/js/vanillaSlide.js"></script>
+  <script src="/src/js/newsUIClass.js"></script>
+  <script src="/src/js/newsUI.js"></script>
   <script>
     /**
-     * 第一引数: 
+     * 第一引数: 基点要素
      * 第二引数: ヘッダー要素
      */
     // 特定の位置に達したらヘッダーに影を追加

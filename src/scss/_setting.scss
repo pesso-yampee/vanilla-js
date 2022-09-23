@@ -1,70 +1,6 @@
 @charset "UTF-8";
 
 /** -----------------------------------
-  reset
------------------------------------ */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  line-height: 1.0;
-}
-
-ul,
-ol {
-  list-style: none;
-}
-
-html:focus-within {
-  scroll-behavior: smooth;
-}
-
-body {
-  min-height: 100vh;
-  text-rendering: optimizeSpeed;
-}
-
-a {
-  color: #333;
-  text-decoration: none;
-}
-
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-}
-
-img,
-picture {
-  max-width: 100%;
-  display: block;
-}
-
-input,
-button,
-textarea,
-select {
-  border: none;
-  font: inherit;
-}
-
-@media(prefers-reduced-motion:reduce) {
-  html:focus-within {
-    scroll-behavior: auto
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
-    scroll-behavior: auto !important
-  }
-}
-
-/** -----------------------------------
   variable
 ----------------------------------- */
 $colorPureBlack: #000;
@@ -115,4 +51,68 @@ $colorLightGray: #d3d3d3;
 ----------------------------------- */
 @mixin icon-bubble($color) {
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:256px;height:256px;opacity:1"><path d="M442.539 73.946C397.7 36.018 333.59 13.863 255.205 13.881c-74.398 0-137.905 20.981-183.337 58.411-22.692 18.686-40.758 41.491-53.06 67.428C6.498 165.648-.01 194.641 0 225.422c-.018 37.214 7.777 71.586 23.511 101.577 15 28.664 37.298 53.04 65.699 72.103-6.715 28.269-16.148 68.67-16.148 68.689a23.777 23.777 0 0 0-.648 5.624c-.019 7.59 3.526 14.896 9.668 19.608l.038.028.009.01a24.806 24.806 0 0 0 15 5.06c3.987 0 8.031-.969 11.68-2.934l.367-.188.357-.216c.01-.01 5.069-3.01 12.856-7.618a29359.666 29359.666 0 0 1 45.291-26.745A5571.434 5571.434 0 0 1 189 447.912c5.916-3.46 10.477-6.104 12.16-7.034l.085-.047.113-.066c22.1-12.526 39.704-14.633 53.849-14.708 58.692-.085 121.212-11.464 171.13-42.62 24.894-15.602 46.561-36.413 61.806-63.056 15.272-26.624 23.886-58.853 23.858-96.16.121-58.677-24.584-112.441-69.462-150.275zm12.17 227.294c-8.812 15.375-20.37 28.316-34.232 39.282-20.774 16.429-46.862 28.288-75.479 35.934-28.598 7.664-59.642 11.088-89.792 11.078-18.517-.075-44.379 3.414-72.761 19.683v-.009c-3.14 1.749-10.128 5.822-19.345 11.219a16345.917 16345.917 0 0 0-45.15 26.614c3.545-15.094 7.655-32.576 10.73-45.413v-.019c.509-2.144.874-4.468.884-7.11.037-3.724-.922-8.266-3.075-12.046a24.507 24.507 0 0 0-5.436-6.583c-2.736-2.285-4.796-3.273-5.944-3.903l-1.157-.592-.131-.076C88.665 353.095 70.166 332.97 57.63 309.11c-12.517-23.896-19.1-51.78-19.11-83.689.01-25.401 5.295-48.526 15.085-69.188 14.718-30.94 39.668-56.604 73.786-74.896C161.482 63.083 204.789 52.4 255.205 52.4c71.276.019 125.933 20.031 162.45 50.952 36.47 31.025 55.702 72.799 55.824 120.864-.027 31.507-7.062 56.513-18.77 77.024z" style="fill:%23{$color}"/></svg>') no-repeat center/contain;
+}
+
+/** -----------------------------------
+  reset
+----------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  line-height: 1.0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+img,
+picture {
+  width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  border: none;
+  font: inherit;
+}
+
+@media(prefers-reduced-motion:reduce) {
+  html:focus-within {
+    scroll-behavior: auto
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important
+  }
 }

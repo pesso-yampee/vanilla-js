@@ -1,4 +1,32 @@
 /** -----------------------------------
+  variable
+----------------------------------- */
+/** -----------------------------------
+  keyframes
+----------------------------------- */
+@-webkit-keyframes modalShow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes modalShow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/** -----------------------------------
+  media query
+----------------------------------- */
+/** -----------------------------------
+  icon
+----------------------------------- */
+/** -----------------------------------
   reset
 ----------------------------------- */
 *,
@@ -37,7 +65,7 @@ a:not([class]) {
 
 img,
 picture {
-  max-width: 100%;
+  width: 100%;
   display: block;
 }
 
@@ -65,34 +93,6 @@ select {
     scroll-behavior: auto !important;
   }
 }
-/** -----------------------------------
-  variable
------------------------------------ */
-/** -----------------------------------
-  keyframes
------------------------------------ */
-@-webkit-keyframes modalShow {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes modalShow {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-/** -----------------------------------
-  media query
------------------------------------ */
-/** -----------------------------------
-  icon
------------------------------------ */
 /** -----------------------------------
   base
 ----------------------------------- */
@@ -135,11 +135,11 @@ select {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 24px 0;
+  padding: 24px;
 }
 @media screen and (max-width: 767px) {
   .header_inner {
-    padding: 10rem 0;
+    padding: 10rem;
   }
 }
 
@@ -225,38 +225,19 @@ select {
 @media screen and (max-width: 767px) {
   .main {
     padding-top: 0;
+    margin-top: 30rem;
   }
 }
 
-.main_width {
-  max-width: 1280px;
+.section_inner {
+  max-width: 940px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 24px;
 }
 @media screen and (max-width: 767px) {
-  .main_width {
+  .section_inner {
     padding: 0 10rem;
-  }
-}
-
-.main_contents {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  max-width: 850px;
-}
-
-/** -----------------------------------
-  aside
------------------------------------ */
-.aside {
-  height: 100vh;
-}
-@media screen and (max-width: 767px) {
-  .aside {
-    display: none;
   }
 }
 
