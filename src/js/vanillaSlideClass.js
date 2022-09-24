@@ -27,6 +27,8 @@ class OutputImage {
         this.img.className = "kv_image";
         this.img.src = `/assets/media/images/${item.image}`;
         this.img.alt = item.alt;
+        this.img.width = item.width;
+        this.img.height = item.height;
         this.slideElements[i].appendChild(this.img);
       });
     };
