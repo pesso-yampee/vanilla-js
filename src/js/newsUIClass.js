@@ -159,3 +159,28 @@ class CreateNewsPost {
     alert(error);
   }
 }
+
+class SwitchNews {
+  constructor(e) {
+    this.target = e.currentTarget;
+    this.id = this.target.id;
+    this.newUIContents = document.querySelectorAll(".js-newUIContents");
+    this.currentNewsCategory = [...this.newUIContents].filter(($newUIContent) => {
+      return $newUIContent.id === this.id;
+    })[0];
+    this._switchCurrentNewsTab();
+  }
+
+  _switchCurrentNewsTab() {
+    [...this.newUIContents].forEach($newUIContent => {
+      if ($newUIContent.classList.contains('is-active')) {
+        $newUIContent.classList.remove('is-active');
+      } else {
+        return;
+      }
+    });
+    if (this.target.checked) {
+      this.currentNewsCategory.classList.add('is-active');
+    }
+  }
+};
