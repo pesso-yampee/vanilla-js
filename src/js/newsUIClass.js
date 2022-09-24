@@ -1,25 +1,28 @@
 class CreateNewsPost {
-  constructor(postData, $newUIContents) {
-    this.postData = postData;
+  constructor(url, $newUIContents) {
+    this.url = url;
     this.newUIContents = $newUIContents;
-    this._requestServer();
     this._fetchPostData();
   }
 
   _requestServer() {
-    this.promise = new Promise((resolve) => {
-      resolve(this.postData);
-    });
+    return fetch(this.url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        return json.postData;
+      });
   }
 
   _fetchPostData() {
-    this.promise
+    this._requestServer()
       .then((data) => {
-        this._createPostItem(data);
+        this._createPost(data);
       })
       .catch(() => {
         this.Error = new Error("サーバがぶっ壊れています。");
-        // this._createErrorText(this.Error);
+        this._createErrorText(this.Error);
       });
   }
 
@@ -38,12 +41,11 @@ class CreateNewsPost {
     return this.result;
   }
 
-  _cloneNewsUIContents(lengh) {
-    this.length = lengh;
+  _cloneNewsUIContents() {
     this.flag = document.createDocumentFragment();
     this.newUIContentsParent = this.newUIContents.parentNode;
 
-    for (let i = 0; i < this.length; i++) {
+    for (let i = 0; i < this.dataLength; i++) {
       this.cloneContents = this.newUIContents.cloneNode(true);
       this.flag.appendChild(this.cloneContents);
     }
@@ -51,13 +53,17 @@ class CreateNewsPost {
     this.newUIContentsParent.appendChild(this.flag);
   }
 
-  _jadgeWithin3days(currentDate, postDate) {
-    return currentDate - postDate;
+  _jadgeWithin3days() {
+    return this.currentDate - this.date;
   }
 
-  _createPostImage(dataItem, index, latestNewUIContents) {
-    this.imgSrc = dataItem.img.src;
-    this.imgAlt = dataItem.img.alt;
+  /* 
+    第一引数: 連想配列の要素
+    第二引数: 連想配列の長さ
+  */
+  _createPostImage(object, index) {
+    this.imgSrc = object.img.src;
+    this.imgAlt = object.img.alt;
     this.$postImageWrap = document.createElement("div");
     this.$postImage = document.createElement("img");
     this.$postImageWrap.className = "newsUI_description_imageWrap";
@@ -66,76 +72,90 @@ class CreateNewsPost {
     this.$postImage.alt = this.imgAlt;
     this.$postImageWrap.appendChild(this.$postImage);
     if (index === 0) {
-      latestNewUIContents[0].classList.add('is-active');
+      this.latestNewUIContents[0].classList.add("is-active");
     }
-    
-    latestNewUIContents[index].id = dataItem.category;
-    latestNewUIContents[index].appendChild(this.$postImageWrap);
+
+    this.latestNewUIContents[index].id = object.category;
+    this.latestNewUIContents[index].appendChild(this.$postImageWrap);
   }
 
-  _createPostItem(data) {
+  _createPostDecorations() {
+    if (this.jadgeDate <= 3 || this.comment > 0) {
+      this.$postDecorations = document.createElement("div");
+      this.$postDecorations.className = "newsUI_description_decorations";
+    }
+
+    if (this.jadgeDate <= 3) {
+      this.$postNew = document.createElement("div");
+      this.$postNewText = document.createElement("span");
+      this.$postNew.className = "newsUI_description_label";
+      this.$postNewText.className = "newsUI_description_label_text";
+      this.$postNewText.textContent = "new";
+      this.$postNew.appendChild(this.$postNewText);
+      this.$postDecorations.appendChild(this.$postNew);
+    }
+
+    if (this.comment > 0) {
+      this.$postComment = document.createElement("div");
+      this.$postCommentIcon = document.createElement("span");
+      this.$postCommentNum = document.createElement("span");
+      this.$postComment.className = "newsUI_description_comment";
+      this.$postCommentIcon.className = "newsUI_description_comment_icon";
+      this.$postCommentNum.className = "newsUI_description_comment_num";
+      this.$postCommentNum.textContent = this.comment;
+      this.$postComment.appendChild(this.$postCommentIcon);
+      this.$postComment.appendChild(this.$postCommentNum);
+      this.$postDecorations.appendChild(this.$postComment);
+    }
+  }
+
+  /* 
+    第一引数: 連想配列の要素
+  */
+  _createPostDescription(object) {
+    object.posts.forEach((post) => {
+      this.category = post.category;
+      this.text = post.text;
+      this.date = Number(post.date);
+      this.comment = post.comment;
+      this.jadgeDate = this._jadgeWithin3days();
+      this.$postItem = document.createElement("li");
+      this.$postBody = document.createElement("div");
+      this.$postText = document.createElement("a");
+
+      this.$postItem.className = "newsUI_description_item";
+      this.$postBody.className = "newsUI_description_body";
+      this.$postText.className = "newsUI_description_text";
+      this.$postText.textContent = this.text;
+
+      this._createPostDecorations();
+
+      this.$postBody.appendChild(this.$postText);
+      this.$postBody.appendChild(this.$postDecorations);
+      this.$postItem.appendChild(this.$postBody);
+      this.postList.appendChild(this.$postItem);
+    });
+  }
+
+  _createPost(data) {
     this.data = data;
     this.dataLength = this.data.length;
     this.flag = document.createDocumentFragment();
     this.currentDate = this._getCurrentDate();
-    this._cloneNewsUIContents(this.dataLength);
-    this.latestNewUIContents = [...document.querySelectorAll('.js-newUIContents')];
+    this._cloneNewsUIContents();
+    this.latestNewUIContents = [
+      ...document.querySelectorAll(".js-newUIContents"),
+    ];
     this.latestNewUIContents.splice(-1, 1);
-    
-    this.data.forEach((dataItem, i) => {
-      this._createPostImage(dataItem, i, this.latestNewUIContents);
+
+    this.data.forEach((object, i) => {
+      this._createPostImage(object, i);
       this.postList = this.latestNewUIContents[i].children[0];
-
-      dataItem.posts.forEach((posts, i) => {
-        this.category = posts.category;
-        this.text = posts.text;
-        this.date = Number(posts.date);
-        this.comment = posts.comment;
-        this.jadgeDate = this._jadgeWithin3days(this.currentDate, this.date);
-        this.$postItem = document.createElement("li");
-        this.$postBody = document.createElement("div");
-        this.$postText = document.createElement("a");
-        
-        this.$postItem.className = "newsUI_description_item";
-        this.$postBody.className = "newsUI_description_body";
-        this.$postText.className = "newsUI_description_text";
-        this.$postText.textContent = this.text;
-        
-        if (this.jadgeDate <= 3 || this.comment > 0) {
-          this.$postDecorations = document.createElement("div");
-          this.$postDecorations.className = "newsUI_description_decorations";
-        }
-
-        if (this.jadgeDate <= 3) {
-          this.$postNew = document.createElement("div");
-          this.$postNewText = document.createElement("span");
-          this.$postNew.className = "newsUI_description_label";
-          this.$postNewText.className = "newsUI_description_label_text";
-          this.$postNewText.textContent = "new";
-          this.$postNew.appendChild(this.$postNewText);
-          this.$postDecorations.appendChild(this.$postNew);
-        }
-        
-        if (this.comment > 0) {
-          this.$postComment = document.createElement("div");
-          this.$postCommentIcon = document.createElement("span");
-          this.$postCommentNum = document.createElement("span");
-          this.$postComment.className = "newsUI_description_comment";
-          this.$postCommentIcon.className = "newsUI_description_comment_icon";
-          this.$postCommentNum.className = "newsUI_description_comment_num";
-          this.$postCommentNum.textContent = this.comment;
-          this.$postComment.appendChild(this.$postCommentIcon);
-          this.$postComment.appendChild(this.$postCommentNum);
-          this.$postDecorations.appendChild(this.$postComment);
-        }
-
-        this.$postBody.appendChild(this.$postText);
-        this.$postBody.appendChild(this.$postDecorations);
-        this.$postItem.appendChild(this.$postBody);
-        this.postList.appendChild(this.$postItem);
-      });
+      this._createPostDescription(object);
     });
   }
-  
-  _createErrorText() {}
+
+  _createErrorText(error) {
+    alert(error);
+  }
 }

@@ -5,8 +5,9 @@
   base
 ----------------------------------- */
 html {
-  
+
   font-size: calc(100vw / 1600);
+
   @include media767 {
     font-size: calc(100vw / 320);
   }
@@ -35,6 +36,7 @@ html {
   justify-content: space-between;
   align-items: center;
   padding: 24px;
+
   @include media767 {
     padding: 10rem;
   }
@@ -42,6 +44,7 @@ html {
 
 .header_title {
   font-size: 36px;
+
   @include media767 {
     font-size: 20rem;
   }
@@ -179,7 +182,7 @@ html {
     height: calc(100vh - 10rem);
     background-color: $colorBlack;
     animation: modalShow .5s;
-  
+
     &.is-show {
       opacity: 1;
       display: flex;
@@ -275,6 +278,7 @@ body {
 .global_container {
   display: flex;
   justify-content: space-between;
+
   @include media1279 {
     flex-direction: column;
   }
