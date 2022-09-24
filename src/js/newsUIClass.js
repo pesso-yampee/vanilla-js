@@ -21,7 +21,7 @@ class CreateNewsPost {
         this._createPost(data);
       })
       .catch(() => {
-        this.Error = new Error("サーバがぶっ壊れています。");
+        this.Error = "サーバがぶっ壊れています。";
         this._createErrorText(this.Error);
       });
   }
@@ -156,7 +156,12 @@ class CreateNewsPost {
   }
 
   _createErrorText(error) {
-    alert(error);
+    this.newUIContents.classList.add('is-active');
+    this.child = this.newUIContents.children[0];
+    this.errorElement = document.createElement('p');
+    this.errorElement.className = "newsUI_error";
+    this.errorElement.textContent = error;
+    this.child.appendChild(this.errorElement);
   }
 }
 
