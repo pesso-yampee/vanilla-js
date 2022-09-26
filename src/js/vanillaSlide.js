@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const url = "https://myjson.dit.upm.es/api/bins/au7u";
 
   new OutputImage(slideItems, url);
-  new AutoplaySlider(slideItems, slideNav);
+  // new AutoplaySlider(slideItems, slideNav);
 
   arrows.forEach((arrow) => {
     arrow.addEventListener("click", (e) => {

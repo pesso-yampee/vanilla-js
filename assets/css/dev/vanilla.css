@@ -450,7 +450,7 @@ body.open {
 /** -----------------------------------
   スライドショー
 ----------------------------------- */
-.vanillaSlide {
+.vanillaSlide_container {
   position: relative;
 }
 
@@ -806,4 +806,28 @@ body.open {
 .newsUI_description_image {
   width: 100%;
   height: auto;
+}
+
+/** -----------------------------------
+  ユーザーテーブル
+----------------------------------- */
+.userTable_list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(200rem, 1fr));
+}
+.userTable_list.heading {
+  background-color: teal;
+  color: #fff;
+}
+
+.userTable_term {
+  text-align: center;
+  line-height: 30rem;
+  font-size: 16rem;
+}
+
+.userTable_description {
+  text-align: center;
+  line-height: 30rem;
+  font-size: 16rem;
 }/*# sourceMappingURL=vanilla.css.map */
