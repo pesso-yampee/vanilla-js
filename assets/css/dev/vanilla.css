@@ -98,7 +98,7 @@ select {
   base
 ----------------------------------- */
 html {
-  font-size: 0.0625vw;
+  font-size: 0.1063829787vw;
 }
 @media screen and (max-width: 767px) {
   html {
@@ -815,19 +815,72 @@ body.open {
   display: grid;
   grid-template-columns: repeat(4, minmax(200rem, 1fr));
 }
-.userTable_list.heading {
-  background-color: teal;
-  color: #fff;
-}
 
 .userTable_term {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   text-align: center;
   line-height: 30rem;
   font-size: 16rem;
+}
+.userTable_term.heading {
+  background-color: teal;
+}
+.userTable_term.heading .userTable_term_text {
+  color: #fff;
+}
+
+.userTable_term_sortBtn {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 16rem;
+  height: 16rem;
+  margin-left: 4rem;
+  background-color: transparent;
+  cursor: pointer;
+}
+.userTable_term_sortBtn::after {
+  position: absolute;
+  display: block;
+  width: 16rem;
+  height: 16rem;
+  background: url("/assets/media/images/table/both.svg") no-repeat center/contain;
+  content: "";
+}
+.userTable_term_sortBtn.ascending::after {
+  background: url("/assets/media/images/table/asc.svg") no-repeat center/contain;
+}
+.userTable_term_sortBtn.descending::after {
+  background: url("/assets/media/images/table/desc.svg") no-repeat center/contain;
 }
 
 .userTable_description {
   text-align: center;
   line-height: 30rem;
   font-size: 16rem;
+}
+.userTable_description.heading {
+  background-color: teal;
+  color: #fff;
 }/*# sourceMappingURL=vanilla.css.map */

@@ -316,21 +316,59 @@
 .userTable_list {
   display: grid;
   grid-template-columns: repeat(4, minmax(200rem, 1fr));
-
-  &.heading {
-    background-color: teal;
-    color: #fff;
-  }
 }
 
 .userTable_term {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   line-height: 30rem;
   font-size: 16rem;
+  &.heading {
+    background-color: teal;
+    .userTable_term_text {
+      color: #fff;
+    }
+  }
+}
+
+.userTable_term_sortBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16rem;
+  height: 16rem;
+  margin-left: 4rem;
+  background-color: transparent;
+  cursor: pointer;
+  &::after {
+    position: absolute;
+    display: block;
+    width: 16rem;
+    height: 16rem;
+    background: url("/assets/media/images/table/both.svg") no-repeat center/contain;
+    content: "";
+  }
+  &.ascending {
+    &::after {
+      background: url("/assets/media/images/table/asc.svg") no-repeat center/contain;
+    }
+  }
+  &.descending {
+    &::after {
+      background: url("/assets/media/images/table/desc.svg") no-repeat center/contain;
+    }
+  }
 }
 
 .userTable_description {
   text-align: center;
   line-height: 30rem;
   font-size: 16rem;
+  &.heading {
+    background-color: teal;
+    color: #fff;
+  }
 }

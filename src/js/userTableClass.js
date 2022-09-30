@@ -1,3 +1,5 @@
+"use strict";
+
 class CreateUserTable {
   constructor($userTableList, url) {
     this.userTableList = $userTableList;
@@ -11,9 +13,9 @@ class CreateUserTable {
       this.request.open("GET", this.url, true);
       this.request.onload = () => {
         if (200 <= this.request.status && this.request.status < 300) {
-          resolve(this.request);
-          // setTimeout(() => {
-          // }, 3000);
+          setTimeout(() => {
+            resolve(this.request);
+          }, 3000);
         } else {
           reject(new Error(this.request.statusText));
         }
@@ -32,10 +34,8 @@ class CreateUserTable {
         return this.json;
       })
       .then((data) => {
-        let userData = data.userData;
-
-        userData = this._shuffleData(userData);
-        this._createList(userData);
+        this.suffledData = this._shuffleData(data.userData);
+        this._createTableList(this.suffledData);
       })
       .catch(() => {
         console.log(new Error("サーバーがぶっ壊れています。"));
@@ -55,47 +55,74 @@ class CreateUserTable {
     return this.result;
   }
 
-  _createList(userData) {
-    this.userDataLength = userData.length;
-    this.parent = this.userTableList.parentNode;
+  _createTableList(userData) {
+    this.userData = userData;
     this.frag = document.createDocumentFragment();
-    this.fragDd = document.createDocumentFragment();
-    this.dt = document.createElement("dt");
-    this.dt.className = "userTable_term";
-    this.objectKeys = Object.keys(userData[1]);
-    this.objectLength = this.objectKeys.length;
+    this.ID = document.createElement("dt");
+    this.IDText = document.createElement("span");
+    this.IDSortBtn = document.createElement("button");
+    this.name = document.createElement("dd");
+    this.sex = document.createElement("dd");
+    this.age = document.createElement("dd");
+    this.ID.className = "userTable_term heading";
+    this.IDText.className = "userTable_term_text";
+    this.IDSortBtn.className = "userTable_term_sortBtn";
+    this.name.className = "userTable_description heading";
+    this.sex.className = "userTable_description heading";
+    this.age.className = "userTable_description heading";
+    this.IDText.textContent = "ID";
+    this.name.textContent = "名前";
+    this.sex.textContent = "性別";
+    this.age.textContent = "年齢";
+    this.ID.appendChild(this.IDText);
+    this.ID.appendChild(this.IDSortBtn);
+    this.frag.appendChild(this.ID);
+    this.frag.appendChild(this.name);
+    this.frag.appendChild(this.sex);
+    this.frag.appendChild(this.age);
 
-    for (let i = 0; i < this.objectLength - 1; i++) {
-      this.dd = document.createElement("dd");
-      this.dd.className = "userTable_description";
-      this.fragDd.appendChild(this.dd);
+    for (let i = 0; i < this.userData.length; i++) {
+      const id = document.createElement("dt");
+      const name = document.createElement("dd");
+      const sex = document.createElement("dd");
+      const age = document.createElement("dd");
+      
+      id.className = "userTable_term";
+      name.className = "userTable_description";
+      sex.className = "userTable_description";
+      age.className = "userTable_description";
+      id.textContent =  userData[i].id;
+      name.textContent = userData[i].name;
+      sex.textContent = userData[i].sex;
+      age.textContent = userData[i].age;
+      this.frag.appendChild(id);
+      this.frag.appendChild(name);
+      this.frag.appendChild(sex);
+      this.frag.appendChild(age);
     }
 
-    this.userTableList.appendChild(this.dt);
-    this.userTableList.appendChild(this.fragDd);
+    this.userTableList.appendChild(this.frag);
+  }
+}
 
-    for (let i = 0; i < this.userDataLength; i++) {
-      this.cloneNode = this.userTableList.cloneNode(true);
-      this.userID = userData[i].id;
-      this.userName = userData[i].name;
-      this.userSex = userData[i].sex;
-      this.userAge = userData[i].age;
-      this.cloneDt = this.cloneNode.querySelector("dt");
-      this.cloneDds = [...this.cloneNode.querySelectorAll("dd")];
-      this.cloneDt.textContent = this.userID;
-      this.cloneDds[0].textContent = this.userName;
-      this.cloneDds[1].textContent = this.userSex;
-      this.cloneDds[2].textContent = this.userAge;
-      this.frag.appendChild(this.cloneNode);
+class HandleSortUserTable {
+  constructor(e) {
+    this.event = e;
+    this.CurrentTarget = this.event.currentTarget;
+    this._switchAppearanceSortBtn();
+  }
+  
+  _switchAppearanceSortBtn() {
+    this.ascending = this.CurrentTarget.classList.contains('ascending');
+    this.descending = this.CurrentTarget.classList.contains('descending');
+    
+    if (!this.descending && !this.ascending) {
+      this.CurrentTarget.classList.add("ascending");
+    } else if (this.ascending) {
+      this.CurrentTarget.classList.remove("ascending");
+      this.CurrentTarget.classList.add("descending");
+    } else if (this.descending) {
+      this.CurrentTarget.classList.remove("descending");
     }
-
-    this.dt = this.userTableList.querySelector("dt");
-    this.dds = [...this.userTableList.querySelectorAll("dd")];
-    this.dt.textContent = "ID";
-    this.dds[0].textContent = "名前";
-    this.dds[1].textContent = "性別";
-    this.dds[2].textContent = "年齢";
-    this.userTableList.classList.add("heading");
-    this.parent.appendChild(this.frag);
   }
 }
