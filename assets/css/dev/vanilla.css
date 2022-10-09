@@ -98,7 +98,7 @@ select {
   base
 ----------------------------------- */
 html {
-  font-size: 0.1063829787vw;
+  font-size: 0.0625vw;
 }
 @media screen and (max-width: 767px) {
   html {
@@ -811,12 +811,24 @@ body.open {
 /** -----------------------------------
   ユーザーテーブル
 ----------------------------------- */
-.userTable_list {
+.user_table {
+  width: 100%;
+}
+
+.user_table_headBlock {
+  width: inherit;
+}
+
+.user_table_row {
   display: grid;
   grid-template-columns: repeat(4, minmax(200rem, 1fr));
 }
 
-.userTable_term {
+.user_table_head {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -829,18 +841,17 @@ body.open {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
+  padding: 10rem 0;
+  background-color: teal;
   text-align: center;
-  line-height: 30rem;
   font-size: 16rem;
 }
-.userTable_term.heading {
-  background-color: teal;
-}
-.userTable_term.heading .userTable_term_text {
+
+.user_table_head_text {
   color: #fff;
 }
 
-.userTable_term_sortBtn {
+.user_table_head_sortBtn {
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -860,7 +871,7 @@ body.open {
   background-color: transparent;
   cursor: pointer;
 }
-.userTable_term_sortBtn::after {
+.user_table_head_sortBtn::after {
   position: absolute;
   display: block;
   width: 16rem;
@@ -868,19 +879,19 @@ body.open {
   background: url("/assets/media/images/table/both.svg") no-repeat center/contain;
   content: "";
 }
-.userTable_term_sortBtn.ascending::after {
+.user_table_head_sortBtn.ascending::after {
   background: url("/assets/media/images/table/asc.svg") no-repeat center/contain;
 }
-.userTable_term_sortBtn.descending::after {
+.user_table_head_sortBtn.descending::after {
   background: url("/assets/media/images/table/desc.svg") no-repeat center/contain;
 }
 
-.userTable_description {
+.user_table_description {
   text-align: center;
   line-height: 30rem;
   font-size: 16rem;
 }
-.userTable_description.heading {
+.user_table_description.heading {
   background-color: teal;
   color: #fff;
 }/*# sourceMappingURL=vanilla.css.map */

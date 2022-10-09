@@ -6,7 +6,7 @@
 ----------------------------------- */
 html {
 
-  font-size: calc(100vw * 1 / 940);
+  font-size: calc(100vw * 1 / 1600);
 
   @include media767 {
     font-size: calc(100vw * 1 / 320);

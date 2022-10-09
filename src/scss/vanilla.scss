@@ -313,27 +313,35 @@
 /** -----------------------------------
   ユーザーテーブル
 ----------------------------------- */
-.userTable_list {
+.user_table {
+  width: 100%;
+}
+
+.user_table_headBlock {
+  width: inherit;
+}
+
+.user_table_row {
   display: grid;
   grid-template-columns: repeat(4, minmax(200rem, 1fr));
 }
 
-.userTable_term {
+.user_table_head {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10rem 0;
+  background-color: teal;
   text-align: center;
-  line-height: 30rem;
   font-size: 16rem;
-  &.heading {
-    background-color: teal;
-    .userTable_term_text {
-      color: #fff;
-    }
-  }
 }
 
-.userTable_term_sortBtn {
+.user_table_head_text {
+  color: #fff;
+}
+
+.user_table_head_sortBtn {
   position: relative;
   display: flex;
   align-items: center;
@@ -343,6 +351,7 @@
   margin-left: 4rem;
   background-color: transparent;
   cursor: pointer;
+
   &::after {
     position: absolute;
     display: block;
@@ -351,11 +360,13 @@
     background: url("/assets/media/images/table/both.svg") no-repeat center/contain;
     content: "";
   }
+
   &.ascending {
     &::after {
       background: url("/assets/media/images/table/asc.svg") no-repeat center/contain;
     }
   }
+
   &.descending {
     &::after {
       background: url("/assets/media/images/table/desc.svg") no-repeat center/contain;
@@ -363,10 +374,15 @@
   }
 }
 
-.userTable_description {
+.user_table_body {
+  
+}
+
+.user_table_description {
   text-align: center;
   line-height: 30rem;
   font-size: 16rem;
+
   &.heading {
     background-color: teal;
     color: #fff;
