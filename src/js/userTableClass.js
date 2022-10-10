@@ -128,80 +128,69 @@ class CreateUserTable {
 }
 
 class HandleSortUserTable {
-  constructor(e, tableBody, sortStatus, mutationCount) {
-    this.event = e;
-    this.tableBody = tableBody;
-    this.sortStatus = sortStatus;
-    this.mutationCount = mutationCount;
-    this.ascendingClassName = this.sortStatus.ascending;
-    this.descendingClassName = this.sortStatus.descending;
+  constructor(props) {
+    this.event = props.event;
+    this.tableBody = props.tableBody;
+    this.cloneTableBody = this.tableBody.cloneNode(false);
+    this.initialTableBody = props.initialTableBody;
+    this.ascendingClass = props.ascendingClass;
+    this.descendingClass = props.descendingClass;
     this.CurrentTarget = this.event.currentTarget;
     this._switchAppearanceSortBtn();
   }
 
   _switchAppearanceSortBtn() {
-    this.flag = 0;
-    this.ascending = this.CurrentTarget.classList.contains(
-      this.ascendingClassName
-    );
+    this.count = 0;
+    this.children = this.tableBody.children;
+    this.initialChildren = this.initialTableBody.children;
+    this.ascending = this.CurrentTarget.classList.contains(this.ascendingClass);
     this.descending = this.CurrentTarget.classList.contains(
-      this.descendingClassName
+      this.descendingClass
     );
 
     if (!this.descending && !this.ascending) {
-      this.CurrentTarget.classList.add(this.ascendingClassName);
-      this.flag = 1;
-      this._sort(this.flag);
+      this.CurrentTarget.classList.add(this.ascendingClass);
+      this.count = 1;
+      this._sort(this.count, this.children);
     } else if (this.ascending) {
-      this.CurrentTarget.classList.remove(this.ascendingClassName);
-      this.CurrentTarget.classList.add(this.descendingClassName);
-      this.flag = 2;
-      this._sort(this.flag);
+      this.CurrentTarget.classList.remove(this.ascendingClass);
+      this.CurrentTarget.classList.add(this.descendingClass);
+      this.count = 2;
+      this._sort(this.count, this.children);
     } else if (this.descending) {
-      this.CurrentTarget.classList.remove(this.descendingClassName);
-      this.flag = 0;
-      this._sort(this.flag);
+      this.CurrentTarget.classList.remove(this.descendingClass);
+      this.count = 0;
+      this._sort(this.count, this.initialChildren);
     }
   }
 
-  _sort(flag) {
-    this.children = this.tableBody.children;
-    this.frag = document.createDocumentFragment();
-    let initialChildren;
-    
-    if (this.mutationCount === 0) {
-      initialChildren = this.children;
-    }
+  _sort(count, children) {
+    this.fragment = document.createDocumentFragment();
 
-    console.log(initialChildren);
-
-    if (flag === 0) {
-      [...initialChildren].forEach((child) => {
-        this.frag.appendChild(child);
-      });
-    } else if (flag === 1) {
-      this.sortedChildren = [...this.children].sort((prev, next) => {
+    if (count === 1) {
+      this.sortedChildren = [...children].sort((prev, next) => {
         this.prevId = prev.childNodes[0].dataset.id;
         this.nextId = next.childNodes[0].dataset.id;
         return this.prevId - this.nextId;
       });
-    } else if (flag === 2) {
-      this.sortedChildren = [...this.children].sort((prev, next) => {
+    } else if (count === 2) {
+      this.sortedChildren = [...children].sort((prev, next) => {
         this.prevId = prev.childNodes[0].dataset.id;
         this.nextId = next.childNodes[0].dataset.id;
         return this.nextId - this.prevId;
       });
     }
 
-    if (flag != 0) {
-      this.sortedChildren.forEach((element) => {
-        this.frag.appendChild(element);
+    if (count === 0) {
+      [...children].forEach((element) => {
+        this.fragment.appendChild(element);
       });
+      this.tableBody.replaceWith(this.fragment);
+    } else {
+      this.sortedChildren.forEach((element) => {
+        this.fragment.appendChild(element);
+      });
+      this.tableBody.appendChild(this.fragment);
     }
-    
-    this.tableBody.appendChild(this.frag);
   }
 }
-
-// クリックしたらユーザーテーブルの要素を取得する
-// 取得した要素を配列に格納する
