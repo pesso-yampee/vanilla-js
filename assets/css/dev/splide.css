@@ -96,8 +96,10 @@ select {
 /** -----------------------------------
   base
 ----------------------------------- */
-html {
-  font-size: 0.0625vw;
+@media screen and (max-width: 1279px) {
+  html {
+    font-size: 0.0781860829vw;
+  }
 }
 @media screen and (max-width: 767px) {
   html {
@@ -140,6 +142,11 @@ html {
           align-items: center;
   padding: 24px;
 }
+@media screen and (max-width: 1279px) {
+  .header_inner {
+    padding: 24rem;
+  }
+}
 @media screen and (max-width: 767px) {
   .header_inner {
     padding: 10rem;
@@ -147,7 +154,12 @@ html {
 }
 
 .header_title {
-  font-size: 36rem;
+  font-size: 36px;
+}
+@media screen and (max-width: 1279px) {
+  .header_title {
+    font-size: 36rem;
+  }
 }
 @media screen and (max-width: 767px) {
   .header_title {
@@ -202,6 +214,12 @@ html {
   font-weight: 700;
   font-size: 16px;
 }
+@media screen and (max-width: 1279px) {
+  .header_item_link {
+    padding: 0 16rem;
+    font-size: 16rem;
+  }
+}
 .header_item_link::after {
   position: absolute;
   display: block;
@@ -213,7 +231,7 @@ html {
   -webkit-transition: width 0.3s;
   transition: width 0.3s;
 }
-@media screen and (min-width: 768px) {
+@media (hover: hover) {
   .header_item_link:hover::after {
     width: 32%;
   }
@@ -225,6 +243,11 @@ html {
 .main {
   height: 200vh;
   padding-top: 84px;
+}
+@media screen and (max-width: 1279px) {
+  .main {
+    padding-top: 84rem;
+  }
 }
 @media screen and (max-width: 767px) {
   .main {
@@ -266,6 +289,13 @@ html {
   height: 50px;
   padding: 10px;
   background-color: transparent;
+}
+@media screen and (max-width: 1279px) {
+  .hamburger_button {
+    width: 50rem;
+    height: 50rem;
+    padding: 10rem;
+  }
 }
 .hamburger_button:hover {
   cursor: pointer;
@@ -359,13 +389,23 @@ html {
   section
 ----------------------------------- */
 .section {
-  padding: 32rem 0;
+  padding: 32px 0;
+}
+@media screen and (max-width: 1279px) {
+  .section {
+    padding: 32rem 0;
+  }
 }
 
 .section_inner {
-  max-width: 940rem;
+  max-width: 940px;
   margin-left: auto;
   margin-right: auto;
+}
+@media screen and (max-width: 1279px) {
+  .section_inner {
+    max-width: 940rem;
+  }
 }
 @media screen and (max-width: 767px) {
   .section_inner {
@@ -375,8 +415,14 @@ html {
 
 .section_heading {
   position: relative;
-  padding-bottom: 8rem;
-  font-size: 36rem;
+  padding-bottom: 8px;
+  font-size: 36px;
+}
+@media screen and (max-width: 1279px) {
+  .section_heading {
+    padding-bottom: 8rem;
+    font-size: 36rem;
+  }
 }
 .section_heading::after {
   position: absolute;

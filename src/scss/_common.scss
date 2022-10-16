@@ -5,9 +5,9 @@
   base
 ----------------------------------- */
 html {
-
-  font-size: calc(100vw * 1 / 1600);
-
+  @include media1279 {
+    font-size: calc(100vw * 1 / 1279);
+  }
   @include media767 {
     font-size: calc(100vw * 1 / 320);
   }
@@ -36,15 +36,20 @@ html {
   justify-content: space-between;
   align-items: center;
   padding: 24px;
-
+  
+  @include media1279 {
+    padding: 24rem;
+  }
   @include media767 {
     padding: 10rem;
   }
 }
 
 .header_title {
-  font-size: 36rem;
-
+  font-size: 36px;
+  @include media1279 {
+    font-size: 36rem;
+  }
   @include media767 {
     font-size: 20rem;
   }
@@ -76,7 +81,12 @@ html {
   text-align: center;
   font-weight: 700;
   font-size: 16px;
-
+  
+  @include media1279 {
+    padding: 0 16rem;
+    font-size: 16rem;
+  }
+  
   &::after {
     position: absolute;
     display: block;
@@ -88,7 +98,8 @@ html {
     transition: width .3s;
   }
 
-  @include media768 {
+  
+  @media (hover: hover) {
     &:hover {
       &::after {
         width: 32%;
@@ -103,7 +114,11 @@ html {
 .main {
   height: 200vh;
   padding-top: 84px;
-
+  
+  @include media1279 {
+    padding-top: 84rem;
+  }
+  
   @include media767 {
     padding-top: 0;
     margin-top: 30rem;
@@ -134,7 +149,13 @@ html {
   height: 50px;
   padding: 10px;
   background-color: transparent;
-
+  
+  @include media1279 {
+    width: 50rem;
+    height: 50rem;
+    padding: 10rem;
+  }
+  
   &:hover {
     cursor: pointer;
   }
@@ -208,14 +229,19 @@ html {
   section
 ----------------------------------- */
 .section {
-  padding: 32rem 0;
+  padding: 32px 0;
+  @include media1279 {
+    padding: 32rem 0;
+  }
 }
 
 .section_inner {
-  max-width: 940rem;
+  max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-
+  @include media1279 {
+    max-width: 940rem;
+  }
   @include media767 {
     padding: 0 10rem;
   }
@@ -223,8 +249,12 @@ html {
 
 .section_heading {
   position: relative;
-  padding-bottom: 8rem;
-  font-size: 36rem;
+  padding-bottom: 8px;
+  font-size: 36px;
+  @include media1279 {
+    padding-bottom: 8rem;
+    font-size: 36rem;
+  }
 
   &::after {
     position: absolute;
