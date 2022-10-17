@@ -414,7 +414,10 @@
 
 .user_table_row {
   display: grid;
-  grid-template-columns: repeat(4, minmax(200rem, 1fr));
+  grid-template-columns: repeat(4, minmax(200px, 1fr));
+  @include media1279 {
+    grid-template-columns: repeat(4, minmax(200rem, 1fr));
+  }
 }
 
 .user_table_head {

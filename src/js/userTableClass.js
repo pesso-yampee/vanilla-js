@@ -127,11 +127,10 @@ class CreateUserTable {
   }
 }
 
-class HandleSortUserTable {
+class SortUserTable {
   constructor(props) {
     this.event = props.event;
     this.tableBody = props.tableBody;
-    this.cloneTableBody = this.tableBody.cloneNode(false);
     this.initialTableBody = props.initialTableBody;
     this.ascendingClass = props.ascendingClass;
     this.descendingClass = props.descendingClass;
@@ -143,6 +142,13 @@ class HandleSortUserTable {
     this.count = 0;
     this.children = this.tableBody.children;
     this.initialChildren = this.initialTableBody.children;
+    this.initialChildrenOrder = []; // 通常並びの順序を示す数値を格納する配列オブジェクト
+    this.initialOrderChildren = []; // 通常並びの要素を格納する配列オブジェクト
+
+    for (let i = 0; i < this.initialChildren.length; i++) {
+      this.initialChildrenOrder[i] = this.initialChildren[i].children[0].getAttribute("data-id");
+    }
+    
     this.ascending = this.CurrentTarget.classList.contains(this.ascendingClass);
     this.descending = this.CurrentTarget.classList.contains(
       this.descendingClass
@@ -160,14 +166,25 @@ class HandleSortUserTable {
     } else if (this.descending) {
       this.CurrentTarget.classList.remove(this.descendingClass);
       this.count = 0;
-      this._sort(this.count, this.initialChildren);
+      this._sort(this.count, this.children);
     }
   }
 
   _sort(count, children) {
     this.fragment = document.createDocumentFragment();
 
-    if (count === 1) {
+    if (count === 0) {
+      for (let i = 0; i < this.initialChildrenOrder.length; i++) {
+        const dataId = this.initialChildrenOrder[i];
+        this.initialOrderChildren[i] = [...children].find(child => {
+          return child.children[0].dataset.id === dataId
+        });
+      }
+      this.sortedChildren = this.initialOrderChildren.sort((prev, next) => {
+        // 初期値をそのまま渡したいので、何もせず返す
+        return;
+      });
+    } else if (count === 1) {
       this.sortedChildren = [...children].sort((prev, next) => {
         this.prevId = prev.childNodes[0].dataset.id;
         this.nextId = next.childNodes[0].dataset.id;
@@ -182,10 +199,10 @@ class HandleSortUserTable {
     }
 
     if (count === 0) {
-      [...children].forEach((element) => {
+      this.sortedChildren.forEach((element) => {
         this.fragment.appendChild(element);
       });
-      this.tableBody.replaceWith(this.fragment);
+      this.tableBody.appendChild(this.fragment);
     } else {
       this.sortedChildren.forEach((element) => {
         this.fragment.appendChild(element);
