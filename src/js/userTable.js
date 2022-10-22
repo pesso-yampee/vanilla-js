@@ -19,20 +19,22 @@ window.addEventListener("DOMContentLoaded", () => {
       const $tableBody = $tableHeadBlock.nextElementSibling;
       const $initialTableBody = $tableBody.cloneNode(true);
       const tableRow = $tableHeadBlock.childNodes[0];
-      const tableHead = tableRow.childNodes[0];
-      const $sortBtn = tableHead.childNodes[1];
+      const $sortBtns = tableRow.querySelectorAll('.js-sortBtn');
       const handleSortUserTable = (e) => {
         const props = {
           event: e,
           tableBody: $tableBody,
           initialTableBody: $initialTableBody,
+          dataSort: e.currentTarget.dataset.sort,
           ascendingClass: "ascending",
           descendingClass: "descending",
         };
         new SortUserTable(props);
       };
 
-      $sortBtn.addEventListener("click", handleSortUserTable);
+      [...$sortBtns].forEach(($sortBtn) => {
+        $sortBtn.addEventListener("click", handleSortUserTable);
+      });
     });
   };
   const userTableObserver = new MutationObserver(monitorCreatedUserTable);

@@ -58,35 +58,38 @@ class CreateUserTable {
   _createTableList(userData) {
     this.userData = userData;
     this.thead = document.createElement("thead");
-    this.thSortBtn = document.createElement("button");
     this.tbody = document.createElement("tbody");
     this.tr = document.createElement("tr");
     this.trFrag = document.createDocumentFragment();
     this.tdFrag = document.createDocumentFragment();
     this.thead.className = "user_table_headBlock";
     this.tr.className = "user_table_row";
-    this.thSortBtn.className = "user_table_head_sortBtn";
     this.tbody.className = "user_table_body";
-
+    
     for (let i = 0; i < this.userData.length - 1; i++) {
       const th = document.createElement("th");
       const thText = document.createElement("span");
+      const thSortBtn = document.createElement("button");;
+
+      thSortBtn.className = "user_table_head_sortBtn js-sortBtn";
       th.className = "user_table_head";
       thText.className = "user_table_head_text";
 
       if (i === 0) {
+        thSortBtn.dataset.sort = "id";
         thText.textContent = "ID";
       } else if (i === 1) {
         thText.textContent = "名前";
       } else if (i === 2) {
         thText.textContent = "性別";
       } else if (i === 3) {
+        thSortBtn.dataset.sort = "age";
         thText.textContent = "年齢";
       }
 
-      if (i === 0) {
+      if (i === 0 || i === 3) {
         th.appendChild(thText);
-        th.appendChild(this.thSortBtn);
+        th.appendChild(thSortBtn);
       } else {
         th.appendChild(thText);
       }
@@ -132,21 +135,26 @@ class SortUserTable {
     this.event = props.event;
     this.tableBody = props.tableBody;
     this.initialTableBody = props.initialTableBody;
+    this.dataSort = props.dataSort;
     this.ascendingClass = props.ascendingClass;
     this.descendingClass = props.descendingClass;
     this.CurrentTarget = this.event.currentTarget;
     this._switchAppearanceSortBtn();
   }
-
+  
   _switchAppearanceSortBtn() {
     this.count = 0;
     this.children = this.tableBody.children;
     this.initialChildren = this.initialTableBody.children;
     this.initialChildrenOrder = []; // 通常並びの順序を示す数値を格納する配列オブジェクト
     this.initialOrderChildren = []; // 通常並びの要素を格納する配列オブジェクト
-
+    
     for (let i = 0; i < this.initialChildren.length; i++) {
-      this.initialChildrenOrder[i] = this.initialChildren[i].children[0].getAttribute("data-id");
+      if (this.dataSort === "id") {
+        this.initialChildrenOrder[i] = this.initialChildren[i].children[0].getAttribute("data-"+this.dataSort);
+      } else {
+        this.initialChildrenOrder[i] = this.initialChildren[i].children[3].getAttribute("data-"+this.dataSort);
+      }
     }
     
     this.ascending = this.CurrentTarget.classList.contains(this.ascendingClass);
@@ -175,9 +183,13 @@ class SortUserTable {
 
     if (count === 0) {
       for (let i = 0; i < this.initialChildrenOrder.length; i++) {
-        const dataId = this.initialChildrenOrder[i];
+        const order = this.initialChildrenOrder[i];
         this.initialOrderChildren[i] = [...children].find(child => {
-          return child.children[0].dataset.id === dataId
+          if (this.dataSort === "id") {
+            return child.children[0].getAttribute('data-'+this.dataSort) === order
+          } else {
+            return child.children[3].getAttribute('data-'+this.dataSort) === order
+          }
         });
       }
       this.sortedChildren = this.initialOrderChildren.sort((prev, next) => {
@@ -186,18 +198,30 @@ class SortUserTable {
       });
     } else if (count === 1) {
       this.sortedChildren = [...children].sort((prev, next) => {
-        this.prevId = prev.childNodes[0].dataset.id;
-        this.nextId = next.childNodes[0].dataset.id;
+        if (this.dataSort === "id") {
+          this.prevId = prev.childNodes[0].getAttribute("data-"+this.dataSort);
+          this.nextId = next.childNodes[0].getAttribute("data-"+this.dataSort);
+        } else {
+          this.prevId = prev.childNodes[3].getAttribute("data-"+this.dataSort);
+          this.nextId = next.childNodes[3].getAttribute("data-"+this.dataSort);
+        }
+        
         return this.prevId - this.nextId;
       });
     } else if (count === 2) {
       this.sortedChildren = [...children].sort((prev, next) => {
-        this.prevId = prev.childNodes[0].dataset.id;
-        this.nextId = next.childNodes[0].dataset.id;
+        if (this.dataSort === "id") {
+          this.prevId = prev.childNodes[0].getAttribute("data-"+this.dataSort);
+          this.nextId = next.childNodes[0].getAttribute("data-"+this.dataSort);
+        } else {
+          this.prevId = prev.childNodes[3].getAttribute("data-"+this.dataSort);
+          this.nextId = next.childNodes[3].getAttribute("data-"+this.dataSort);
+        }
+        
         return this.nextId - this.prevId;
       });
     }
-
+  
     if (count === 0) {
       this.sortedChildren.forEach((element) => {
         this.fragment.appendChild(element);
