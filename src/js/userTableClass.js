@@ -65,11 +65,11 @@ class CreateUserTable {
     this.thead.className = "user_table_headBlock";
     this.tr.className = "user_table_row";
     this.tbody.className = "user_table_body";
-    
+
     for (let i = 0; i < this.userData.length - 1; i++) {
       const th = document.createElement("th");
       const thText = document.createElement("span");
-      const thSortBtn = document.createElement("button");;
+      const thSortBtn = document.createElement("button");
 
       thSortBtn.className = "user_table_head_sortBtn js-sortBtn";
       th.className = "user_table_head";
@@ -138,44 +138,70 @@ class SortUserTable {
     this.dataSort = props.dataSort;
     this.ascendingClass = props.ascendingClass;
     this.descendingClass = props.descendingClass;
-    this.CurrentTarget = this.event.currentTarget;
+    this.currentTarget = this.event.currentTarget;
+    this.index = this.dataSort === "id" ? 0 : 3;
+    this.idSortBtn = this.currentTarget.parentNode.parentNode.children[0].children[1];
+    this.ageSortBtn = this.currentTarget.parentNode.parentNode.children[3].children[1];
     this._switchAppearanceSortBtn();
   }
-  
+
   _switchAppearanceSortBtn() {
     this.count = 0;
     this.children = this.tableBody.children;
     this.initialChildren = this.initialTableBody.children;
     this.initialChildrenOrder = []; // 通常並びの順序を示す数値を格納する配列オブジェクト
     this.initialOrderChildren = []; // 通常並びの要素を格納する配列オブジェクト
-    
+
     for (let i = 0; i < this.initialChildren.length; i++) {
-      if (this.dataSort === "id") {
-        this.initialChildrenOrder[i] = this.initialChildren[i].children[0].getAttribute("data-"+this.dataSort);
-      } else {
-        this.initialChildrenOrder[i] = this.initialChildren[i].children[3].getAttribute("data-"+this.dataSort);
-      }
+      this.initialChildrenOrder[i] = this.initialChildren[i].children[
+        this.index
+      ].getAttribute("data-" + this.dataSort);
     }
-    
-    this.ascending = this.CurrentTarget.classList.contains(this.ascendingClass);
-    this.descending = this.CurrentTarget.classList.contains(
+
+    this.ascending = this.currentTarget.classList.contains(this.ascendingClass);
+    this.descending = this.currentTarget.classList.contains(
       this.descendingClass
     );
 
     if (!this.descending && !this.ascending) {
-      this.CurrentTarget.classList.add(this.ascendingClass);
+      this.currentTarget.classList.add(this.ascendingClass);
       this.count = 1;
       this._sort(this.count, this.children);
     } else if (this.ascending) {
-      this.CurrentTarget.classList.remove(this.ascendingClass);
-      this.CurrentTarget.classList.add(this.descendingClass);
+      this.currentTarget.classList.remove(this.ascendingClass);
+      this.currentTarget.classList.add(this.descendingClass);
       this.count = 2;
       this._sort(this.count, this.children);
     } else if (this.descending) {
-      this.CurrentTarget.classList.remove(this.descendingClass);
+      this.currentTarget.classList.remove(this.descendingClass);
       this.count = 0;
       this._sort(this.count, this.children);
     }
+
+    this._initializeOtherSortBtn();
+  }
+
+  // 他のソートボタンが昇順もしくは降順状態であれば初期化する
+  _initializeOtherSortBtn() {
+    if (
+      this.index === 0 && (this.ageSortBtn.classList.contains(this.ascendingClass) ||
+      this.ageSortBtn.classList.contains(this.descendingClass))
+      ) {
+      this.className = this.ageSortBtn.className;
+      this.classNameArray = this.className.split(" ");
+      this.classNameArray.splice(2);
+      this.newClassName = this.classNameArray.join(" ");
+      this.ageSortBtn.className = this.newClassName;
+    } else if (
+      this.index === 3 && (this.idSortBtn.classList.contains(this.ascendingClass) ||
+      this.idSortBtn.classList.contains(this.descendingClass))
+      ) {
+        this.className = this.idSortBtn.className;
+        this.classNameArray = this.className.split(" ");
+        this.classNameArray.splice(2);
+        this.newClassName = this.classNameArray.join(" ");
+        this.idSortBtn.className = this.newClassName;
+      }
   }
 
   _sort(count, children) {
@@ -184,12 +210,11 @@ class SortUserTable {
     if (count === 0) {
       for (let i = 0; i < this.initialChildrenOrder.length; i++) {
         const order = this.initialChildrenOrder[i];
-        this.initialOrderChildren[i] = [...children].find(child => {
-          if (this.dataSort === "id") {
-            return child.children[0].getAttribute('data-'+this.dataSort) === order
-          } else {
-            return child.children[3].getAttribute('data-'+this.dataSort) === order
-          }
+        this.initialOrderChildren[i] = [...children].find((child) => {
+          return (
+            child.children[this.index].getAttribute("data-" + this.dataSort) ===
+            order
+          );
         });
       }
       this.sortedChildren = this.initialOrderChildren.sort((prev, next) => {
@@ -198,30 +223,28 @@ class SortUserTable {
       });
     } else if (count === 1) {
       this.sortedChildren = [...children].sort((prev, next) => {
-        if (this.dataSort === "id") {
-          this.prevId = prev.childNodes[0].getAttribute("data-"+this.dataSort);
-          this.nextId = next.childNodes[0].getAttribute("data-"+this.dataSort);
-        } else {
-          this.prevId = prev.childNodes[3].getAttribute("data-"+this.dataSort);
-          this.nextId = next.childNodes[3].getAttribute("data-"+this.dataSort);
-        }
-        
+        this.prevId = prev.childNodes[this.index].getAttribute(
+          "data-" + this.dataSort
+        );
+        this.nextId = next.childNodes[this.index].getAttribute(
+          "data-" + this.dataSort
+        );
+
         return this.prevId - this.nextId;
       });
     } else if (count === 2) {
       this.sortedChildren = [...children].sort((prev, next) => {
-        if (this.dataSort === "id") {
-          this.prevId = prev.childNodes[0].getAttribute("data-"+this.dataSort);
-          this.nextId = next.childNodes[0].getAttribute("data-"+this.dataSort);
-        } else {
-          this.prevId = prev.childNodes[3].getAttribute("data-"+this.dataSort);
-          this.nextId = next.childNodes[3].getAttribute("data-"+this.dataSort);
-        }
-        
+        this.prevId = prev.childNodes[this.index].getAttribute(
+          "data-" + this.dataSort
+        );
+        this.nextId = next.childNodes[this.index].getAttribute(
+          "data-" + this.dataSort
+        );
+
         return this.nextId - this.prevId;
       });
     }
-  
+
     if (count === 0) {
       this.sortedChildren.forEach((element) => {
         this.fragment.appendChild(element);
