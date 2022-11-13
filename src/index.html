@@ -39,45 +39,6 @@
     <main class="main js-main">
       <div class="main_width">
         <div class="main_inner">
-          <div class="main_contents">
-            <div class="gallery">
-              <div class="gallery_inner">
-                <div class="gallery_container">
-                  <div class="gallery_imageWrap">
-                    <div class="gallery_image"></div>
-                  </div>
-                  <div class="gallery_imageWrap">
-                    <div class="gallery_image"></div>
-                  </div>
-                  <div class="gallery_imageWrap">
-                    <div class="gallery_image"></div>
-                  </div>
-                </div>
-                <div class="gallery_container">
-                  <div class="gallery_imageWrap">
-                    <div class="gallery_image"></div>
-                  </div>
-                  <div class="gallery_imageWrap">
-                    <div class="gallery_image"></div>
-                  </div>
-                  <div class="gallery_imageWrap">
-                    <div class="gallery_image"></div>
-                  </div>
-                </div>
-                <div class="gallery_container">
-                  <div class="gallery_imageWrap">
-                    <div class="gallery_image"></div>
-                  </div>
-                  <div class="gallery_imageWrap">
-                    <div class="gallery_image"></div>
-                  </div>
-                  <div class="gallery_imageWrap">
-                    <div class="gallery_image"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div><!-- /.main_contents -->
           <aside class="aside"></aside>
         </div><!-- /.main_inner -->
       </div><!-- /.main_width -->
@@ -100,29 +61,6 @@
   </div>
   <script src="/src/js/common.js"></script>
   <script src="/src/js/commonClass.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const imageWraps = document.querySelectorAll('.gallery_imageWrap');
-      const aspectRatioArray = ["3/4", "1/2", "3/7", "2/3", "3/5", "2/1", "4/3"];
-      const getAspectRatio = () => {
-        const randomSplice = aspectRatioArray.splice(Math.floor(Math.random() * aspectRatioArray.length),1)[0];
-        const splited = randomSplice.split('/');
-        const numericalizedValue = splited.map(str => {
-          return parseInt(str);
-        });
-        const result = numericalizedValue.reduce((prev, current) => {
-          return prev / current * 100;
-        });
-
-        return result;
-      }
-
-      imageWraps.forEach(imageWrap => {
-        const aspectRatio = getAspectRatio();
-        imageWrap.style.paddingTop = `${aspectRatio}%`;
-      });
-    });
-  </script>
 </body>
 
 </html>
