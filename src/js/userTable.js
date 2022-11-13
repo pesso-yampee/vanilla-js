@@ -1,7 +1,7 @@
 "use strict";
 
 window.addEventListener("DOMContentLoaded", () => {
-  const url = "https://myjson.dit.upm.es/api/bins/4ga2";
+  const url = "/src/json/userData.json";
   const $userTable = document.querySelector(".js-userTable");
   const config = {
     childList: true,

@@ -3,10 +3,9 @@ window.addEventListener("DOMContentLoaded", () => {
   const arrows = document.querySelectorAll("[data-arrow]");
   const slideItems = document.querySelectorAll(".js-slideItem");
   const slideNav = document.querySelectorAll(".js-slideNav");
-  const url = "https://myjson.dit.upm.es/api/bins/au7u";
+  const url = "/src/json/slideData.json";
 
   new OutputImage(slideItems, url);
-  // new AutoplaySlider(slideItems, slideNav);
 
   arrows.forEach((arrow) => {
     arrow.addEventListener("click", (e) => {

@@ -1088,4 +1088,11 @@ body.open {
 .user_table_description.heading {
   background-color: teal;
   color: #fff;
+}
+
+/** -----------------------------------
+  状態管理系
+----------------------------------- */
+.visibility-hidden {
+  display: none;
 }/*# sourceMappingURL=vanilla.css.map */

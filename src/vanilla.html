@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>vanilla-js</title>
-  <link rel="stylesheet" href="/assets/css/dev/vanilla.css">
+  <link rel="stylesheet" href="/assets/css/vanilla.css">
 </head>
 
 <body>
@@ -27,6 +27,7 @@
 
         <div class="hamburger">
           <button class="hamburger_button js-hamburger">
+            <span class="visibility-hidden">ハンバーガーメニュー</span>
             <span class="hamburger_button_line"></span>
             <span class="hamburger_button_line"></span>
             <span class="hamburger_button_line"></span>
@@ -87,41 +88,55 @@
                 <div class="vanillaSlide_navigation_inner">
                   <ul class="vanillaSlide_navigation_list">
                     <li class="vanillaSlide_navigation_item js-slideNav is-active" data-order="1">
-                      <button class="vanillaSlide_navigation_dot"></button>
+                      <button class="vanillaSlide_navigation_dot">
+                        <span class="visibility-hidden">ドットナビゲーション</span>
+                      </button>
                     </li>
                     <li class="vanillaSlide_navigation_item js-slideNav" data-order="2">
-                      <button class="vanillaSlide_navigation_dot"></button>
+                      <button class="vanillaSlide_navigation_dot">
+                        <span class="visibility-hidden">ドットナビゲーション</span>
+                      </button>
                     </li>
                     <li class="vanillaSlide_navigation_item js-slideNav" data-order="3">
-                      <button class="vanillaSlide_navigation_dot"></button>
+                      <button class="vanillaSlide_navigation_dot">
+                        <span class="visibility-hidden">ドットナビゲーション</span>
+                      </button>
                     </li>
                     <li class="vanillaSlide_navigation_item js-slideNav" data-order="4">
-                      <button class="vanillaSlide_navigation_dot"></button>
+                      <button class="vanillaSlide_navigation_dot">
+                        <span class="visibility-hidden">ドットナビゲーション</span>
+                      </button>
                     </li>
                     <li class="vanillaSlide_navigation_item js-slideNav" data-order="5">
-                      <button class="vanillaSlide_navigation_dot"></button>
+                      <button class="vanillaSlide_navigation_dot">
+                        <span class="visibility-hidden">ドットナビゲーション</span>
+                      </button>
                     </li>
                   </ul>
                 </div><!-- /.vanillaSlide_navigation_inner -->
               </div><!-- /.vanillaSlide_navigation -->
             </div><!-- /.vanillaSlide_inner -->
             <div class="vanillaSlide_arrows">
-              <button class="vanillaSlide_arrow" data-arrow="prev"></button>
-              <button class="vanillaSlide_arrow" data-arrow="next"></button>
+              <button class="vanillaSlide_arrow" data-arrow="prev">
+                <span class="visibility-hidden">前に戻る</span>
+              </button>
+              <button class="vanillaSlide_arrow" data-arrow="next">
+                <span class="visibility-hidden">次に進む</span>
+              </button>
             </div>
           </div><!-- /.kv -->
         </div><!-- /.section_inner -->
       </div>
       <div class="section user">
         <div class="section_inner">
-          <table class="user_table js-userTable">
+          <table class="user_table js-userTable" aria-label="user table">
           </table>
         </div><!-- /.section_inner -->
       </div>
     </main>
   </div><!-- /.wrapper -->
 
-  <div class="modal js-modal" role="dialog" tabindex="-1" aria-hidden="true" aria-modal="true">
+  <div class="modal js-modal" role="dialog" tabindex="-1" aria-hidden="true" aria-modal="true" aria-label="modal">
     <ul class="modal_list">
       <li class="modal_item">
         <a href="#" class="modal_item_link">
