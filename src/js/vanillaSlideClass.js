@@ -23,7 +23,6 @@ class OutputImage {
     
     this.registImageData = (data) => {
       data.forEach((item, i) => {
-        console.log(item);
         this.img = document.createElement('img');
         this.img.className = "kv_image";
         this.img.src = `/assets/media/images/${item.image}`;
