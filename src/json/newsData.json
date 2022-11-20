@@ -1,0 +1,16 @@
+{
+  "postData": {
+    "posts": [
+      {
+        "category": "ニュース",
+        "text": "テキストです",
+        "img": {
+          "src": "news_image01.jpg",
+          "alt": "news category"
+        },
+        "date": "20221118",
+        "comment": 21
+      }
+    ]
+  }
+}
