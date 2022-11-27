@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>会員登録画面</title>
+  <link rel="stylesheet" href="/assets/css/register.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="register">
+      <div class="register_inner">
+        <h2 class="register_title" id="registerTitle">会員登録</h2>
+        <div aria-labelledby="registerTitle" class="register_form">
+          <ul class="register_list">
+            <li class="register_item">
+              <label class="register_term" for="user">＊ユーザー名</label>
+              <input class="register_field" type="text" id="user">
+            </li>
+            <li class="register_item">
+              <label class="register_term" for="email">＊メールアドレス</label>
+              <input class="register_field" type="email" id="email">
+            </li>
+            <li class="register_item">
+              <label class="register_term" for="password">＊パスワード</label>
+              <input class="register_field" type="password" id="password">
+            </li>
+          </ul>
+          <div class="register_agree">
+            <input class="register_agree_checkbox" type="checkbox" aria-label="agree">
+            <label class="register_agree_label">
+              <span class="register_agree_modalTriger js-modalTriger" tabindex="0">利用規約</span>を読み同意しました
+            </label>
+          </div>
+          <div class="register_submitWrap">
+            <input class="register_submit" type="submit" value="送信" aria-label="submit" onclick="location.href='register-done.html'" disabled>
+          </div>
+        </div>
+      </div>
+      <!-- /.register_inner -->
+    </div>
+    <!-- /.register -->
+  </div>
+  <!-- /.wrapper -->
+  
+  <div class="modalOverlay js-modalOverlay"aria-hidden="true"></div>
+  <!-- /.overlay -->
+
+  <div class="termsOfService js-modal" aria-hidden="true">
+    <div class="termsOfService_inner">
+      <div class="termsOfService_body js-modalBody">
+        <h3 class="termsOfService_title">利用規約</h3>
+        <div class="termsOfService_textWrap">
+          <p class="termsOfService_text">
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+          </p>
+          <p class="termsOfService_text">
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+          </p>
+          <p class="termsOfService_text">
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+          </p>
+          <p class="termsOfService_text">
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+          </p>
+          <p class="termsOfService_text">
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+          </p>
+          <p class="termsOfService_text">
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+            利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.termsOfService -->
+  <script src="./js/register.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+/** -----------------------------------
+  media query
+----------------------------------- */
+// 1279px以下
+@mixin media1279 {
+  @media screen and (max-width: 1279px) {
+    @content;
+  }
+}
+// 768px以上
+@mixin media768 {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+// 767px以下
+@mixin media767 {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}

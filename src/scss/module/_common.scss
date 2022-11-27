@@ -1,5 +1,10 @@
 @charset "UTF-8";
-@use "setting" as *;
+@use "../base/reset" as *;
+@use "../base/variable" as *;
+@use "../base/media" as *;
+@use "../base/animation" as *;
+@use "../base/setting" as *;
+
 
 /** -----------------------------------
   base

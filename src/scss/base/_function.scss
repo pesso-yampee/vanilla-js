@@ -1,0 +1,3 @@
+@function replaceRem($fontSize) {
+  @return fontSize / 16 * 1rem;
+}
