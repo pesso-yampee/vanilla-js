@@ -1,3 +1,9 @@
-@function replaceRem($fontSize) {
-  @return fontSize / 16 * 1rem;
+@use "../base/media" as *;
+
+@function rem($px) {
+  @return $px / 16 * 1rem;
+}
+
+@function vw1279($px) {
+  @return calc(100vw * $px / 1279);
 }

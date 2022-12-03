@@ -94,18 +94,6 @@ select {
 /** -----------------------------------
   icon
 ----------------------------------- */ /** -----------------------------------
-  base
------------------------------------ */
-@media screen and (max-width: 1279px) {
-  html {
-    font-size: 0.0781860829vw;
-  }
-}
-@media screen and (max-width: 767px) {
-  html {
-    font-size: 0.3125vw;
-  }
-} /** -----------------------------------
   header
 ----------------------------------- */
 .header {
@@ -498,6 +486,9 @@ body.open {
   会員登録
 ----------------------------------- */
 .register_inner {
+  margin: 0 auto;
+}
+.register_body {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -511,21 +502,14 @@ body.open {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  max-width: 1440px;
-  margin: 0 auto;
-}
-@media screen and (max-width: 1279px) {
-  .register_inner {
-    max-width: 1440rem;
-  }
 }
 
 .register_title {
-  font-size: 36px;
+  font-size: 2.25rem;
 }
 @media screen and (max-width: 1279px) {
   .register_title {
-    font-size: 36rem;
+    font-size: 2.8146989836vw;
   }
 }
 
@@ -535,17 +519,17 @@ body.open {
 
 .register_list {
   display: grid;
-  gap: 24px;
+  gap: 1.5rem;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: 24px;
+  margin-top: 1.5rem;
 }
 @media screen and (max-width: 1279px) {
   .register_list {
-    gap: 24rem;
-    margin-top: 24rem;
+    gap: 1.8764659891vw;
+    margin-top: 1.8764659891vw;
   }
 }
 
@@ -566,16 +550,22 @@ body.open {
       -ms-flex-align: center;
           align-items: center;
   width: 8.5em;
-  font-size: 16px;
+  font-size: 1rem;
 }
 @media screen and (max-width: 1279px) {
   .register_term {
-    font-size: 16rem;
+    font-size: 1.250977326vw;
   }
 }
 
 .register_field {
+  width: 200px;
   border: 1px solid #333;
+}
+@media screen and (max-width: 1279px) {
+  .register_field {
+    width: 15.6372165754vw;
+  }
 }
 
 .register_agree {
@@ -591,20 +581,30 @@ body.open {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: 24px;
+  margin-top: 1.5rem;
+}
+@media screen and (max-width: 1279px) {
+  .register_agree {
+    margin-top: 1.8764659891vw;
+  }
 }
 
 .register_agree_checkbox {
+  pointer-events: none;
+}
+.register_agree_checkbox.is-active {
+  pointer-events: visible;
   cursor: pointer;
 }
 
 .register_agree_label {
-  margin-left: 6px;
-  font-size: 16px;
+  margin-left: 0.375rem;
+  font-size: 1rem;
 }
 @media screen and (max-width: 1279px) {
   .register_agree_label {
-    font-size: 16rem;
+    margin-left: 0.4691164973vw;
+    font-size: 1.250977326vw;
   }
 }
 
@@ -627,19 +627,32 @@ body.open {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 24px;
+  margin-top: 1.5rem;
+}
+@media screen and (max-width: 1279px) {
+  .register_submitWrap {
+    margin-top: 1.8764659891vw;
+  }
 }
 
 .register_submit {
-  width: 160px;
-  padding: 8px 0;
+  width: 10rem;
+  padding: 0.5rem 0;
   background-color: #008080;
   border-radius: 5px;
   border: 2px solid #008080;
   color: #fff;
+  font-size: 1rem;
   -webkit-transition: background-color 0.5s, color 0.5s;
   transition: background-color 0.5s, color 0.5s;
   cursor: pointer;
+}
+@media screen and (max-width: 1279px) {
+  .register_submit {
+    width: 12.5097732604vw;
+    padding: 0.625488663vw 0;
+    font-size: 1.250977326vw;
+  }
 }
 @media (hover: hover) {
   .register_submit:hover {
@@ -703,7 +716,12 @@ body.open {
       -ms-flex-pack: center;
           justify-content: center;
   width: 100%;
-  height: 400px;
+  height: 25rem;
+}
+@media screen and (max-width: 1279px) {
+  .termsOfService_inner {
+    height: 31.2744331509vw;
+  }
 }
 
 .termsOfService_body {
@@ -722,22 +740,34 @@ body.open {
       -ms-flex-align: center;
           align-items: center;
   height: inherit;
-  padding: 20px;
+  padding: 1.25rem;
   background-color: #fff;
-  border-radius: 20px;
+  border-radius: 1.25rem;
+}
+@media screen and (max-width: 1279px) {
+  .termsOfService_body {
+    padding: 1.5637216575vw;
+    border-radius: 1.5637216575vw;
+  }
 }
 
 .termsOfService_title {
-  font-size: 36px;
+  font-size: 2.25rem;
+}
+@media screen and (max-width: 1279px) {
+  .termsOfService_title {
+    font-size: 2.8146989836vw;
+  }
 }
 
 .termsOfService_textWrap {
-  margin-top: 24px;
-  font-size: 16px;
+  margin-top: 1.5rem;
+  font-size: 1rem;
 }
 @media screen and (max-width: 1279px) {
   .termsOfService_textWrap {
-    font-size: 16rem;
+    margin-top: 1.8764659891vw;
+    font-size: 1.250977326vw;
   }
 }
 

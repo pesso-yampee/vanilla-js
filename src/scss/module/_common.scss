@@ -4,19 +4,7 @@
 @use "../base/media" as *;
 @use "../base/animation" as *;
 @use "../base/setting" as *;
-
-
-/** -----------------------------------
-  base
------------------------------------ */
-html {
-  @include media1279 {
-    font-size: calc(100vw * 1 / 1279);
-  }
-  @include media767 {
-    font-size: calc(100vw * 1 / 320);
-  }
-}
+@use "../base/function" as *;
 
 /** -----------------------------------
   header
