@@ -93,18 +93,6 @@ select {
 /** -----------------------------------
   icon
 ----------------------------------- */ /** -----------------------------------
-  base
------------------------------------ */
-@media screen and (max-width: 1279px) {
-  html {
-    font-size: 0.0781860829vw;
-  }
-}
-@media screen and (max-width: 767px) {
-  html {
-    font-size: 0.3125vw;
-  }
-} /** -----------------------------------
   header
 ----------------------------------- */
 .header {
@@ -617,5 +605,5 @@ body.open {
   border-radius: 50%;
 }
 .splide__pagination__page.is-active {
-  background-color: #008000;
+  background-color: #008080;
 }/*# sourceMappingURL=splide.css.map */

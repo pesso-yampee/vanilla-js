@@ -1,9 +1,9 @@
-@use "../base/media" as *;
+@use "sass:math";
 
 @function rem($px) {
-  @return $px / 16 * 1rem;
+  @return math.div($px, 16) * 1rem;
 }
 
 @function vw1279($px) {
-  @return calc(100vw * $px / 1279);
+  @return math.div(calc(100vw * $px), 1279);
 }
