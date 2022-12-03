@@ -11,32 +11,36 @@
   <div class="wrapper">
     <div class="register">
       <div class="register_inner">
-        <h2 class="register_title" id="registerTitle">会員登録</h2>
-        <div aria-labelledby="registerTitle" class="register_form">
-          <ul class="register_list">
-            <li class="register_item">
-              <label class="register_term" for="user">＊ユーザー名</label>
-              <input class="register_field" type="text" id="user">
-            </li>
-            <li class="register_item">
-              <label class="register_term" for="email">＊メールアドレス</label>
-              <input class="register_field" type="email" id="email">
-            </li>
-            <li class="register_item">
-              <label class="register_term" for="password">＊パスワード</label>
-              <input class="register_field" type="password" id="password">
-            </li>
-          </ul>
-          <div class="register_agree">
-            <input class="register_agree_checkbox" type="checkbox" aria-label="agree">
-            <label class="register_agree_label">
-              <span class="register_agree_modalTriger js-modalTriger" tabindex="0">利用規約</span>を読み同意しました
-            </label>
+        <div class="register_body">
+          <h2 class="register_title" id="registerTitle">会員登録</h2>
+          <div aria-labelledby="registerTitle" class="register_form">
+            <ul class="register_list">
+              <li class="register_item">
+                <label class="register_term" for="user">＊ユーザー名</label>
+                <input class="register_field" type="text" id="user">
+              </li>
+              <li class="register_item">
+                <label class="register_term" for="email">＊メールアドレス</label>
+                <input class="register_field" type="email" id="email">
+              </li>
+              <li class="register_item">
+                <label class="register_term" for="password">＊パスワード</label>
+                <input class="register_field" type="password" id="password">
+              </li>
+            </ul>
+            <div class="register_agree">
+              <input class="register_agree_checkbox" type="checkbox" aria-label="agree">
+              <label class="register_agree_label">
+                <span class="register_agree_modalTriger js-modalTriger" tabindex="0">利用規約</span>を読み同意しました
+              </label>
+            </div>
+            <div class="register_submitWrap">
+              <input class="register_submit" type="submit" value="送信" aria-label="submit" onclick="location.href='register-done.html'" disabled>
+            </div>
           </div>
-          <div class="register_submitWrap">
-            <input class="register_submit" type="submit" value="送信" aria-label="submit" onclick="location.href='register-done.html'" disabled>
-          </div>
+          <!-- /.register_form -->  
         </div>
+        <!-- /.register_body -->
       </div>
       <!-- /.register_inner -->
     </div>

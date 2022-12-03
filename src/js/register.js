@@ -1,3 +1,7 @@
+// 利用規約を読まずにはチェックボックスをチェックしてはいけない
+// デフォルトでpointer-event: noneにしておく必要がある
+// 利用規約を完全に読んだらpointer-event: visibleにしないといけない
+
 // 利用規約の表示制御
 window.addEventListener("DOMContentLoaded", () => {
   const triger = document.querySelector(".js-modalTriger");
@@ -22,6 +26,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const modalBodyClientHeight = modalBody.clientHeight;
     const modalBodyScrollHeight = modalBody.scrollHeight; // 画面に表示されていないコンテンツの高さも含む
     
+    // スクロールが一番下に行ったらチェックボックスはcheckedになる
     modalBody.onscroll = function() {
       const scrollTop = this.scrollTop;
       const diff = modalBodyScrollHeight - (modalBodyClientHeight + scrollTop);
@@ -42,6 +47,7 @@ window.addEventListener("DOMContentLoaded", () => {
       const checkbox = document.querySelector('input[aria-label="agree"]');
 
       checkbox.setAttribute("checked", "true");
+      checkbox.classList.add('is-active');
     };
 
     const toEnableSubmit = () => {
