@@ -7,35 +7,75 @@
 @use "../module/common" as *;
 @use "../base/function" as *;
 
+@keyframes showErrorMessage {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+  }
+
+  1% {
+    opacity: 0;
+    visibility: hidden;
+    display: block;
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+  }
+}
+
+@keyframes hideErrorMessage {
+  0% {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+  }
+
+  1% {
+    opacity: 0;
+    visibility: hidden;
+    display: block;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+  }
+}
+
 .wrapper {
-  padding-top: 24px;
+  padding-top: rem(24);
+
+  @include media1279 {
+    padding-top: vw1279(24);
+  }
 }
 
 /** -----------------------------------
   会員登録
 ----------------------------------- */
 .register_inner {
-  // max-width: rem(900);
-  margin: 0 auto;
-  @include media1279 {
-    // max-width: vw1279(900);
-  }
-}
-
-.register_body {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .register_title {
   font-size: rem(36);
+
   @include media1279 {
     font-size: vw1279(36);
   }
 }
 
 .register_form {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .register_list {
@@ -43,56 +83,77 @@
   gap: rem(24);
   justify-content: center;
   margin-top: rem(24);
+
   @include media1279 {
     gap: vw1279(24);
     margin-top: vw1279(24);
+
   }
 }
 
-.register_item {
-  display: flex;
-}
-
 .register_term {
-  display: flex;
-  align-items: center;
-  width: 8.5em;
   font-size: rem(16);
+
   @include media1279 {
     font-size: vw1279(16);
   }
 }
 
 .register_field {
-  width: 200px;
+  width: 100%;
+  margin-top: rem(6);
   border: 1px solid $colorBlack;
+
   @include media1279 {
-    width: vw1279(200);
+    margin-top: vw1279(6);
+  }
+}
+
+.register_errorWrap {
+  &.is-hidden {
+    animation: hideErrorMessage .5s;
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+  }
+
+  &.is-show {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+    margin-top: 4px;
+    margin-left: auto;
+    color: $colorVivitRed;
+    font-size: 12px;
+    animation: showErrorMessage .5s;
   }
 }
 
 .register_agree {
   display: flex;
   align-items: center;
-  justify-content: center;
   margin-top: rem(24);
+
   @include media1279 {
     margin-top: vw1279(24);
   }
 }
 
 .register_agree_checkbox {
-  pointer-events: none;
+  cursor: pointer;
+  transition: pointer-events .5s, cursor .5s;
 
-  &.is-active {
-    pointer-events: visible;
-    cursor: pointer;
+  &:disabled {
+    pointer-events: none;
+    cursor: initial;
   }
 }
+
 
 .register_agree_label {
   margin-left: rem(6);
   font-size: rem(16);
+
   @include media1279 {
     margin-left: vw1279(6);
     font-size: vw1279(16);
@@ -103,7 +164,6 @@
   display: inline-block;
   text-decoration: underline;
   cursor: pointer;
-
 }
 
 .register_submitWrap {
@@ -111,6 +171,7 @@
   justify-content: center;
   align-items: center;
   margin-top: rem(24);
+
   @include media1279 {
     margin-top: vw1279(24);
   }
@@ -124,8 +185,9 @@
   border: 2px solid $colorTeal;
   color: $colorWhite;
   font-size: rem(16);
-  transition: background-color .5s, color .5s;
+  transition: background-color .5s, border .5s, color .5s;
   cursor: pointer;
+
   @include media1279 {
     width: vw1279(160);
     padding: vw1279(8) 0;
@@ -139,9 +201,11 @@
     }
   }
 
-  &[disabled] {
-    opacity: .4;
+  &:disabled {
     pointer-events: none;
+    background-color: $colorLightGray;
+    border: 2px solid $colorLightGray;
+    color: rgba($colorBlack, .6);
   }
 }
 
@@ -189,6 +253,7 @@
   justify-content: center;
   width: 100%;
   height: rem(400);
+
   @include media1279 {
     height: vw1279(400);
   }
@@ -203,6 +268,7 @@
   padding: rem(20);
   background-color: $colorWhite;
   border-radius: rem(20);
+
   @include media1279 {
     padding: vw1279(20);
     border-radius: vw1279(20);
@@ -211,6 +277,7 @@
 
 .termsOfService_title {
   font-size: rem(36);
+
   @include media1279 {
     font-size: vw1279(36);
   }
@@ -219,6 +286,7 @@
 .termsOfService_textWrap {
   margin-top: rem(24);
   font-size: rem(16);
+
   @include media1279 {
     margin-top: vw1279(24);
     font-size: vw1279(16);

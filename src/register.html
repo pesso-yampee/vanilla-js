@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,48 +8,55 @@
   <title>会員登録画面</title>
   <link rel="stylesheet" href="/assets/css/register.css">
 </head>
+
 <body>
   <div class="wrapper">
     <div class="register">
       <div class="register_inner">
-        <div class="register_body">
-          <h2 class="register_title" id="registerTitle">会員登録</h2>
-          <div aria-labelledby="registerTitle" class="register_form">
-            <ul class="register_list">
-              <li class="register_item">
-                <label class="register_term" for="user">＊ユーザー名</label>
-                <input class="register_field" type="text" id="user">
-              </li>
-              <li class="register_item">
-                <label class="register_term" for="email">＊メールアドレス</label>
-                <input class="register_field" type="email" id="email">
-              </li>
-              <li class="register_item">
-                <label class="register_term" for="password">＊パスワード</label>
-                <input class="register_field" type="password" id="password">
-              </li>
-            </ul>
-            <div class="register_agree">
-              <input class="register_agree_checkbox" type="checkbox" aria-label="agree">
-              <label class="register_agree_label">
-                <span class="register_agree_modalTriger js-modalTriger" tabindex="0">利用規約</span>を読み同意しました
-              </label>
-            </div>
-            <div class="register_submitWrap">
-              <input class="register_submit" type="submit" value="送信" aria-label="submit" onclick="location.href='register-done.html'" disabled>
-            </div>
+        <h2 class="register_title" id="registerTitle">会員登録</h2>
+        <form action="" method="post" aria-labelledby="registerTitle" class="register_form">
+          <ul class="register_list">
+            <li class="register_item">
+              <label class="register_term" for="user">＊ユーザー名</label>
+              <input class="register_field js-formInput" type="text" id="user" value="" autocomplete="username">
+              <div class="register_errorWrap is-hidden">
+                <p class="register_error">ユーザー名は15文字以下にしてください。</p>
+              </div>
+            </li>
+            <li class="register_item">
+              <label class="register_term" for="email">＊メールアドレス</label>
+              <input class="register_field js-formInput" type="email" id="email" value="" autocomplete="email">
+              <div class="register_errorWrap is-hidden">
+                <p class="register_error">メールアドレスの形式になっていません。</p>
+              </div>
+            </li>
+            <li class="register_item">
+              <label class="register_term" for="password">＊パスワード</label>
+              <input class="register_field js-formInput" type="password" id="password" value="" minlength="8">
+              <div class="register_errorWrap is-hidden">
+                <p class="register_error">8文字以上の大小の英数字を交ぜたものにしてください。</p>
+              </div>
+            </li>
+          </ul>
+          <div class="register_agree">
+            <input class="register_agree_checkbox" type="checkbox" aria-label="agree" disabled>
+            <label class="register_agree_label">
+              <span class="register_agree_modalTriger js-modalTriger" tabindex="0">利用規約</span>を読み同意しました
+            </label>
           </div>
-          <!-- /.register_form -->  
-        </div>
-        <!-- /.register_body -->
+          <div class="register_submitWrap">
+            <input class="register_submit" type="submit" value="送信" aria-label="submit" disabled>
+          </div>
+        </form>
+        <!-- /.register_form -->
       </div>
       <!-- /.register_inner -->
     </div>
     <!-- /.register -->
   </div>
   <!-- /.wrapper -->
-  
-  <div class="modalOverlay js-modalOverlay"aria-hidden="true"></div>
+
+  <div class="modalOverlay js-modalOverlay" aria-hidden="true"></div>
   <!-- /.overlay -->
 
   <div class="termsOfService js-modal" aria-hidden="true">
@@ -109,6 +117,8 @@
     </div>
   </div>
   <!-- /.termsOfService -->
+  <script src="./js/registerClass.js" defer></script>
   <script src="./js/register.js" defer></script>
 </body>
+
 </html>
