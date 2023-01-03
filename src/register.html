@@ -14,25 +14,32 @@
     <div class="register">
       <div class="register_inner">
         <h2 class="register_title" id="registerTitle">会員登録</h2>
-        <form action="" method="post" aria-labelledby="registerTitle" class="register_form">
+        <form method="post" aria-labelledby="registerTitle" class="register_form">
           <ul class="register_list">
             <li class="register_item">
-              <label class="register_term" for="user">＊ユーザー名</label>
-              <input class="register_field js-formInput" type="text" id="user" value="" autocomplete="username">
+              <label class="register_label" for="username">UserName:</label>
+              <div class="register_inputArea">
+                <input class="register_input js-formInput" type="text" id="username" value="" placeholder="15文字以下で入力">
+              </div>
               <div class="register_errorWrap is-hidden">
                 <p class="register_error">ユーザー名は15文字以下にしてください。</p>
               </div>
             </li>
             <li class="register_item">
-              <label class="register_term" for="email">＊メールアドレス</label>
-              <input class="register_field js-formInput" type="email" id="email" value="" autocomplete="email">
+              <label class="register_label" for="email">Email:</label>
+              <div class="register_inputArea">
+                <input class="register_input js-formInput" type="email" id="email" value="" placeholder="june@example.com">
+              </div>
               <div class="register_errorWrap is-hidden">
                 <p class="register_error">メールアドレスの形式になっていません。</p>
               </div>
             </li>
             <li class="register_item">
-              <label class="register_term" for="password">＊パスワード</label>
-              <input class="register_field js-formInput" type="password" id="password" value="" minlength="8">
+              <label class="register_label" for="password">Password:</label>
+              <div class="register_inputArea register_passwordArea">
+                <input class="register_input register_password js-formInput" type="password" id="password" value="" minlength="8" placeholder="8文字以上の大小の英数字で入力">
+                <button type="button" class="register_passwordBtn" id="js-passwordBtn" aria-label="show password"></button>
+              </div>
               <div class="register_errorWrap is-hidden">
                 <p class="register_error">8文字以上の大小の英数字を交ぜたものにしてください。</p>
               </div>
@@ -45,7 +52,7 @@
             </label>
           </div>
           <div class="register_submitWrap">
-            <input class="register_submit" type="submit" value="送信" aria-label="submit" disabled>
+            <a class="register_submit is-nonActive">送信</a>
           </div>
         </form>
         <!-- /.register_form -->

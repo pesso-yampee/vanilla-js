@@ -3,7 +3,6 @@ class ModalAnimation {
     this.modal = props.modal;
     this.modalOverlay = props.modalOverlay;
     this.ariaHiddenFlag = props.ariaHiddenFlag;
-    
   }
   _showModal(element) {
     element.setAttribute("aria-hidden", "false");
@@ -49,7 +48,6 @@ class ModalAnimation {
           that.ariaHiddenFlag = true;
 
           that._toEnableInputChecked();
-          that._toEnableSubmit();
         }, 500);
       }
     };
@@ -60,11 +58,5 @@ class ModalAnimation {
 
     this.checkbox.setAttribute("checked", "true");
     this.checkbox.removeAttribute("disabled");
-  };
-
-  _toEnableSubmit() {
-    this.submit = document.querySelector('input[aria-label="submit"]');
-
-    this.submit.removeAttribute("disabled");
   };
 }
