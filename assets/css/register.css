@@ -573,8 +573,14 @@ body.open {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  max-width: 1280px;
-  margin: 0 auto;
+  max-width: 80rem;
+  margin-inline: auto;
+}
+@media screen and (max-width: 767px) {
+  .register_inner {
+    max-width: initial;
+    padding-inline: 1.875rem;
+  }
 }
 
 .register_title {
@@ -600,14 +606,14 @@ body.open {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  max-width: 30%;
   width: 100%;
-  margin-top: 32px;
+  margin-top: 2rem;
 }
 
 .register_list {
   display: grid;
   gap: 1.5rem;
+  max-width: 17.25rem;
   width: 100%;
 }
 @media screen and (max-width: 1279px) {
@@ -631,29 +637,24 @@ body.open {
 
 .register_input {
   width: 100%;
-  padding: 8px 0 8px 8px;
+  padding: 0.5rem 0 0.5rem 0.5rem;
   border: 1px solid #333;
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 .register_input::-webkit-input-placeholder {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 .register_input::-moz-placeholder {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 .register_input:-ms-input-placeholder {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 .register_input::-ms-input-placeholder {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 .register_input::placeholder {
-  font-size: 14px;
-}
-@media screen and (max-width: 1279px) {
-  .register_input {
-    margin-top: 0.375rem;
-  }
+  font-size: 0.875rem;
 }
 
 .register_passwordArea {
@@ -676,10 +677,10 @@ body.open {
   opacity: 1;
   visibility: visible;
   display: block;
-  margin-top: 4px;
+  margin-top: 0.25rem;
   margin-left: auto;
   color: #e34c26;
-  font-size: 12px;
+  font-size: 0.75rem;
   -webkit-animation: showErrorMessage 0.5s;
           animation: showErrorMessage 0.5s;
 }
