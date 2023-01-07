@@ -31,8 +31,8 @@ class ModalAnimation {
   // 利用規約のスクロール量検知
   observeScroll() {
     this.modalInner = this.modal.children[0];
-    this.modalBody = this.modalInner.children[0];
-    const that = this;
+    this.modalBody  = this.modalInner.children[0];
+    const that      = this;
     
     // スクロールが一番下に行ったらチェックボックスはcheckedになる
     this.modalBody.onscroll = function() {
@@ -59,4 +59,26 @@ class ModalAnimation {
     this.checkbox.setAttribute("checked", "true");
     this.checkbox.removeAttribute("disabled");
   };
+}
+
+class SwitchDisplayPassword {
+  constructor({ event, passwordValue }) {
+    this.event         = event;
+    this.passwordValue = passwordValue;
+  }
+
+  switchDisplay() {
+    if (!this.passwordValue) return;
+
+    this.current = this.event.currentTarget;
+    this.input   = this.current.previousElementSibling;
+
+    if (this.current.classList.contains("is-active")) {
+      this.input.setAttribute("type", "password");
+    } else {
+      this.input.setAttribute("type", "text");
+    }
+
+    this.current.classList.toggle("is-active");
+  }
 }

@@ -1,38 +1,36 @@
 "use strict";
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
   const checkAgree = document.querySelector('input[aria-label="agree"]');
   const valueMatchedArray = [];
 
   // 利用規約の表示制御
   const controlDisplayTermsOfService = (() => {
-    const triger = document.querySelector(".js-modalTriger");
-    const modal = document.querySelector(".js-modal");
+    const triger       = document.querySelector(".js-modalTriger");
+    const modal        = document.querySelector(".js-modal");
     const modalOverlay = document.querySelector(".js-modalOverlay");
     let ariaHiddenFlag = true;
 
+    // 開く処理
     triger.addEventListener("click", () => {
       const props = {
         modal: modal,
         modalOverlay: modalOverlay,
         ariaHiddenFlag: ariaHiddenFlag,
       };
-
       const modalAnimation = new ModalAnimation(props);
-
       modalAnimation.observeScroll();
       ariaHiddenFlag = modalAnimation.toggleModal();
     });
 
+    // 閉じる処理
     modalOverlay.addEventListener("click", (e) => {
       const props = {
         modal: modal,
         modalOverlay: e.currentTarget,
         ariaHiddenFlag: ariaHiddenFlag,
       };
-
       const modalAnimation = new ModalAnimation(props);
-
       modalAnimation.observeScroll();
       ariaHiddenFlag = modalAnimation.toggleModal();
     });
@@ -40,28 +38,24 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const getSubmitFlag = (array) => {
     let submitFlag;
-
+    // すべての入力欄が正しい表記で記載されているかどうかを判定
     const formInputValidate = array.every((formInputValue) => {
       return formInputValue != null;
     });
-
     if (!formInputValidate) {
       submitFlag = false;
     } else {
       submitFlag = true;
     }
-
     return submitFlag;
   };
 
   const toggleEnableSubmit = (submitStatus, agreeStatus = null) => {
     const submit = document.querySelector(".register_submit");
-    console.log(agreeStatus);
     if (!agreeStatus) {
       submit.classList.add("is-nonActive");
       return;
     }
-
     if (submitStatus) {
       submit.classList.remove("is-nonActive");
     } else {
@@ -70,7 +64,7 @@ window.addEventListener("DOMContentLoaded", () => {
   };
 
   // inputエリアのエラーメッセージの表示制御
-  const controlDisplayErrorMessage = ((agree) => {
+  const controlDisplayErrorMessage = ((agree, array) => {
     const formInputs = document.querySelectorAll(".js-formInput");
     const pattern = {
       username: /^.{0,15}$/,
@@ -89,68 +83,63 @@ window.addEventListener("DOMContentLoaded", () => {
 
     formInputs.forEach((formInput, index) => {
       const errorMessage = formInput.parentNode.nextElementSibling;
-      valueMatchedArray.push(formInput.value.match(patternArray[index]));
+      array.push(formInput.value.match(patternArray[index]));
 
       // 必須項目の入力内容を監視
       formInput.addEventListener("input", (e) => {
         const matched = e.target.value.match(patternArray[index]);
-        valueMatchedArray[index] = matched;
+        const checked = agree.getAttribute("checked");
+        array[index] = matched;
         toggleShowErrorMessage(errorMessage, matched);
 
-        if (checkAgree.getAttribute("checked") === null) return;
+        if (checked === null) return;
 
-        toggleEnableSubmit(getSubmitFlag(valueMatchedArray));
+        toggleEnableSubmit(getSubmitFlag(array), checked);
       });
     });
 
     // 初期化
-    toggleEnableSubmit(getSubmitFlag(valueMatchedArray));
-  })(checkAgree);
+    toggleEnableSubmit(getSubmitFlag(array), agree.checked);
+  })(checkAgree, valueMatchedArray);
 
   // 利用規約に同意したら送信できるようにする処理
-  const enableToSubmitHandler = ((agree) => {
+  const enableToSubmitHandler = ((agree, array) => {
+    // 利用規約を最後まで読み終わった後も判定
+    const observeChecked = (mutations) => {
+      const record = mutations[0];
+      const checkedFlag = record.target.checked;
+      if (checkedFlag) {
+        toggleEnableSubmit(getSubmitFlag(array), checkedFlag);
+      }
+    };
+    const observer = new MutationObserver(observeChecked);
+    const options = {
+      attributes: true,
+    };
+    observer.observe(agree, options);
+
     agree.addEventListener("change", () => {
-      toggleEnableSubmit(getSubmitFlag(valueMatchedArray), agree.checked);
+      toggleEnableSubmit(getSubmitFlag(array), agree.checked);
     });
-  })(checkAgree);
+  })(checkAgree, valueMatchedArray);
 
   // パスワードの表示切り替え処理
-  const switchDisplayPassword = (() => {
+  const switchDisplayPasswordHandler = (() => {
     const btn = document.getElementById("js-passwordBtn");
     const input = btn.previousElementSibling;
     let passwordValue;
 
-    const switchStatusHander = ({ event, passwordValue }) => {
-      const current = event.currentTarget;
-      let input = current.previousElementSibling;
-
-      if (!passwordValue) {
-        return;
-      }
-
-      if (current.classList.contains("is-active")) {
-        input.setAttribute("type", "password");
-      } else {
-        input.setAttribute("type", "text");
-      }
-
-      current.classList.toggle("is-active");
-    };
-
-    const getPasswordValue = (event) => {
-      return event.target.value;
-    };
-
     input.addEventListener("change", (e) => {
-      passwordValue = getPasswordValue(e);
+      passwordValue = e.target.value;
     });
-
+  
     btn.addEventListener("click", (e) => {
       const props = {
         event: e,
         passwordValue: passwordValue,
       };
-      switchStatusHander({ ...props });
+      const switchDisplayPassword = new SwitchDisplayPassword({ ...props });
+      switchDisplayPassword.switchDisplay();
     });
   })();
 });
