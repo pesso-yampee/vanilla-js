@@ -23,7 +23,14 @@ window.addEventListener("load", () => {
     };
 
     triger.addEventListener("click", showModal);
+    triger.addEventListener("keydown", (e) => {
+      if (e.keyCode === 13) {
+        // Enterキーを押した場合
+        showModal();
+      }
+    });
     
+
     const hideModal = (e) => {
       const props = {
         currentTarget: e.currentTarget,
@@ -144,4 +151,6 @@ window.addEventListener("load", () => {
       switchDisplayPassword.switchDisplay();
     });
   })();
+
+
 });
