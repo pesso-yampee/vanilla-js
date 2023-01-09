@@ -5,31 +5,544 @@
 @use "../base/animation" as *;
 @use "../base/setting" as *;
 @use "../module/common" as *;
+@use "../base/function" as *;
 
-.gallery_inner {
-  display: flex;
-  width: 100%;
-  margin: 0 -4px;
-}
-
-.gallery_container {
-  display: grid;
-  gap: 8px;
-  width: calc(100% / 3);
-  padding: 0 4px;
-}
-
-.gallery_imageWrap {
+/** -----------------------------------
+  スライドショー
+----------------------------------- */
+.vanillaSlide_container {
   position: relative;
-  overflow: hidden;
 }
 
-.gallery_image {
+.vanillaSlide_inner {
+  padding: 40px;
+  background-color: $colorBlack;
+
+  @include media1279 {
+    padding: rem(40);
+  }
+
+  @include media767 {
+    padding: rem(16);
+  }
+}
+
+.vanillaSlide_list {
+  position: relative;
+  height: 100%;
+}
+
+.vanillaSlide_item {
   position: absolute;
+  z-index: 0;
+  opacity: 0;
   top: 0;
   left: 0;
+  min-width: 100%;
+  transition: opacity 0.5s;
+
+  &.is-show {
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+  }
+}
+
+.vanillaSlide_arrows {
+  overflow: hidden;
+  position: absolute;
+  z-index: 2;
+  top: calc(50% - 8px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
-  height: 100%;
+
+  @include media1279 {
+    top: calc(50% - rem(8));
+  }
+
+  @include media767 {
+    top: calc(50% - rem(16));
+  }
+}
+
+.vanillaSlide_arrow {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  background-color: $colorWhite;
+  border-radius: 50%;
+  cursor: pointer;
+
+  @include media1279 {
+    width: rem(48);
+    height: rem(48);
+  }
+
+  @include media767 {
+    width: rem(28);
+    height: rem(28);
+  }
+
+  &::after {
+    position: absolute;
+    display: block;
+    top: calc(50% - 4px);
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid $colorBlack;
+    border-right: 2px solid $colorBlack;
+    content: "";
+
+    @include media1279 {
+      top: calc(50% - rem(4));
+      width: rem(8);
+      height: rem(8);
+    }
+
+    @include media767 {
+      top: calc(50% - rem(2));
+      width: rem(4);
+      height: rem(4);
+      border-top: rem(1) solid $colorBlack;
+      border-right: rem(1) solid $colorBlack;
+    }
+  }
+
+  &[data-arrow="prev"] {
+    left: -20px;
+
+    @include media1279 {
+      left: -rem(20);
+    }
+
+    @include media767 {
+      left: -rem(15);
+    }
+
+    &::after {
+      left: 26px;
+      transform: rotate(-135deg);
+
+      @include media767 {
+        left: rem(18);
+      }
+    }
+  }
+
+  &[data-arrow="next"] {
+    right: -20px;
+
+    @include media1279 {
+      right: -rem(20);
+    }
+
+    @include media767 {
+      right: -rem(15);
+    }
+
+    &::after {
+      right: 26px;
+      transform: rotate(45deg);
+
+      @include media767 {
+        right: rem(18);
+      }
+    }
+  }
+
+  &.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+// navigation
+.vanillaSlide_navigation {
+  margin-top: 16px;
+
+  @include media1279 {
+    margin-top: rem(16);
+  }
+
+  @include media767 {
+    margin-top: rem(8);
+  }
+}
+
+.vanillaSlide_navigation_list {
+  display: flex;
+  justify-content: center;
+  margin: 0 -6px;
+
+  @include media1279 {
+    margin: 0 -rem(6);
+
+  }
+
+  @include media767 {
+    margin: 0 -rem(2);
+  }
+}
+
+.vanillaSlide_navigation_item {
+  display: inline-block;
+  padding: 0 6px;
+
+  @include media1279 {
+    padding: 0 rem(6);
+
+  }
+
+  @include media767 {
+    padding: 0 rem(2);
+  }
+
+  &.is-active {
+    .vanillaSlide_navigation_dot {
+      background-color: $colorTeal;
+    }
+  }
+}
+
+.vanillaSlide_navigation_dot {
+  width: 10px;
+  height: 10px;
+  background-color: $colorWhite;
+  border-radius: 50%;
+  cursor: pointer;
+
+  @include media1279 {
+    width: rem(10);
+    height: rem(10);
+
+  }
+
+  @include media767 {
+    width: rem(8);
+    height: rem(8);
+  }
+}
+
+/** -----------------------------------
+  ニュースUIコンポーネント
+----------------------------------- */
+.newsUI_tab {}
+
+.newsUI_tab_list {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.newsUI_tab_item {
+  width: inherit;
+}
+
+.newsUI_tab_input {
+  display: none;
+}
+
+
+.newsUI_tab_input:checked+.newsUI_tab_label {
   background-color: $colorBlack;
-  border-radius: 10px;
+  color: $colorWhite;
+}
+
+.newsUI_tab_label {
+  appearance: none;
+  display: block;
+  padding: 14px 20px;
+  background-color: #efefef;
+  text-align: center;
+  line-height: 1;
+  font-size: clamp(0.75rem, 0.6464rem + 0.442vw, 1rem);
+  cursor: pointer;
+
+  @include media1279 {
+    padding: rem(14) rem(20);
+  }
+  
+  @include media767 {
+    padding: rem(6);
+  }
+}
+
+.newsUI_description {
+  border-bottom: 2px solid #efefef;
+  border-right: 2px solid #efefef;
+  border-left: 2px solid #efefef;
+}
+
+.newsUI_description_inner {
+  padding: 30px;
+
+  @include media1279 {
+    padding: rem(30);
+
+  }
+}
+
+.newsUI_description_contents {
+  display: none;
+
+  &.is-active {
+    display: flex;
+  }
+}
+
+.newsUI_description_list {
+  display: grid;
+  gap: 8px;
+  align-self: flex-start;
+  flex: auto;
+
+  @include media1279 {
+
+    gap: rem(8);
+  }
+}
+
+.newsUI_error {
+  font-size: clamp(1.125rem, 0.9696rem + 0.663vw, 1.5rem);
+}
+
+.newsUI_description_body {
+  display: flex;
+  align-items: center;
+}
+
+.newsUI_description_text {
+  font-size: 16px;
+
+  @include media1279 {
+    font-size: rem(16);
+
+  }
+}
+
+.newsUI_description_decorations {
+  display: flex;
+  align-items: center;
+}
+
+.newsUI_description_labelWrap {
+  display: flex;
+  align-items: center;
+}
+
+.newsUI_description_label {
+  display: inline-block;
+  padding: 8px;
+  border: 1px solid rgba($colorLightGray, .4);
+  border-radius: 20px;
+
+  @include media1279 {
+
+    padding: rem(8);
+    border-radius: rem(20);
+  }
+
+  &+.newsUI_description_comment {
+    margin-left: 10px;
+
+    @include media1279 {
+      margin-left: rem(10);
+
+    }
+  }
+}
+
+.newsUI_description_decorations {
+  margin-left: 16px;
+
+  @include media1279 {
+    margin-left: rem(16);
+
+  }
+}
+
+.newsUI_description_label_text {
+  font-size: 16px;
+
+  @include media1279 {
+    font-size: rem(16);
+
+  }
+}
+
+.newsUI_description_comment {
+  display: flex;
+  align-items: center;
+}
+
+.newsUI_description_comment_icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  @include icon-bubble($colorBlack);
+
+  @include media1279 {
+    width: rem(30);
+    height: rem(30);
+
+  }
+}
+
+.newsUI_description_comment_num {
+  margin-left: 6px;
+
+  @include media1279 {
+    margin-left: rem(6);
+
+  }
+}
+
+.newsUI_description_imageWrap {
+  align-self: flex-start;
+  overflow: hidden;
+  width: 300px;
+  margin-left: 16px;
+
+  @include media1279 {
+    width: rem(300);
+    margin-left: rem(16);
+
+  }
+
+  @include media767 {
+    display: none;
+  }
+}
+
+.newsUI_description_image {
+  width: 100%;
+  height: auto;
+}
+
+/** -----------------------------------
+  ユーザーテーブル
+----------------------------------- */
+.user_table {
+  width: 100%;
+}
+
+.user_table_headBlock {
+  width: inherit;
+}
+
+.user_table_row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(200px, 1fr));
+
+  @include media1279 {
+    grid-template-columns: repeat(4, minmax(rem(200), 1fr));
+  }
+
+  @include media767 {
+    grid-template-columns: repeat(4, minmax(auto, 1fr));
+  }
+}
+
+.user_table_head {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  background-color: teal;
+  text-align: center;
+  font-size: clamp(0.75rem, 0.6464rem + 0.442vw, 1rem);
+
+  @include media1279 {
+    padding: rem(10) 0;
+  }
+  
+  @include media767 {
+    padding: rem(7) 0;
+  }
+}
+
+.user_table_head_text {
+  color: #fff;
+}
+
+.user_table_head_sortBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+  background-color: transparent;
+  cursor: pointer;
+
+  @include media1279 {
+    width: rem(16);
+    height: rem(16);
+    margin-left: rem(4);
+  }
+  
+  @include media767 {
+    margin-left: rem(2);
+  }
+
+  &::after {
+    position: absolute;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url("/assets/media/images/table/both.svg") no-repeat center/contain;
+    content: "";
+
+    @include media1279 {
+      width: rem(16);
+      height: rem(16);
+    }
+    
+    @include media767 {
+      width: rem(10);
+      height: rem(10);
+    }
+  }
+
+  &.ascending {
+    &::after {
+      background: url("/assets/media/images/table/asc.svg") no-repeat center/contain;
+    }
+  }
+
+  &.descending {
+    &::after {
+      background: url("/assets/media/images/table/desc.svg") no-repeat center/contain;
+    }
+  }
+}
+
+.user_table_description {
+  text-align: center;
+  line-height: 30px;
+  font-size: clamp(0.75rem, 0.6464rem + 0.442vw, 1rem);
+
+  @include media1279 {
+    line-height: rem(30);
+  }
+  
+  @include media767 {
+    line-height: rem(24);
+  }
+
+  &.heading {
+    background-color: teal;
+    color: #fff;
+  }
+}
+
+/** -----------------------------------
+  状態管理系
+----------------------------------- */
+.visibility-hidden {
+  display: none;
 }
