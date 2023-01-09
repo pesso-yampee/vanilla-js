@@ -484,6 +484,10 @@
     height: rem(16);
     margin-left: rem(4);
   }
+  
+  @include media767 {
+    margin-left: rem(2);
+  }
 
   &::after {
     position: absolute;
@@ -496,7 +500,11 @@
     @include media1279 {
       width: rem(16);
       height: rem(16);
-
+    }
+    
+    @include media767 {
+      width: rem(10);
+      height: rem(10);
     }
   }
 

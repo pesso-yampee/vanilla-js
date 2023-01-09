@@ -1037,6 +1037,11 @@ body.open {
     margin-left: 0.25rem;
   }
 }
+@media screen and (max-width: 767px) {
+  .user_table_head_sortBtn {
+    margin-left: 0.125rem;
+  }
+}
 .user_table_head_sortBtn::after {
   position: absolute;
   display: block;
@@ -1049,6 +1054,12 @@ body.open {
   .user_table_head_sortBtn::after {
     width: 1rem;
     height: 1rem;
+  }
+}
+@media screen and (max-width: 767px) {
+  .user_table_head_sortBtn::after {
+    width: 0.625rem;
+    height: 0.625rem;
   }
 }
 .user_table_head_sortBtn.ascending::after {
