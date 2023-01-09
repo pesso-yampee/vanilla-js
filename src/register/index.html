@@ -11,6 +11,36 @@
 
 <body>
   <div class="wrapper">
+    <header class="header js-header">
+      <div class="header_inner">
+        <h1 class="header_title">vanilla-js</h1>
+    
+        <nav class="header_nav">
+          <ul class="header_list">
+            <li class="header_item">
+              <a href="/src/register/" class="header_item_link">
+                <span class="header_item_text">会員登録</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+    
+        <button class="hamburger js-hamburger" aria-label="ハンバーガーメニュー">
+          <span class="hamburger_line"></span>
+          <span class="hamburger_line"></span>
+          <span class="hamburger_line"></span>
+        </button>
+        
+        <dialog class="burgerMenu js-burgerMenu" tabindex="-1" aria-hidden="true" aria-modal="true">
+          <ul class="burgerMenu_list">
+            <li class="burgerMenu_item">
+              <a href="/src/register/" class="burgerMenu_link">会員登録</a>
+            </li>
+          </ul>
+        </dialog>
+      </div><!-- /.header_inner -->
+    </header>
+    
     <div class="register">
       <div class="register_inner">
         <h2 class="register_title" id="registerTitle">会員登録</h2>
@@ -130,6 +160,7 @@
       </div>
     </div>
   </dialog>
+
   <!-- /.termsOfService -->
   <script src="/src/js/registerClass.js" defer></script>
   <script src="/src/js/register.js" defer></script>
