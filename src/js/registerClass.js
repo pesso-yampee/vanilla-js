@@ -1,56 +1,59 @@
 class ModalAnimation {
   constructor(props) {
+    this.currentTarget = props.currentTarget ? props.currentTarget : null;
     this.modal = props.modal;
     this.modalOverlay = props.modalOverlay;
     this.ariaHiddenFlag = props.ariaHiddenFlag;
   }
-  _showModal(element) {
-    element.setAttribute("aria-hidden", "false");
-    element.classList.add("is-show");
+  _showModal() {
+    this.modal.setAttribute("aria-hidden", "false");
+    this.modal.classList.add("is-show");
+    this.modalOverlay.setAttribute("aria-hidden", "false");
+    this.modalOverlay.classList.add("is-show");
   }
 
-  _hideModal(element) {
-    element.setAttribute("aria-hidden", "true");
-    element.classList.remove("is-show");
+  _hideModal() {
+    this.modal.setAttribute("aria-hidden", "true");
+    this.modal.classList.remove("is-show");
+    this.modalOverlay.setAttribute("aria-hidden", "true");
+    this.modalOverlay.classList.remove("is-show");
   }
 
   toggleModal() {
-    if(this.ariaHiddenFlag) {
-      this._showModal(this.modal);
-      this._showModal(this.modalOverlay);
+    if (this.ariaHiddenFlag) {
+      this._showModal();
       this.ariaHiddenFlag = false;
     } else {
-      this._hideModal(this.modal);
-      this._hideModal(this.modalOverlay);
+      this._hideModal();
       this.ariaHiddenFlag = true;
     }
-    
+
     return this.ariaHiddenFlag;
   }
-  
+
   // 利用規約のスクロール量検知
   observeScroll() {
     this.modalInner = this.modal.children[0];
-    this.modalBody  = this.modalInner.children[0];
-    const that      = this;
+    this.modalBody = this.modalInner.children[0];
+    const that = this;
     
     // スクロールが一番下に行ったらチェックボックスはcheckedになる
-    this.modalBody.onscroll = function() {
+    this.modalBody.onscroll = function () {
       this.modalBodyClientHeight = this.clientHeight;
       this.modalBodyScrollHeight = this.scrollHeight; // 画面に表示されていないコンテンツの高さも含む
       this.scrollTop = this.scrollTop;
       this.diff = this.modalBodyScrollHeight - (this.modalBodyClientHeight + this.scrollTop);
       
       if (this.diff === 0) {
-        setTimeout(() => {
-          that._hideModal(that.modal);
-          that._hideModal(that.modalOverlay);
-          that.ariaHiddenFlag = true;
-
-          that._toEnableInputChecked();
-        }, 500);
+        that._toEnableInputChecked();
+        that.ariaHiddenFlag = true;
       }
-    };
+    }
+  }
+
+  closeModal() {
+    this._hideModal();
+    this.ariaHiddenFlag = true;
   }
 
   _toEnableInputChecked() {
@@ -58,12 +61,12 @@ class ModalAnimation {
 
     this.checkbox.setAttribute("checked", "true");
     this.checkbox.removeAttribute("disabled");
-  };
+  }
 }
 
 class SwitchDisplayPassword {
   constructor({ event, passwordValue }) {
-    this.event         = event;
+    this.event = event;
     this.passwordValue = passwordValue;
   }
 
@@ -71,7 +74,7 @@ class SwitchDisplayPassword {
     if (!this.passwordValue) return;
 
     this.current = this.event.currentTarget;
-    this.input   = this.current.previousElementSibling;
+    this.input = this.current.previousElementSibling;
 
     if (this.current.classList.contains("is-active")) {
       this.input.setAttribute("type", "password");

@@ -6,9 +6,10 @@ window.addEventListener("load", () => {
 
   // 利用規約の表示制御
   const controlDisplayTermsOfService = (() => {
-    const triger       = document.querySelector(".js-modalTriger");
-    const modal        = document.querySelector(".js-modal");
+    const triger = document.querySelector(".js-modalTriger");
+    const modal = document.querySelector(".js-modal");
     const modalOverlay = document.querySelector(".js-modalOverlay");
+    const modalClose = document.getElementById("js-modalClose");
     let ariaHiddenFlag = true;
 
     // 開く処理
@@ -22,18 +23,19 @@ window.addEventListener("load", () => {
       modalAnimation.observeScroll();
       ariaHiddenFlag = modalAnimation.toggleModal();
     });
-
+    
     // 閉じる処理
-    modalOverlay.addEventListener("click", (e) => {
+    modalClose.addEventListener("click", (e) => {
       const props = {
+        currentTarget: e.currentTarget,
         modal: modal,
-        modalOverlay: e.currentTarget,
+        modalOverlay: modalOverlay,
         ariaHiddenFlag: ariaHiddenFlag,
       };
       const modalAnimation = new ModalAnimation(props);
-      modalAnimation.observeScroll();
-      ariaHiddenFlag = modalAnimation.toggleModal();
+      modalAnimation.closeModal();
     });
+
   })();
 
   const getSubmitFlag = (array) => {
