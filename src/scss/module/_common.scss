@@ -20,7 +20,7 @@
   transition: box-shadow .3s;
 
   &.is-active {
-    box-shadow: 0 4px 4px rgba($colorBlack, .2);
+    box-shadow: 0 rem(4) rem(4) rgba($colorBlack, .2);
   }
 }
 
@@ -28,23 +28,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px;
-  
+  padding: rem(24);
+
   @include media1279 {
-    padding: 24rem;
+    padding: rem(24);
   }
+
   @include media767 {
-    padding: 10rem;
+    padding: rem(10);
   }
 }
 
 .header_title {
-  font-size: 36px;
+  font-size: rem(36);
+
   @include media1279 {
-    font-size: 36rem;
+    font-size: rem(36);
   }
+
   @include media767 {
-    font-size: 20rem;
+    font-size: rem(20);
   }
 }
 
@@ -69,29 +72,29 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  line-height: 32px;
-  padding: 0 16px;
+  line-height: rem(32);
+  padding: 0 rem(16);
   text-align: center;
   font-weight: 700;
-  font-size: 16px;
-  
+  font-size: rem(16);
+
   @include media1279 {
-    padding: 0 16rem;
-    font-size: 16rem;
+    padding: 0 rem(16);
+    font-size: rem(16);
   }
-  
+
   &::after {
     position: absolute;
     display: block;
-    bottom: -6px;
+    bottom: -rem(6);
     width: 0;
-    height: 2px;
+    height: rem(2);
     background-color: $colorPureBlack;
     content: '';
     transition: width .3s;
   }
 
-  
+
   @media (hover: hover) {
     &:hover {
       &::after {
@@ -104,19 +107,6 @@
 /** -----------------------------------
   main
 ----------------------------------- */
-.main {
-  height: 200vh;
-  padding-top: 84px;
-  
-  @include media1279 {
-    padding-top: 84rem;
-  }
-  
-  @include media767 {
-    padding-top: 0;
-    margin-top: 30rem;
-  }
-}
 
 /** -----------------------------------
   footer
@@ -127,56 +117,48 @@
 ----------------------------------- */
 .hamburger {
   display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: rem(50);
+  height: rem(50);
+  padding: rem(10);
+  background-color: transparent;
+
+  @include media1279 {
+    width: rem(50);
+    height: rem(50);
+    padding: rem(10);
+  }
 
   @include media767 {
     z-index: 4;
-    display: block;
-  }
-}
-
-.hamburger_button {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 50px;
-  height: 50px;
-  padding: 10px;
-  background-color: transparent;
-  
-  @include media1279 {
-    width: 50rem;
-    height: 50rem;
-    padding: 10rem;
-  }
-  
-  &:hover {
-    cursor: pointer;
+    display: flex;
   }
 
   &.is-active {
     justify-content: center;
 
-    .hamburger_button_line {
-      &:nth-of-type(1) {
-        transform: rotate(45deg) translateY(2px);
+    .hamburger_line {
+      &:nth-child(1) {
+        transform: rotate(45deg) translateY(rem(2));
       }
 
-      &:nth-of-type(2) {
+      &:nth-child(2) {
         opacity: 0;
         visibility: hidden;
       }
 
-      &:nth-of-type(3) {
-        transform: rotate(-45deg) translateY(-2px);
+      &:nth-child(3) {
+        transform: rotate(-45deg) translateY(rem(-2));
       }
     }
   }
 }
 
-.hamburger_button_line {
+.hamburger_line {
   display: inline-block;
   width: 100%;
-  height: 2px;
+  height: rem(2);
   background-color: $colorBlack;
   transition: opacity .5s, visibility .5s, background-color .5s, transform .5s;
 }
@@ -191,10 +173,10 @@
     display: none;
     align-items: center;
     justify-content: center;
-    top: 10rem;
+    top: rem(70);
     left: 0;
     width: 100vw;
-    height: calc(100vh - 10rem);
+    height: calc(100vh - rem(70));
     background-color: $colorBlack;
     animation: modalShow .5s;
 
@@ -215,45 +197,49 @@
 .modal_item_link {
   color: $colorWhite;
   font-weight: 700;
-  font-size: 24px;
+  font-size: rem(24);
 }
 
 /** -----------------------------------
   section
 ----------------------------------- */
 .section {
-  padding: 32px 0;
+  padding: rem(32) 0;
+
   @include media1279 {
-    padding: 32rem 0;
+    padding: rem(32) 0;
   }
 }
 
 .section_inner {
-  max-width: 940px;
+  max-width: rem(940);
   margin-left: auto;
   margin-right: auto;
+
   @include media1279 {
-    max-width: 940rem;
+    max-width: rem(940);
   }
+
   @include media767 {
-    padding: 0 10rem;
+    padding: 0 rem(10);
   }
 }
 
 .section_heading {
   position: relative;
-  padding-bottom: 8px;
-  font-size: 36px;
+  padding-bottom: rem(8);
+  font-size: rem(36);
+
   @include media1279 {
-    padding-bottom: 8rem;
-    font-size: 36rem;
+    padding-bottom: rem(8);
+    font-size: rem(36);
   }
 
   &::after {
     position: absolute;
     display: block;
     width: 100%;
-    height: 3rem;
+    height: rem(3);
     bottom: 0;
     left: 0;
     background-color: $colorPureBlack;
@@ -261,8 +247,8 @@
   }
 
   @include media767 {
-    padding-bottom: 4rem;
-    font-size: 24rem;
+    padding-bottom: rem(4);
+    font-size: rem(24);
   }
 }
 
@@ -294,8 +280,15 @@ body {
 }
 
 .wrapper {
+  padding-top: rem(84);
+
+  @include media1279 {
+    padding-top: rem(84);
+  }
+
   @include media767 {
     position: relative;
+    padding-top: rem(70);
   }
 }
 

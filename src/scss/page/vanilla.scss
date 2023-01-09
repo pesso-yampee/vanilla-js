@@ -5,6 +5,7 @@
 @use "../base/animation" as *;
 @use "../base/setting" as *;
 @use "../module/common" as *;
+@use "../base/function" as *;
 
 /** -----------------------------------
   スライドショー
@@ -18,11 +19,11 @@
   background-color: $colorBlack;
 
   @include media1279 {
-    padding: 40rem;
+    padding: rem(40);
   }
 
   @include media767 {
-    padding: 16rem;
+    padding: rem(16);
   }
 }
 
@@ -58,11 +59,11 @@
   width: 100%;
 
   @include media1279 {
-    top: calc(50% - 8rem);
+    top: calc(50% - rem(8));
   }
 
   @include media767 {
-    top: calc(50% - 16rem);
+    top: calc(50% - rem(16));
   }
 }
 
@@ -75,13 +76,13 @@
   cursor: pointer;
 
   @include media1279 {
-    width: 48rem;
-    height: 48rem;
+    width: rem(48);
+    height: rem(48);
   }
 
   @include media767 {
-    width: 28rem;
-    height: 28rem;
+    width: rem(28);
+    height: rem(28);
   }
 
   &::after {
@@ -95,17 +96,17 @@
     content: "";
 
     @include media1279 {
-      top: calc(50% - 4rem);
-      width: 8rem;
-      height: 8rem;
+      top: calc(50% - rem(4));
+      width: rem(8);
+      height: rem(8);
     }
 
     @include media767 {
-      top: calc(50% - 2rem);
-      width: 4rem;
-      height: 4rem;
-      border-top: 1rem solid $colorBlack;
-      border-right: 1rem solid $colorBlack;
+      top: calc(50% - rem(2));
+      width: rem(4);
+      height: rem(4);
+      border-top: rem(1) solid $colorBlack;
+      border-right: rem(1) solid $colorBlack;
     }
   }
 
@@ -113,11 +114,11 @@
     left: -20px;
 
     @include media1279 {
-      left: -20rem;
+      left: -rem(20);
     }
 
     @include media767 {
-      left: -15rem;
+      left: -rem(15);
     }
 
     &::after {
@@ -125,7 +126,7 @@
       transform: rotate(-135deg);
 
       @include media767 {
-        left: 18rem;
+        left: rem(18);
       }
     }
   }
@@ -134,11 +135,11 @@
     right: -20px;
 
     @include media1279 {
-      right: -20rem;
+      right: -rem(20);
     }
 
     @include media767 {
-      right: -15rem;
+      right: -rem(15);
     }
 
     &::after {
@@ -146,7 +147,7 @@
       transform: rotate(45deg);
 
       @include media767 {
-        right: 18rem;
+        right: rem(18);
       }
     }
   }
@@ -162,11 +163,11 @@
   margin-top: 16px;
 
   @include media1279 {
-    margin-top: 16rem;
+    margin-top: rem(16);
   }
 
   @include media767 {
-    margin-top: 8rem;
+    margin-top: rem(8);
   }
 }
 
@@ -176,12 +177,12 @@
   margin: 0 -6px;
 
   @include media1279 {
-    margin: 0 -6rem;
+    margin: 0 -rem(6);
 
   }
 
   @include media767 {
-    margin: 0 -2rem;
+    margin: 0 -rem(2);
   }
 }
 
@@ -190,12 +191,12 @@
   padding: 0 6px;
 
   @include media1279 {
-    padding: 0 6rem;
+    padding: 0 rem(6);
 
   }
 
   @include media767 {
-    padding: 0 2rem;
+    padding: 0 rem(2);
   }
 
   &.is-active {
@@ -213,14 +214,14 @@
   cursor: pointer;
 
   @include media1279 {
-    width: 10rem;
-    height: 10rem;
+    width: rem(10);
+    height: rem(10);
 
   }
 
   @include media767 {
-    width: 8rem;
-    height: 8rem;
+    width: rem(8);
+    height: rem(8);
   }
 }
 
@@ -256,13 +257,15 @@
   background-color: #efefef;
   text-align: center;
   line-height: 1;
-  font-size: 16px;
+  font-size: clamp(0.75rem, 0.6464rem + 0.442vw, 1rem);
   cursor: pointer;
 
   @include media1279 {
-    padding: 14rem 20rem;
-    font-size: 16rem;
-
+    padding: rem(14) rem(20);
+  }
+  
+  @include media767 {
+    padding: rem(10);
   }
 }
 
@@ -276,7 +279,7 @@
   padding: 30px;
 
   @include media1279 {
-    padding: 30rem;
+    padding: rem(30);
 
   }
 }
@@ -297,20 +300,13 @@
 
   @include media1279 {
 
-    gap: 8rem;
+    gap: rem(8);
   }
 }
 
 .newsUI_error {
-  font-size: 36px;
-
-  @include media1279 {
-    font-size: 36rem;
-
-  }
+  font-size: clamp(1.125rem, 0.9696rem + 0.663vw, 1.5rem);
 }
-
-.newsUI_description_item {}
 
 .newsUI_description_body {
   display: flex;
@@ -321,7 +317,7 @@
   font-size: 16px;
 
   @include media1279 {
-    font-size: 16rem;
+    font-size: rem(16);
 
   }
 }
@@ -344,15 +340,15 @@
 
   @include media1279 {
 
-    padding: 8rem;
-    border-radius: 20rem;
+    padding: rem(8);
+    border-radius: rem(20);
   }
 
   &+.newsUI_description_comment {
     margin-left: 10px;
 
     @include media1279 {
-      margin-left: 10rem;
+      margin-left: rem(10);
 
     }
   }
@@ -362,7 +358,7 @@
   margin-left: 16px;
 
   @include media1279 {
-    margin-left: 16rem;
+    margin-left: rem(16);
 
   }
 }
@@ -371,7 +367,7 @@
   font-size: 16px;
 
   @include media1279 {
-    font-size: 16rem;
+    font-size: rem(16);
 
   }
 }
@@ -388,8 +384,8 @@
   @include icon-bubble($colorBlack);
 
   @include media1279 {
-    width: 30rem;
-    height: 30rem;
+    width: rem(30);
+    height: rem(30);
 
   }
 }
@@ -398,7 +394,7 @@
   margin-left: 6px;
 
   @include media1279 {
-    margin-left: 6rem;
+    margin-left: rem(6);
 
   }
 }
@@ -410,8 +406,8 @@
   margin-left: 16px;
 
   @include media1279 {
-    width: 300rem;
-    margin-left: 16rem;
+    width: rem(300);
+    margin-left: rem(16);
 
   }
 
@@ -441,7 +437,11 @@
   grid-template-columns: repeat(4, minmax(200px, 1fr));
 
   @include media1279 {
-    grid-template-columns: repeat(4, minmax(200rem, 1fr));
+    grid-template-columns: repeat(4, minmax(rem(200), 1fr));
+  }
+
+  @include media767 {
+    grid-template-columns: repeat(4, minmax(auto, 1fr));
   }
 }
 
@@ -453,12 +453,14 @@
   padding: 10px 0;
   background-color: teal;
   text-align: center;
-  font-size: 16px;
+  font-size: clamp(0.75rem, 0.6464rem + 0.442vw, 1rem);
 
   @include media1279 {
-
-    padding: 10rem 0;
-    font-size: 16rem;
+    padding: rem(10) 0;
+  }
+  
+  @include media767 {
+    padding: rem(7) 0;
   }
 }
 
@@ -478,10 +480,9 @@
   cursor: pointer;
 
   @include media1279 {
-    width: 16rem;
-    height: 16rem;
-    margin-left: 4rem;
-
+    width: rem(16);
+    height: rem(16);
+    margin-left: rem(4);
   }
 
   &::after {
@@ -493,8 +494,8 @@
     content: "";
 
     @include media1279 {
-      width: 16rem;
-      height: 16rem;
+      width: rem(16);
+      height: rem(16);
 
     }
   }
@@ -512,17 +513,17 @@
   }
 }
 
-.user_table_body {}
-
 .user_table_description {
   text-align: center;
   line-height: 30px;
-  font-size: 16px;
+  font-size: clamp(0.75rem, 0.6464rem + 0.442vw, 1rem);
 
   @include media1279 {
-    line-height: 30rem;
-    font-size: 16rem;
-
+    line-height: rem(30);
+  }
+  
+  @include media767 {
+    line-height: rem(24);
   }
 
   &.heading {
