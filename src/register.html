@@ -17,7 +17,7 @@
         <form method="post" aria-labelledby="registerTitle" class="register_form">
           <ul class="register_list">
             <li class="register_item">
-              <label class="register_label" for="username">UserName:</label>
+              <label class="register_label" for="username">ユーザー名</label>
               <div class="register_inputArea">
                 <input class="register_input js-formInput" type="text" id="username" value="" placeholder="15文字以下で入力">
               </div>
@@ -26,7 +26,7 @@
               </div>
             </li>
             <li class="register_item">
-              <label class="register_label" for="email">Email:</label>
+              <label class="register_label" for="email">メールアドレス</label>
               <div class="register_inputArea">
                 <input class="register_input js-formInput" type="email" id="email" value="" placeholder="june@example.com">
               </div>
@@ -35,7 +35,7 @@
               </div>
             </li>
             <li class="register_item">
-              <label class="register_label" for="password">Password:</label>
+              <label class="register_label" for="password">パスワード</label>
               <div class="register_inputArea register_passwordArea">
                 <input class="register_input register_password js-formInput" type="password" id="password" value="" minlength="8" placeholder="8文字以上の大小の英数字で入力">
                 <button type="button" class="register_passwordBtn" id="js-passwordBtn" aria-label="show password"></button>
@@ -66,7 +66,7 @@
   <div class="modalOverlay js-modalOverlay" aria-hidden="true"></div>
   <!-- /.overlay -->
 
-  <div class="termsOfService js-modal" aria-hidden="true">
+  <dialog class="termsOfService js-modal" aria-hidden="true">
     <div class="termsOfService_inner">
       <div class="termsOfService_body js-modalBody">
         <h3 class="termsOfService_title">利用規約</h3>
@@ -120,9 +120,12 @@
             利用規約のダミーテキストです。利用規約のダミーテキストです。利用規約のダミーテキストです。
           </p>
         </div>
+        <div class="termsOfService_closeWrap">
+          <button class="termsOfService_close">閉じる</button>
+        </div>
       </div>
     </div>
-  </div>
+  </dialog>
   <!-- /.termsOfService -->
   <script src="./js/registerClass.js" defer></script>
   <script src="./js/register.js" defer></script>

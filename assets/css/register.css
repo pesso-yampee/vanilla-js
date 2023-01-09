@@ -50,6 +50,11 @@ select {
   font: inherit;
 }
 
+button {
+  background-color: none;
+  cursor: pointer;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
     scroll-behavior: auto;
@@ -613,7 +618,7 @@ body.open {
 .register_list {
   display: grid;
   gap: 1.5rem;
-  max-width: 17.25rem;
+  max-width: 19.75rem;
   width: 100%;
 }
 @media screen and (max-width: 1279px) {
@@ -683,6 +688,12 @@ body.open {
   font-size: 0.75rem;
   -webkit-animation: showErrorMessage 0.5s;
           animation: showErrorMessage 0.5s;
+}
+
+@media screen and (max-width: 767px) {
+  .register_error {
+    line-height: 1.5;
+  }
 }
 
 .register_passwordBtn {
@@ -829,6 +840,7 @@ body.open {
   left: 50%;
   display: grid;
   place-items: center;
+  border: none;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   -webkit-transition: opacity 0.5s, visibility 0.5s;
@@ -849,11 +861,11 @@ body.open {
       -ms-flex-pack: center;
           justify-content: center;
   width: 100%;
-  height: 25rem;
+  height: 37.5rem;
 }
 @media screen and (max-width: 1279px) {
   .termsOfService_inner {
-    height: 25rem;
+    height: 37.5rem;
   }
 }
 
@@ -906,4 +918,22 @@ body.open {
 
 .termsOfService_text {
   line-height: 1.5;
+}
+
+.termsOfService_closeWrap {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  width: 100%;
+  padding: 0.625rem;
+  text-align: right;
+  background-color: #fff;
+  border-top: 1px solid #d3d3d3;
+}
+
+.termsOfService_close {
+  padding: 6px;
+  -webkit-box-shadow: 0 2px 0 #d3d3d3;
+          box-shadow: 0 2px 0 #d3d3d3;
+  font-size: 0.875rem;
 }/*# sourceMappingURL=register.css.map */

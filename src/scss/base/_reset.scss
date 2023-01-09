@@ -47,6 +47,11 @@ select {
   font: inherit;
 }
 
+button {
+  background-color: none;
+  cursor: pointer;
+}
+
 @media(prefers-reduced-motion:reduce) {
   html:focus-within {
     scroll-behavior: auto
