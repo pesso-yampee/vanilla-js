@@ -299,10 +299,10 @@ button {
 }
 
 /** -----------------------------------
-  modal
+  burgerMenu
 ----------------------------------- */
 @media screen and (max-width: 767px) {
-  .modal {
+  .burgerMenu {
     position: fixed;
     z-index: 3;
     display: none;
@@ -322,7 +322,7 @@ button {
     -webkit-animation: modalShow 0.5s;
             animation: modalShow 0.5s;
   }
-  .modal.is-show {
+  .burgerMenu.is-show {
     opacity: 1;
     display: -webkit-box;
     display: -webkit-flex;
@@ -331,7 +331,7 @@ button {
   }
 }
 
-.modal_list {
+.burgerMenu_list {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -347,7 +347,7 @@ button {
           justify-content: space-around;
 }
 
-.modal_item_link {
+.burgerMenu_link {
   color: #fff;
   font-weight: 700;
   font-size: 1.5rem;

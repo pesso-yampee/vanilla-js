@@ -164,9 +164,9 @@
 }
 
 /** -----------------------------------
-  modal
+  burgerMenu
 ----------------------------------- */
-.modal {
+.burgerMenu {
   @include media767 {
     position: fixed;
     z-index: 3;
@@ -187,14 +187,14 @@
   }
 }
 
-.modal_list {
+.burgerMenu_list {
   display: flex;
   height: 40%;
   flex-direction: column;
   justify-content: space-around;
 }
 
-.modal_item_link {
+.burgerMenu_link {
   color: $colorWhite;
   font-weight: 700;
   font-size: rem(24);
