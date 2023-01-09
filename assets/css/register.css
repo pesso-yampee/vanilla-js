@@ -909,7 +909,7 @@ body.open {
 .termsOfService_closeWrap {
   position: absolute;
   z-index: 1;
-  bottom: 0;
+  bottom: calc(-0.625rem - 1em);
   width: 100%;
   padding: 0.625rem;
   text-align: right;
