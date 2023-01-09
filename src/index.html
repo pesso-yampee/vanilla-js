@@ -18,7 +18,7 @@
         <nav class="header_nav">
           <ul class="header_list">
             <li class="header_item">
-              <a href="/src/register.html" class="header_item_link">
+              <a href="/src/register/" class="header_item_link">
                 <span class="header_item_text">会員登録</span>
               </a>
             </li>
@@ -30,6 +30,14 @@
           <span class="hamburger_line"></span>
           <span class="hamburger_line"></span>
         </button>
+        <dialog class="burgerMenu js-burgerMenu" aria-hidden="true" aria-modal="true">
+          <ul class="burgerMenu_list">
+            <li class="burgerMenu_item">
+              <a href="/src/register/" class="burgerMenu_link">会員登録</a>
+            </li>
+          </ul>
+          <div id="js-focusTrap" tabindex="0"></div>
+        </dialog>
       </div><!-- /.header_inner -->
     </header>
 
@@ -132,16 +140,6 @@
       </div>
     </main>
   </div><!-- /.wrapper -->
-
-  <div class="modal js-modal" role="dialog" tabindex="-1" aria-hidden="true" aria-modal="true" aria-labelledby="">
-    <ul class="modal_list">
-      <li class="modal_item">
-        <a href="#" class="modal_item_link">
-          <span class="modal_item_text">会員登録</span>
-        </a>
-      </li>
-    </ul>
-  </div>
   <script src="/src/js/commonClass.js" defer></script>
   <script src="/src/js/common.js" defer></script>
   <script src="/src/js/vanillaSlideClass.js" defer></script>

@@ -1,29 +1,30 @@
 // ハンバーガーメニュー開閉に伴うモーダル開閉処理
 class ClickHamburgerMenu {
-  constructor(button, modal) {
-    this.button = button;
-    this.modal = modal;
+  constructor({ triger, burgerMenuClassName }) {
+    this.triger = triger;
+    this.burgerMenuClassName = burgerMenuClassName;
   }
 
   transformHamburgerLine() {
-    this.button.classList.toggle("is-active");
-    if (this.button.classList.contains("is-active")) {
-      this.button.setAttribute("data-dismiss", "modal");
+    this.triger.classList.toggle("is-active");
+    if (this.triger.classList.contains("is-active")) {
+      this.triger.setAttribute("data-dismiss", "modal");
     } else {
-      this.button.removeAttribute("data-dismiss");
+      this.triger.removeAttribute("data-dismiss");
     }
   }
 
   toggleShowModal() {
-    const $modal                  = document.querySelector(this.modal),
-          focusableElementStrings = "a[href], input, button",
-          focusableElements       = $modal.querySelectorAll(focusableElementStrings),
-          $firstTabStop           = focusableElements[0],
-          $main                   = document.querySelector(".js-main");
+    const $modal = document.querySelector(this.burgerMenuClassName);
+    const focusableElementStrings = "a[href], input, button";
+    const focusableElements = [...$modal.querySelectorAll(focusableElementStrings)];
+    const $firstTabStop = focusableElements[0];
+    // 現在フォーカスが当たっている要素の位置を取得
+    const focusedItemIndex = focusableElements.indexOf(document.activeElement);
+    const $main = document.querySelector(".js-main");
 
     $modal.classList.toggle("is-show");
-    $firstTabStop.focus();
-
+    
     if ($modal.classList.contains("is-show")) {
       $main.setAttribute("area-hidden", "true");
       $modal.setAttribute("area-hidden", "false");
@@ -31,7 +32,6 @@ class ClickHamburgerMenu {
       $main.removeAttribute("area-hidden");
       $modal.setAttribute("area-hidden", "true");
     }
-
   }
 
   toggleOverflow() {

@@ -1,16 +1,23 @@
 // ハンバーガーメニュー開閉
-window.addEventListener("DOMContentLoaded", () => {
-  const $hamburger = document.querySelector(".js-hamburger");
-  const modal = ".js-modal";
+const $hamburger = document.querySelector(".js-hamburger");
+const burgerMenuClassName = ".js-burgerMenu";
+
+$hamburger.addEventListener("click", (e) => {
+  const props = {
+    triger: e.currentTarget,
+    burgerMenuClassName: burgerMenuClassName,
+  };
   
-  $hamburger.addEventListener("click", (e) => {
-    const currentTarget = e.currentTarget;
-    
-    const clickHamburgerMenu = new ClickHamburgerMenu(currentTarget, modal);
-    clickHamburgerMenu.transformHamburgerLine();
-    clickHamburgerMenu.toggleShowModal();
-    clickHamburgerMenu.toggleOverflow();
-  });
+  const clickHamburgerMenu = new ClickHamburgerMenu({ ...props });
+  clickHamburgerMenu.transformHamburgerLine();
+  clickHamburgerMenu.toggleShowModal();
+  clickHamburgerMenu.toggleOverflow();
+});
+
+// フォーカストラップ制御
+const focusTrap = document.getElementById('js-focusTrap');
+focusTrap.addEventListener("focus", () => {
+	$hamburger.focus();
 });
 
 /**
