@@ -51,11 +51,6 @@ class ModalAnimation {
     }
   }
 
-  closeModal() {
-    this._hideModal();
-    this.ariaHiddenFlag = true;
-  }
-
   _toEnableInputChecked() {
     this.checkbox = document.querySelector('input[aria-label="agree"]');
 

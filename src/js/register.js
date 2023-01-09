@@ -4,7 +4,6 @@ window.addEventListener("load", () => {
   const checkAgree = document.querySelector('input[aria-label="agree"]');
   const valueMatchedArray = [];
 
-  // 利用規約の表示制御
   const controlDisplayTermsOfService = (() => {
     const triger = document.querySelector(".js-modalTriger");
     const modal = document.querySelector(".js-modal");
@@ -12,8 +11,7 @@ window.addEventListener("load", () => {
     const modalClose = document.getElementById("js-modalClose");
     let ariaHiddenFlag = true;
 
-    // 開く処理
-    triger.addEventListener("click", () => {
+    const showModal = () => {
       const props = {
         modal: modal,
         modalOverlay: modalOverlay,
@@ -22,10 +20,11 @@ window.addEventListener("load", () => {
       const modalAnimation = new ModalAnimation(props);
       modalAnimation.observeScroll();
       ariaHiddenFlag = modalAnimation.toggleModal();
-    });
+    };
+
+    triger.addEventListener("click", showModal);
     
-    // 閉じる処理
-    modalClose.addEventListener("click", (e) => {
+    const hideModal = (e) => {
       const props = {
         currentTarget: e.currentTarget,
         modal: modal,
@@ -33,9 +32,10 @@ window.addEventListener("load", () => {
         ariaHiddenFlag: ariaHiddenFlag,
       };
       const modalAnimation = new ModalAnimation(props);
-      modalAnimation.closeModal();
-    });
-
+      ariaHiddenFlag = modalAnimation.toggleModal();
+    };
+    
+    modalClose.addEventListener("click", hideModal);
   })();
 
   const getSubmitFlag = (array) => {
