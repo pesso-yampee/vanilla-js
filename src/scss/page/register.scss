@@ -342,6 +342,7 @@
 .termsOfService_closeWrap {
   position: absolute;
   z-index: 1;
+  left: 0;
   bottom: calc(rem(-10) + -1em);
   width: 100%;
   padding: rem(10);

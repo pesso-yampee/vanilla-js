@@ -40,6 +40,7 @@
 }
 
 .header_title {
+  font-weight: 700;
   font-size: rem(36);
 
   @include media1279 {
@@ -88,7 +89,7 @@
     display: block;
     bottom: rem(-6);
     width: 0;
-    height: rem(2);
+    height: rem(1);
     background-color: $colorPureBlack;
     content: '';
     transition: width .3s;
