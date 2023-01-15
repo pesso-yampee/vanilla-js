@@ -1,0 +1,125 @@
+@charset "UTF-8";
+@use "../base/reset" as *;
+@use "../base/variable" as *;
+@use "../base/media" as *;
+@use "../base/animation" as *;
+@use "../base/setting" as *;
+@use "../module/common" as *;
+@use "../base/function" as *;
+
+.login_inner {
+  padding-left: 20px;
+  padding-right: 20px;
+  @include media767 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.container {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.form {
+  box-shadow: 2px 2px 5px $colorGray;
+  margin-bottom: 2px;
+}
+
+.form_inner {
+  padding: 24px;
+}
+
+.form_heading {
+  text-align: center;
+
+  &+* {
+    margin-top: 20px;
+  }
+}
+
+.form_label {
+  opacity: 0;
+  visibility: hidden;
+  display: block;
+  transform: translateY(3px);
+  transition: opacity .5s, visibility .5s transform .5s;
+
+  &.is-show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.form_input {
+  width: 100%;
+  margin-top: 4px;
+  padding: 6px;
+  border-bottom: 1px solid $colorBlack;
+
+  &+* {
+    margin-top: 16px;
+  }
+}
+
+.form_login {
+  display: block;
+  width: 100%;
+  margin-bottom: 3px;
+  padding: 16px 0;
+  background-color: $colorTeal;
+  box-shadow: 0 3px 0 rgba($colorTeal, .5);
+  border-radius: 4px;
+  text-align: center;
+  line-height: 1;
+  color: $colorWhite;
+  font-size: 20px;
+  transition: box-shadow .5s, transform .5s;
+
+  @media (hover: hover) {
+    &:hover {
+      box-shadow: none;
+      transform: translateY(3px);
+    }
+  }
+}
+
+.form_footer {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(2, auto);
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.form_link {
+  position: relative;
+  padding: 4px;
+  color: $colorGray;
+  font-size: 12px;
+
+  &::after {
+    position: absolute;
+    content: '';
+    left: 4px;
+    bottom: 0;
+    opacity: 0;
+    visibility: hidden;
+    display: block;
+    width: calc(100% - (4px * 2));
+    height: 1px;
+    border-bottom: 1px dotted $colorGray;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      &::after {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+}
