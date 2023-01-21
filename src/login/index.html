@@ -3,7 +3,6 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ログイン画面</title>
   <link rel="stylesheet" href="/assets/css/login.css">
@@ -11,29 +10,73 @@
 
 <body>
   <div class="wrapper">
+    <header class="header js-header">
+      <div class="header_inner">
+        <a class="header_title" href="/">vanilla-js</a>
+    
+        <nav class="header_nav">
+          <ul class="header_list">
+            <li class="header_item">
+              <a href="/src/register/" class="header_item_link">
+                <span class="header_item_text">会員登録</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+    
+        <button class="hamburger js-hamburger" aria-label="ハンバーガーメニュー">
+          <span class="hamburger_line"></span>
+          <span class="hamburger_line"></span>
+          <span class="hamburger_line"></span>
+        </button>
+    
+        <dialog class="burgerMenu js-burgerMenu" tabindex="-1" aria-hidden="true" aria-modal="true">
+          <ul class="burgerMenu_list">
+            <li class="burgerMenu_item">
+              <a href="/src/register/" class="burgerMenu_link">会員登録</a>
+            </li>
+          </ul>
+        </dialog>
+      </div><!-- /.header_inner -->
+    </header>
+
     <div class="login">
       <div class="login_inner">
-        <div class="container">
-          <form action="" method="post" class="form">
-            <div class="form_inner">
-              <h1 class="form_heading">Log in</h1>
-              <label class="form_label" for="username">Username</label>
-              <input class="form_input" type="text" id="username" name="username" placeholder="Username">
-              <label class="form_label" for="password">Password</label>
-              <input class="form_input" type="password" id="password" name="password" placeholder="Password">
-              <button class="form_login" type="submit">Log in</button>
+        <div class="login_container">
+          <form method="post" class="form" aria-labelledby="formHeading">
+            <div class="form_feild">
+              <h1 class="form_heading" id="formHeading">Log in</h1>
+              <div class="form_group">
+                <input class="form_input js-formInput" type="text" id="username" name="username" required>
+                <label class="form_label" for="username">Username</label>
+              </div>
+              <div class="form_errorWrap is-hidden">
+                <p class="form_error">ユーザー名が一致しません。</p>
+              </div>
+              <div class="form_group">
+                <input class="form_input js-formInput" type="password" id="password" name="password" required>
+                <label class="form_label" for="password">Password</label>
+                <button type="button" class="form_passwordSwitchBtn" id="js-passwordBtn" aria-label="show password"></button>
+              </div>
+              <div class="form_errorWrap is-hidden">
+                <p class="form_error">パスワードが一致しません。</p>
+              </div>
+              <a class="form_submit is-inactive" href="/src/index.html">Log in</a>
             </div>
           </form>
-          <div class="form_footer">
-            <a class="form_link" href="/src/forgotpassword/">パスワードを忘れた方</a>
-            <a class="form_link" href="/src/register/">会員登録はこちら</a>
+          <div class="formFooter">
+            <a class="formLink" href="/src/forgotpassword/">パスワードを忘れた方</a>
+            <a class="formLink" href="/src/register/">会員登録はこちら</a>
           </div>
         </div>
       </div>
     </div>
   </div>
   <!-- /.wrapper -->
-
+<script src="/src/js/commonClass.js" defer></script>
+<script src="/src/js/common.js" defer></script>
+<script src="/src/js/loginClass.js" defer></script>
+<script src="/src/js/login.js" defer></script>
 </body>
 
 </html>
