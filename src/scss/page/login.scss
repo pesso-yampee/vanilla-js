@@ -8,15 +8,20 @@
 @use "../base/function" as *;
 
 .login_inner {
+  height: 100vh;
   padding-left: 20px;
   padding-right: 20px;
+
   @include media767 {
+    display: grid;
+    place-items: center;
+    height: calc(100vh - 70px);
     padding-left: 15px;
     padding-right: 15px;
   }
 }
 
-.container {
+.login_container {
   max-width: 400px;
   width: 100%;
   margin: 0 auto;
@@ -24,10 +29,10 @@
 
 .form {
   box-shadow: 2px 2px 5px $colorGray;
-  margin-bottom: 2px;
+  margin-bottom: 5px;
 }
 
-.form_inner {
+.form_feild {
   padding: 24px;
 }
 
@@ -39,34 +44,62 @@
   }
 }
 
-.form_label {
-  opacity: 0;
-  visibility: hidden;
-  display: block;
-  transform: translateY(3px);
-  transition: opacity .5s, visibility .5s transform .5s;
-
-  &.is-show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
+.form_group {
+  position: relative;
 }
 
 .form_input {
   width: 100%;
-  margin-top: 4px;
-  padding: 6px;
+  padding: 24px 10px 8px;
   border-bottom: 1px solid $colorBlack;
 
-  &+* {
-    margin-top: 16px;
+  &:focus {
+    + .form_label {
+      top: .7em;
+      color: $colorGray;
+      font-size: 13px;
+      transform: translateY(0);
+    }
   }
 }
 
-.form_login {
+.form_label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  display: block;
+  color: $colorBlack;
+  font-size: 16px;
+  transform: translateY(-50%);
+  transition: top .2s, color .2s, font-size .2s, transform .2s;
+
+  &.is-active {
+    top: .7em;
+    color: $colorGray;
+    font-size: 13px;
+    transform: translateY(0);
+  }
+}
+
+.form_passwordSwitchBtn {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 16px;
+  height: 16px;
+  background: url("/assets/media/images/icon/icon_hide.png") no-repeat center/contain;
+  transform: translateY(-50%);
+  cursor: pointer;
+
+  &.is-active {
+    background: url("/assets/media/images/icon/icon_show.png") no-repeat center/contain;
+  }
+}
+
+.form_submit {
   display: block;
   width: 100%;
+  margin-top: 16px;
   margin-bottom: 3px;
   padding: 16px 0;
   background-color: $colorTeal;
@@ -76,17 +109,48 @@
   line-height: 1;
   color: $colorWhite;
   font-size: 20px;
-  transition: box-shadow .5s, transform .5s;
-
+  transition: box-shadow .5s, transform .5s, color .5s, background-color .5s, pointer-events .5s;
+  
   @media (hover: hover) {
     &:hover {
       box-shadow: none;
       transform: translateY(3px);
     }
   }
+  
+  &.is-inactive {
+    pointer-events: none;
+    color: rgba($colorGray, .3);
+    background-color: rgba($colorGray, .1);
+    box-shadow: 0 3px 0 rgba($colorGray, .05);
+  }
 }
 
-.form_footer {
+.form_errorWrap {
+  &.is-hidden {
+    animation: hideErrorMessage .5s;
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+  }
+
+  &.is-show {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+    margin-top: rem(4);
+    margin-left: auto;
+    color: $colorVivitRed;
+    font-size: rem(12);
+    animation: showErrorMessage .5s;
+  }
+}
+
+.form_error {
+  line-height: 1.5;
+}
+
+.formFooter {
   display: grid;
   gap: 8px;
   grid-template-columns: repeat(2, auto);
@@ -94,7 +158,7 @@
   margin-top: 32px;
 }
 
-.form_link {
+.formLink {
   position: relative;
   padding: 4px;
   color: $colorGray;
