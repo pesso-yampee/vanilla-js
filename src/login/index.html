@@ -13,9 +13,14 @@
     <header class="header js-header">
       <div class="header_inner">
         <a class="header_title" href="/">vanilla-js</a>
-    
+
         <nav class="header_nav">
           <ul class="header_list">
+            <li class="header_item">
+              <a href="/src/login/" class="header_item_link js-login">
+                <span class="header_item_text">ログイン</span>
+              </a>
+            </li>
             <li class="header_item">
               <a href="/src/register/" class="header_item_link">
                 <span class="header_item_text">会員登録</span>
@@ -23,13 +28,13 @@
             </li>
           </ul>
         </nav>
-    
+
         <button class="hamburger js-hamburger" aria-label="ハンバーガーメニュー">
           <span class="hamburger_line"></span>
           <span class="hamburger_line"></span>
           <span class="hamburger_line"></span>
         </button>
-    
+
         <dialog class="burgerMenu js-burgerMenu" tabindex="-1" aria-hidden="true" aria-modal="true">
           <ul class="burgerMenu_list">
             <li class="burgerMenu_item">
@@ -40,28 +45,29 @@
       </div><!-- /.header_inner -->
     </header>
 
-    <div class="login">
+    <div class="login js-intersectTarget">
       <div class="login_inner">
         <div class="login_container">
           <form method="post" class="form" aria-labelledby="formHeading">
             <div class="form_feild">
               <h1 class="form_heading" id="formHeading">Log in</h1>
               <div class="form_group">
-                <input class="form_input js-formInput" type="text" id="username" name="username" required>
-                <label class="form_label" for="username">Username</label>
+                <input class="form_input js-formInput" type="text" id="email" name="email" required>
+                <label class="form_label" for="email">Email</label>
               </div>
               <div class="form_errorWrap is-hidden">
-                <p class="form_error">ユーザー名が一致しません。</p>
+                <p class="form_error">メールアドレスが一致しません。</p>
               </div>
               <div class="form_group">
                 <input class="form_input js-formInput" type="password" id="password" name="password" required>
                 <label class="form_label" for="password">Password</label>
-                <button type="button" class="form_passwordSwitchBtn" id="js-passwordBtn" aria-label="show password"></button>
+                <button type="button" class="form_passwordSwitchBtn" id="js-passwordBtn"
+                  aria-label="入力したパスワードを確認する"></button>
               </div>
               <div class="form_errorWrap is-hidden">
                 <p class="form_error">パスワードが一致しません。</p>
               </div>
-              <a class="form_submit is-inactive" href="/src/index.html">Log in</a>
+              <a class="form_submit is-inactive" href="/src/index.html" id="js-submit">Log in</a>
             </div>
           </form>
           <div class="formFooter">
@@ -73,10 +79,11 @@
     </div>
   </div>
   <!-- /.wrapper -->
-<script src="/src/js/commonClass.js" defer></script>
-<script src="/src/js/common.js" defer></script>
-<script src="/src/js/loginClass.js" defer></script>
-<script src="/src/js/login.js" defer></script>
+  <script src="/src/js/chance.min.js" defer></script>
+  <script src="/src/js/commonClass.js" defer></script>
+  <script src="/src/js/common.js" defer></script>
+  <script src="/src/js/loginClass.js" defer></script>
+  <script src="/src/js/login.js" defer></script>
 </body>
 
 </html>

@@ -8,14 +8,14 @@
 @use "../base/function" as *;
 
 .login_inner {
-  height: 100vh;
+  display: grid;
+  place-items: center;
+  height: calc(100vh - 84px);
   padding-left: 20px;
   padding-right: 20px;
-
+  
   @include media767 {
-    display: grid;
-    place-items: center;
-    height: calc(100vh - 70px);
+    height: calc(var(--vh, 1vh) * 100);
     padding-left: 15px;
     padding-right: 15px;
   }

@@ -1,4 +1,4 @@
-class ControlDisplayErrorMessage {
+class ObserveFormStatus {
   constructor({ text = null, result = null, submitStatus }) {
     this.text = text;
     this.result = result;
@@ -31,9 +31,8 @@ class SwitchDisplayPassword {
 
   _switch() {
     if (!this.passwordValue) return;
-
     this.current = this.event.currentTarget;
-    this.input = this.current.previousElementSibling;
+    this.input = this.current.parentNode.firstElementChild;
 
     if (this.current.classList.contains("is-active")) {
       this.input.setAttribute("type", "password");

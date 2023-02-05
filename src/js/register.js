@@ -29,7 +29,6 @@ window.addEventListener("load", () => {
         showModal();
       }
     });
-    
 
     const hideModal = (e) => {
       const props = {
@@ -41,7 +40,7 @@ window.addEventListener("load", () => {
       const modalAnimation = new ModalAnimation(props);
       ariaHiddenFlag = modalAnimation.toggleModal();
     };
-    
+
     modalClose.addEventListener("click", hideModal);
   })();
 
@@ -73,7 +72,7 @@ window.addEventListener("load", () => {
   };
 
   // inputエリアのエラーメッセージの表示制御
-  const controlDisplayErrorMessage = ((agree, array) => {
+  const ObserveFormStatus = ((agree, array) => {
     const formInputs = document.querySelectorAll(".js-formInput");
     const pattern = {
       username: /^.{0,15}$/,
@@ -141,7 +140,7 @@ window.addEventListener("load", () => {
     input.addEventListener("change", (e) => {
       passwordValue = e.target.value;
     });
-  
+
     btn.addEventListener("click", (e) => {
       const props = {
         event: e,
@@ -151,6 +150,4 @@ window.addEventListener("load", () => {
       switchDisplayPassword.switchDisplay();
     });
   })();
-
-
 });

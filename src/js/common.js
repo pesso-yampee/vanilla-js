@@ -1,4 +1,30 @@
 (() => {
+  function checkExistToken() {
+    const token = localStorage.getItem("token");
+    const loginBtn = document.querySelector(".js-login");
+
+    if (!loginBtn) return;
+
+    if (token) {
+      loginBtn.firstElementChild.textContent = "ログアウト";
+      loginBtn.classList.remove("js-login");
+      loginBtn.classList.add("js-logout");
+      return;
+    }
+  }
+  checkExistToken();
+
+  const logoutBtn = document.querySelector(".js-logout")
+    ? document.querySelector(".js-logout")
+    : null;
+
+  if (logoutBtn != null) {
+    // ローカルストレージからトークンを削除する処理
+    logoutBtn.addEventListener("click", (e) => {
+      localStorage.removeItem("token");
+    });
+  }
+
   function toggleShowBurgerMenu() {
     const $hamburger = document.querySelector(".js-hamburger");
     const burgerMenuClassName = ".js-burgerMenu";
@@ -25,14 +51,15 @@
     });
   }
   controlFocusTrap();
-  
-  function addHeaderShadow() {
-    /**
-     * 第一引数:
-     * 第二引数: ヘッダー要素
-     */
-    // 特定の位置に達したらヘッダーに影を追加
-    new AddHeaderShadow(".newsUI", ".js-header");
+
+  // 特定の位置に達したらヘッダーに影を追加
+  new AddHeaderShadow(".js-intersectTarget", ".js-header");
+
+  // 100vh対策
+  function setVh() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
   }
-  addHeaderShadow();
+  window.addEventListener("load", setVh);
+  window.addEventListener("resize", setVh);
 })();
